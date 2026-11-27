@@ -1,0 +1,7 @@
+[
+  {"id":"addition","prompt":"What is 17 + 25? Answer with digits only.","answer":"42"},
+  {"id":"translation","prompt":"Translate 蓝色 into English. Answer with one word.","answer":"blue"},
+  {"id":"color","prompt":"What color is the large square? Answer with one English word.","answer":"red","shapes":[["rectangle",[84,84,299,299],"red"]]},
+  {"id":"count","prompt":"How many blue circles are there? Answer with digits only.","answer":"3","shapes":[["ellipse",[24,130,120,226],"blue"],["ellipse",[144,130,240,226],"blue"],["ellipse",[264,130,360,226],"blue"]]},
+  {"id":"spatial","prompt":"Which shape is on the left, the circle or the square? Answer with one English word.","answer":"circle","shapes":[["ellipse",[32,128,159,255],"green"],["rectangle",[224,128,351,255],"orange"]]}
+]
