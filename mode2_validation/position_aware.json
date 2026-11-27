@@ -1,0 +1,686 @@
+{
+  "passed": true,
+  "position_aware_diagnostic": true,
+  "mode": "Caffe CPU FP32 qdq=0, reference-token prefixes, split-native KV",
+  "prefill_size": 128,
+  "prefill_capacity": 1024,
+  "decode_capacity": 1024,
+  "interfaces": {
+    "prefill_0-2": {
+      "inputs": {
+        "position_ids_embedded": [
+          1,
+          1,
+          128,
+          256
+        ],
+        "input_ids_embedded": [
+          1,
+          1,
+          128,
+          2560
+        ],
+        "input_ids_embedded_scale": [
+          1,
+          1,
+          128,
+          40
+        ],
+        "past_keys": [
+          1,
+          1,
+          1024,
+          1024
+        ],
+        "past_keys_scale": [
+          1,
+          1,
+          1024,
+          16
+        ],
+        "valid_till": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "past_values": [
+          1,
+          1,
+          1024,
+          1024
+        ],
+        "past_values_scale": [
+          1,
+          1,
+          16,
+          1024
+        ],
+        "deepstack_input_ids_embedded": [
+          1,
+          1,
+          128,
+          2560
+        ],
+        "deepstack_input_ids_embedded_scale": [
+          1,
+          1,
+          128,
+          40
+        ]
+      },
+      "outputs": {
+        "deepstack_residual": [
+          1,
+          1,
+          128,
+          2560
+        ],
+        "deepstack_residual_scale": [
+          1,
+          1,
+          128,
+          40
+        ],
+        "k_norm_reshape_permute_rope_reshape_permute": [
+          1,
+          1,
+          128,
+          1024
+        ],
+        "k_norm_scale_reshape_permute_rope_reshape_permute": [
+          1,
+          1,
+          128,
+          16
+        ],
+        "v_proj_reshape_permute": [
+          1,
+          1,
+          128,
+          1024
+        ],
+        "v_proj_scale_reshape_permute": [
+          1,
+          1,
+          2,
+          1024
+        ]
+      }
+    },
+    "decode_0-35": {
+      "inputs": {
+        "position_ids_embedded": [
+          1,
+          1,
+          1,
+          256
+        ],
+        "input_ids_embedded": [
+          1,
+          1,
+          1,
+          2560
+        ],
+        "input_ids_embedded_scale": [
+          1,
+          1,
+          1,
+          40
+        ],
+        "valid_till": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "past_values_requant": [
+          1,
+          64,
+          1,
+          1024
+        ],
+        "past_values_requant_scale": [
+          1,
+          1,
+          1,
+          1024
+        ],
+        "past_keys": [
+          1,
+          1,
+          1024,
+          1024
+        ],
+        "past_keys_scale": [
+          1,
+          1,
+          1024,
+          16
+        ],
+        "past_values": [
+          1,
+          1,
+          1024,
+          1024
+        ],
+        "past_values_scale": [
+          1,
+          1,
+          16,
+          1024
+        ]
+      },
+      "outputs": {
+        "k_norm_permute_rope": [
+          1,
+          8,
+          1,
+          128
+        ],
+        "k_norm_scale_permute_rope": [
+          1,
+          8,
+          1,
+          2
+        ],
+        "mlp_residual": [
+          1,
+          1,
+          1,
+          2560
+        ],
+        "mlp_residual_scale": [
+          1,
+          1,
+          1,
+          40
+        ],
+        "requant": [
+          1,
+          64,
+          1,
+          1024
+        ],
+        "requant_scale": [
+          1,
+          1,
+          1,
+          1024
+        ]
+      }
+    },
+    "prefill_3-35": {
+      "inputs": {
+        "position_ids_embedded": [
+          1,
+          1,
+          128,
+          256
+        ],
+        "input_ids_embedded": [
+          1,
+          1,
+          128,
+          2560
+        ],
+        "input_ids_embedded_scale": [
+          1,
+          1,
+          128,
+          40
+        ],
+        "past_keys": [
+          1,
+          1,
+          1024,
+          1024
+        ],
+        "past_keys_scale": [
+          1,
+          1,
+          1024,
+          16
+        ],
+        "valid_till": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "past_values": [
+          1,
+          1,
+          1024,
+          1024
+        ],
+        "past_values_scale": [
+          1,
+          1,
+          16,
+          1024
+        ]
+      },
+      "outputs": {
+        "k_norm_reshape_permute_rope_reshape_permute": [
+          1,
+          1,
+          128,
+          1024
+        ],
+        "k_norm_scale_reshape_permute_rope_reshape_permute": [
+          1,
+          1,
+          128,
+          16
+        ],
+        "mlp_residual": [
+          1,
+          1,
+          128,
+          2560
+        ],
+        "mlp_residual_scale": [
+          1,
+          1,
+          128,
+          40
+        ],
+        "v_proj_reshape_permute": [
+          1,
+          1,
+          128,
+          1024
+        ],
+        "v_proj_scale_reshape_permute": [
+          1,
+          1,
+          2,
+          1024
+        ]
+      }
+    },
+    "lmhead_36": {
+      "inputs": {
+        "input_ids_embedded": [
+          1,
+          1,
+          1,
+          2560
+        ],
+        "input_ids_embedded_scale": [
+          1,
+          1,
+          1,
+          40
+        ]
+      },
+      "outputs": {
+        "lm_head": [
+          1,
+          151936
+        ],
+        "lm_head_scale": [
+          1,
+          151936
+        ]
+      }
+    }
+  },
+  "thresholds": {
+    "max_abs": 0.002,
+    "rmse": 0.0002,
+    "min_cosine": 0.999999
+  },
+  "top1_matches_onnx": 11,
+  "positions": 11,
+  "samples": [
+    {
+      "id": "addition",
+      "prompt_tokens": 23,
+      "steps": [
+        {
+          "phase": "prefill",
+          "prefix_generated": [],
+          "caffe_id": 19,
+          "hf_id": 19,
+          "ort_id": 19,
+          "vs_hf": {
+            "max_abs": 0.0001518726348876953,
+            "rmse": 3.913424429127148e-05,
+            "cosine": 0.999999999962143,
+            "top1": true
+          },
+          "vs_onnx": {
+            "max_abs": 6.365776062011719e-05,
+            "rmse": 1.6135902018345485e-05,
+            "cosine": 0.9999999999933086,
+            "top1": true
+          }
+        },
+        {
+          "phase": "decode",
+          "prefix_generated": [
+            19
+          ],
+          "caffe_id": 17,
+          "hf_id": 17,
+          "ort_id": 17,
+          "vs_hf": {
+            "max_abs": 0.000118255615234375,
+            "rmse": 2.7988795759879977e-05,
+            "cosine": 0.9999999999966166,
+            "top1": true
+          },
+          "vs_onnx": {
+            "max_abs": 6.961822509765625e-05,
+            "rmse": 1.3393338304971777e-05,
+            "cosine": 0.9999999999981962,
+            "top1": true
+          }
+        },
+        {
+          "phase": "decode",
+          "prefix_generated": [
+            19,
+            17
+          ],
+          "caffe_id": 151645,
+          "hf_id": 151645,
+          "ort_id": 151645,
+          "vs_hf": {
+            "max_abs": 9.799003601074219e-05,
+            "rmse": 2.365993533752543e-05,
+            "cosine": 0.999999999970649,
+            "top1": true
+          },
+          "vs_onnx": {
+            "max_abs": 0.000102996826171875,
+            "rmse": 1.6728833956712616e-05,
+            "cosine": 0.9999999999862121,
+            "top1": true
+          }
+        }
+      ],
+      "layer0_head0_mask": [
+        {
+          "query": 0,
+          "last_nonzero_key": 0,
+          "visible_keys": 1
+        },
+        {
+          "query": 22,
+          "last_nonzero_key": 22,
+          "visible_keys": 23
+        }
+      ],
+      "fixed_table_max_rope_error": 1.9999926090240479
+    },
+    {
+      "id": "color",
+      "prompt_tokens": 167,
+      "steps": [
+        {
+          "phase": "prefill",
+          "prefix_generated": [],
+          "caffe_id": 1151,
+          "hf_id": 1151,
+          "ort_id": 1151,
+          "vs_hf": {
+            "max_abs": 0.0001087188720703125,
+            "rmse": 2.1118263503049746e-05,
+            "cosine": 0.9999999999974655,
+            "top1": true
+          },
+          "vs_onnx": {
+            "max_abs": 8.0108642578125e-05,
+            "rmse": 1.8816710293353788e-05,
+            "cosine": 0.99999999999793,
+            "top1": true
+          }
+        },
+        {
+          "phase": "decode",
+          "prefix_generated": [
+            1151
+          ],
+          "caffe_id": 151645,
+          "hf_id": 151645,
+          "ort_id": 151645,
+          "vs_hf": {
+            "max_abs": 9.1552734375e-05,
+            "rmse": 1.6089594721021292e-05,
+            "cosine": 0.9999999999852438,
+            "top1": true
+          },
+          "vs_onnx": {
+            "max_abs": 9.1552734375e-05,
+            "rmse": 1.4455681474761814e-05,
+            "cosine": 0.9999999999881493,
+            "top1": true
+          }
+        }
+      ],
+      "layer0_head0_mask": [
+        {
+          "query": 0,
+          "last_nonzero_key": 0,
+          "visible_keys": 1
+        },
+        {
+          "query": 127,
+          "last_nonzero_key": 127,
+          "visible_keys": 128
+        },
+        {
+          "query": 128,
+          "last_nonzero_key": 128,
+          "visible_keys": 129
+        },
+        {
+          "query": 166,
+          "last_nonzero_key": 166,
+          "visible_keys": 167
+        }
+      ],
+      "fixed_table_max_rope_error": 5.960464477539063e-08
+    },
+    {
+      "id": "count",
+      "prompt_tokens": 166,
+      "steps": [
+        {
+          "phase": "prefill",
+          "prefix_generated": [],
+          "caffe_id": 18,
+          "hf_id": 18,
+          "ort_id": 18,
+          "vs_hf": {
+            "max_abs": 0.0001430511474609375,
+            "rmse": 2.218508349360466e-05,
+            "cosine": 0.9999999999885055,
+            "top1": true
+          },
+          "vs_onnx": {
+            "max_abs": 6.29425048828125e-05,
+            "rmse": 1.2091101710723086e-05,
+            "cosine": 0.9999999999977629,
+            "top1": true
+          }
+        },
+        {
+          "phase": "decode",
+          "prefix_generated": [
+            18
+          ],
+          "caffe_id": 151645,
+          "hf_id": 151645,
+          "ort_id": 151645,
+          "vs_hf": {
+            "max_abs": 0.0001087188720703125,
+            "rmse": 1.84665596817487e-05,
+            "cosine": 0.9999999999816976,
+            "top1": true
+          },
+          "vs_onnx": {
+            "max_abs": 7.915496826171875e-05,
+            "rmse": 1.561950474998284e-05,
+            "cosine": 0.9999999999870867,
+            "top1": true
+          }
+        }
+      ],
+      "layer0_head0_mask": [
+        {
+          "query": 0,
+          "last_nonzero_key": 0,
+          "visible_keys": 1
+        },
+        {
+          "query": 127,
+          "last_nonzero_key": 127,
+          "visible_keys": 128
+        },
+        {
+          "query": 128,
+          "last_nonzero_key": 128,
+          "visible_keys": 129
+        },
+        {
+          "query": 165,
+          "last_nonzero_key": 165,
+          "visible_keys": 166
+        }
+      ],
+      "fixed_table_max_rope_error": 5.960464477539063e-08
+    },
+    {
+      "id": "spatial",
+      "prompt_tokens": 173,
+      "steps": [
+        {
+          "phase": "prefill",
+          "prefix_generated": [],
+          "caffe_id": 25857,
+          "hf_id": 25857,
+          "ort_id": 25857,
+          "vs_hf": {
+            "max_abs": 9.953975677490234e-05,
+            "rmse": 1.808127787809926e-05,
+            "cosine": 0.9999999999975182,
+            "top1": true
+          },
+          "vs_onnx": {
+            "max_abs": 0.00010395050048828125,
+            "rmse": 1.602003352588613e-05,
+            "cosine": 0.9999999999980497,
+            "top1": true
+          }
+        },
+        {
+          "phase": "decode",
+          "prefix_generated": [
+            25857
+          ],
+          "caffe_id": 151645,
+          "hf_id": 151645,
+          "ort_id": 151645,
+          "vs_hf": {
+            "max_abs": 0.00010204315185546875,
+            "rmse": 1.754150197974032e-05,
+            "cosine": 0.9999999999821219,
+            "top1": true
+          },
+          "vs_onnx": {
+            "max_abs": 8.20159912109375e-05,
+            "rmse": 1.2703115596616267e-05,
+            "cosine": 0.9999999999911706,
+            "top1": true
+          }
+        }
+      ],
+      "layer0_head0_mask": [
+        {
+          "query": 0,
+          "last_nonzero_key": 0,
+          "visible_keys": 1
+        },
+        {
+          "query": 127,
+          "last_nonzero_key": 127,
+          "visible_keys": 128
+        },
+        {
+          "query": 128,
+          "last_nonzero_key": 128,
+          "visible_keys": 129
+        },
+        {
+          "query": 172,
+          "last_nonzero_key": 172,
+          "visible_keys": 173
+        }
+      ],
+      "fixed_table_max_rope_error": 5.960464477539063e-08
+    },
+    {
+      "id": "translation",
+      "prompt_tokens": 21,
+      "steps": [
+        {
+          "phase": "prefill",
+          "prefix_generated": [],
+          "caffe_id": 10331,
+          "hf_id": 10331,
+          "ort_id": 10331,
+          "vs_hf": {
+            "max_abs": 9.441375732421875e-05,
+            "rmse": 3.789455540875145e-05,
+            "cosine": 0.9999999999926816,
+            "top1": true
+          },
+          "vs_onnx": {
+            "max_abs": 3.814697265625e-05,
+            "rmse": 6.270883308462796e-06,
+            "cosine": 0.9999999999995474,
+            "top1": true
+          }
+        },
+        {
+          "phase": "decode",
+          "prefix_generated": [
+            10331
+          ],
+          "caffe_id": 151645,
+          "hf_id": 151645,
+          "ort_id": 151645,
+          "vs_hf": {
+            "max_abs": 0.00010132789611816406,
+            "rmse": 1.4787198035708674e-05,
+            "cosine": 0.9999999999864841,
+            "top1": true
+          },
+          "vs_onnx": {
+            "max_abs": 5.561113357543945e-05,
+            "rmse": 1.1518571598161422e-05,
+            "cosine": 0.9999999999916026,
+            "top1": true
+          }
+        }
+      ],
+      "layer0_head0_mask": [
+        {
+          "query": 0,
+          "last_nonzero_key": 0,
+          "visible_keys": 1
+        },
+        {
+          "query": 20,
+          "last_nonzero_key": 20,
+          "visible_keys": 21
+        }
+      ],
+      "fixed_table_max_rope_error": 1.9999926090240479
+    }
+  ]
+}

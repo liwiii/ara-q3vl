@@ -1,0 +1,686 @@
+{
+  "passed": false,
+  "position_aware_diagnostic": false,
+  "mode": "Caffe CPU FP32 qdq=0, reference-token prefixes, split-native KV",
+  "prefill_size": 128,
+  "prefill_capacity": 1024,
+  "decode_capacity": 1024,
+  "interfaces": {
+    "prefill_0-2": {
+      "inputs": {
+        "position_ids_embedded": [
+          1,
+          1,
+          128,
+          256
+        ],
+        "input_ids_embedded": [
+          1,
+          1,
+          128,
+          2560
+        ],
+        "input_ids_embedded_scale": [
+          1,
+          1,
+          128,
+          40
+        ],
+        "past_keys": [
+          1,
+          1,
+          1024,
+          1024
+        ],
+        "past_keys_scale": [
+          1,
+          1,
+          1024,
+          16
+        ],
+        "valid_till": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "past_values": [
+          1,
+          1,
+          1024,
+          1024
+        ],
+        "past_values_scale": [
+          1,
+          1,
+          16,
+          1024
+        ],
+        "deepstack_input_ids_embedded": [
+          1,
+          1,
+          128,
+          2560
+        ],
+        "deepstack_input_ids_embedded_scale": [
+          1,
+          1,
+          128,
+          40
+        ]
+      },
+      "outputs": {
+        "deepstack_residual": [
+          1,
+          1,
+          128,
+          2560
+        ],
+        "deepstack_residual_scale": [
+          1,
+          1,
+          128,
+          40
+        ],
+        "k_norm_reshape_permute_rope_reshape_permute": [
+          1,
+          1,
+          128,
+          1024
+        ],
+        "k_norm_scale_reshape_permute_rope_reshape_permute": [
+          1,
+          1,
+          128,
+          16
+        ],
+        "v_proj_reshape_permute": [
+          1,
+          1,
+          128,
+          1024
+        ],
+        "v_proj_scale_reshape_permute": [
+          1,
+          1,
+          2,
+          1024
+        ]
+      }
+    },
+    "decode_0-35": {
+      "inputs": {
+        "position_ids_embedded": [
+          1,
+          1,
+          1,
+          256
+        ],
+        "input_ids_embedded": [
+          1,
+          1,
+          1,
+          2560
+        ],
+        "input_ids_embedded_scale": [
+          1,
+          1,
+          1,
+          40
+        ],
+        "valid_till": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "past_values_requant": [
+          1,
+          64,
+          1,
+          1024
+        ],
+        "past_values_requant_scale": [
+          1,
+          1,
+          1,
+          1024
+        ],
+        "past_keys": [
+          1,
+          1,
+          1024,
+          1024
+        ],
+        "past_keys_scale": [
+          1,
+          1,
+          1024,
+          16
+        ],
+        "past_values": [
+          1,
+          1,
+          1024,
+          1024
+        ],
+        "past_values_scale": [
+          1,
+          1,
+          16,
+          1024
+        ]
+      },
+      "outputs": {
+        "k_norm_permute_rope": [
+          1,
+          8,
+          1,
+          128
+        ],
+        "k_norm_scale_permute_rope": [
+          1,
+          8,
+          1,
+          2
+        ],
+        "mlp_residual": [
+          1,
+          1,
+          1,
+          2560
+        ],
+        "mlp_residual_scale": [
+          1,
+          1,
+          1,
+          40
+        ],
+        "requant": [
+          1,
+          64,
+          1,
+          1024
+        ],
+        "requant_scale": [
+          1,
+          1,
+          1,
+          1024
+        ]
+      }
+    },
+    "prefill_3-35": {
+      "inputs": {
+        "position_ids_embedded": [
+          1,
+          1,
+          128,
+          256
+        ],
+        "input_ids_embedded": [
+          1,
+          1,
+          128,
+          2560
+        ],
+        "input_ids_embedded_scale": [
+          1,
+          1,
+          128,
+          40
+        ],
+        "past_keys": [
+          1,
+          1,
+          1024,
+          1024
+        ],
+        "past_keys_scale": [
+          1,
+          1,
+          1024,
+          16
+        ],
+        "valid_till": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "past_values": [
+          1,
+          1,
+          1024,
+          1024
+        ],
+        "past_values_scale": [
+          1,
+          1,
+          16,
+          1024
+        ]
+      },
+      "outputs": {
+        "k_norm_reshape_permute_rope_reshape_permute": [
+          1,
+          1,
+          128,
+          1024
+        ],
+        "k_norm_scale_reshape_permute_rope_reshape_permute": [
+          1,
+          1,
+          128,
+          16
+        ],
+        "mlp_residual": [
+          1,
+          1,
+          128,
+          2560
+        ],
+        "mlp_residual_scale": [
+          1,
+          1,
+          128,
+          40
+        ],
+        "v_proj_reshape_permute": [
+          1,
+          1,
+          128,
+          1024
+        ],
+        "v_proj_scale_reshape_permute": [
+          1,
+          1,
+          2,
+          1024
+        ]
+      }
+    },
+    "lmhead_36": {
+      "inputs": {
+        "input_ids_embedded": [
+          1,
+          1,
+          1,
+          2560
+        ],
+        "input_ids_embedded_scale": [
+          1,
+          1,
+          1,
+          40
+        ]
+      },
+      "outputs": {
+        "lm_head": [
+          1,
+          151936
+        ],
+        "lm_head_scale": [
+          1,
+          151936
+        ]
+      }
+    }
+  },
+  "thresholds": {
+    "max_abs": 0.002,
+    "rmse": 0.0002,
+    "min_cosine": 0.999999
+  },
+  "top1_matches_onnx": 3,
+  "positions": 11,
+  "samples": [
+    {
+      "id": "addition",
+      "prompt_tokens": 23,
+      "steps": [
+        {
+          "phase": "prefill",
+          "prefix_generated": [],
+          "caffe_id": 22,
+          "hf_id": 19,
+          "ort_id": 19,
+          "vs_hf": {
+            "max_abs": 25.338672637939453,
+            "rmse": 3.9210855121000288,
+            "cosine": 0.4133774320681104,
+            "top1": false
+          },
+          "vs_onnx": {
+            "max_abs": 25.338726043701172,
+            "rmse": 3.921069480717099,
+            "cosine": 0.413379957545406,
+            "top1": false
+          }
+        },
+        {
+          "phase": "decode",
+          "prefix_generated": [
+            19
+          ],
+          "caffe_id": 151645,
+          "hf_id": 17,
+          "ort_id": 17,
+          "vs_hf": {
+            "max_abs": 31.585193634033203,
+            "rmse": 10.560522104396393,
+            "cosine": -0.6702878378078184,
+            "top1": false
+          },
+          "vs_onnx": {
+            "max_abs": 31.585147857666016,
+            "rmse": 10.560504062072168,
+            "cosine": -0.6702880002164509,
+            "top1": false
+          }
+        },
+        {
+          "phase": "decode",
+          "prefix_generated": [
+            19,
+            17
+          ],
+          "caffe_id": 151645,
+          "hf_id": 151645,
+          "ort_id": 151645,
+          "vs_hf": {
+            "max_abs": 24.001852989196777,
+            "rmse": 5.153114169738099,
+            "cosine": 0.15517369576838738,
+            "top1": true
+          },
+          "vs_onnx": {
+            "max_abs": 24.001872062683105,
+            "rmse": 5.153116462464327,
+            "cosine": 0.1551724933455929,
+            "top1": true
+          }
+        }
+      ],
+      "layer0_head0_mask": [
+        {
+          "query": 0,
+          "last_nonzero_key": 0,
+          "visible_keys": 1
+        },
+        {
+          "query": 22,
+          "last_nonzero_key": 22,
+          "visible_keys": 23
+        }
+      ],
+      "fixed_table_max_rope_error": 1.9999926090240479
+    },
+    {
+      "id": "color",
+      "prompt_tokens": 167,
+      "steps": [
+        {
+          "phase": "prefill",
+          "prefix_generated": [],
+          "caffe_id": 151645,
+          "hf_id": 1151,
+          "ort_id": 1151,
+          "vs_hf": {
+            "max_abs": 39.71614098548889,
+            "rmse": 8.162971580060503,
+            "cosine": 0.11378289883992769,
+            "top1": false
+          },
+          "vs_onnx": {
+            "max_abs": 39.71614098548889,
+            "rmse": 8.162972530787734,
+            "cosine": 0.11378307248096324,
+            "top1": false
+          }
+        },
+        {
+          "phase": "decode",
+          "prefix_generated": [
+            1151
+          ],
+          "caffe_id": 198,
+          "hf_id": 151645,
+          "ort_id": 151645,
+          "vs_hf": {
+            "max_abs": 24.522441864013672,
+            "rmse": 4.757744257243616,
+            "cosine": 0.5012297297670023,
+            "top1": false
+          },
+          "vs_onnx": {
+            "max_abs": 24.522371292114258,
+            "rmse": 4.757740785044049,
+            "cosine": 0.5012307096604577,
+            "top1": false
+          }
+        }
+      ],
+      "layer0_head0_mask": [
+        {
+          "query": 0,
+          "last_nonzero_key": 0,
+          "visible_keys": 1
+        },
+        {
+          "query": 127,
+          "last_nonzero_key": 127,
+          "visible_keys": 128
+        },
+        {
+          "query": 128,
+          "last_nonzero_key": 0,
+          "visible_keys": 1
+        },
+        {
+          "query": 166,
+          "last_nonzero_key": 38,
+          "visible_keys": 39
+        }
+      ],
+      "fixed_table_max_rope_error": 5.960464477539063e-08
+    },
+    {
+      "id": "count",
+      "prompt_tokens": 166,
+      "steps": [
+        {
+          "phase": "prefill",
+          "prefix_generated": [],
+          "caffe_id": 151645,
+          "hf_id": 18,
+          "ort_id": 18,
+          "vs_hf": {
+            "max_abs": 43.77126693725586,
+            "rmse": 5.973221136285253,
+            "cosine": -0.13753510984772166,
+            "top1": false
+          },
+          "vs_onnx": {
+            "max_abs": 43.77137756347656,
+            "rmse": 5.973225109398095,
+            "cosine": -0.13753505091137236,
+            "top1": false
+          }
+        },
+        {
+          "phase": "decode",
+          "prefix_generated": [
+            18
+          ],
+          "caffe_id": 13,
+          "hf_id": 151645,
+          "ort_id": 151645,
+          "vs_hf": {
+            "max_abs": 27.888856410980225,
+            "rmse": 4.742478024303941,
+            "cosine": 0.2965385426817583,
+            "top1": false
+          },
+          "vs_onnx": {
+            "max_abs": 27.88887357711792,
+            "rmse": 4.742484996761421,
+            "cosine": 0.2965357332141258,
+            "top1": false
+          }
+        }
+      ],
+      "layer0_head0_mask": [
+        {
+          "query": 0,
+          "last_nonzero_key": 0,
+          "visible_keys": 1
+        },
+        {
+          "query": 127,
+          "last_nonzero_key": 127,
+          "visible_keys": 128
+        },
+        {
+          "query": 128,
+          "last_nonzero_key": 0,
+          "visible_keys": 1
+        },
+        {
+          "query": 165,
+          "last_nonzero_key": 37,
+          "visible_keys": 38
+        }
+      ],
+      "fixed_table_max_rope_error": 5.960464477539063e-08
+    },
+    {
+      "id": "spatial",
+      "prompt_tokens": 173,
+      "steps": [
+        {
+          "phase": "prefill",
+          "prefix_generated": [],
+          "caffe_id": 151645,
+          "hf_id": 25857,
+          "ort_id": 25857,
+          "vs_hf": {
+            "max_abs": 41.806822776794434,
+            "rmse": 6.803622351165795,
+            "cosine": 0.5650697908166646,
+            "top1": false
+          },
+          "vs_onnx": {
+            "max_abs": 41.80677318572998,
+            "rmse": 6.8036222293532225,
+            "cosine": 0.5650697752915473,
+            "top1": false
+          }
+        },
+        {
+          "phase": "decode",
+          "prefix_generated": [
+            25857
+          ],
+          "caffe_id": 151645,
+          "hf_id": 151645,
+          "ort_id": 151645,
+          "vs_hf": {
+            "max_abs": 27.358758181333542,
+            "rmse": 4.998282965775592,
+            "cosine": 0.25218879827735313,
+            "top1": true
+          },
+          "vs_onnx": {
+            "max_abs": 27.358788698911667,
+            "rmse": 4.998283487170012,
+            "cosine": 0.25218824370358034,
+            "top1": true
+          }
+        }
+      ],
+      "layer0_head0_mask": [
+        {
+          "query": 0,
+          "last_nonzero_key": 0,
+          "visible_keys": 1
+        },
+        {
+          "query": 127,
+          "last_nonzero_key": 127,
+          "visible_keys": 128
+        },
+        {
+          "query": 128,
+          "last_nonzero_key": 0,
+          "visible_keys": 1
+        },
+        {
+          "query": 172,
+          "last_nonzero_key": 44,
+          "visible_keys": 45
+        }
+      ],
+      "fixed_table_max_rope_error": 5.960464477539063e-08
+    },
+    {
+      "id": "translation",
+      "prompt_tokens": 21,
+      "steps": [
+        {
+          "phase": "prefill",
+          "prefix_generated": [],
+          "caffe_id": 1636,
+          "hf_id": 10331,
+          "ort_id": 10331,
+          "vs_hf": {
+            "max_abs": 29.997204303741455,
+            "rmse": 3.5682698618881936,
+            "cosine": 0.8475500157759208,
+            "top1": false
+          },
+          "vs_onnx": {
+            "max_abs": 29.997220814228058,
+            "rmse": 3.568290219240861,
+            "cosine": 0.8475498343780904,
+            "top1": false
+          }
+        },
+        {
+          "phase": "decode",
+          "prefix_generated": [
+            10331
+          ],
+          "caffe_id": 151645,
+          "hf_id": 151645,
+          "ort_id": 151645,
+          "vs_hf": {
+            "max_abs": 20.040133357048035,
+            "rmse": 5.6914254925124705,
+            "cosine": 0.2880825044488001,
+            "top1": true
+          },
+          "vs_onnx": {
+            "max_abs": 20.04017150402069,
+            "rmse": 5.691426576890657,
+            "cosine": 0.28808235108376734,
+            "top1": true
+          }
+        }
+      ],
+      "layer0_head0_mask": [
+        {
+          "query": 0,
+          "last_nonzero_key": 0,
+          "visible_keys": 1
+        },
+        {
+          "query": 20,
+          "last_nonzero_key": 20,
+          "visible_keys": 21
+        }
+      ],
+      "fixed_table_max_rope_error": 1.9999926090240479
+    }
+  ]
+}
