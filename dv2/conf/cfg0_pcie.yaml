@@ -1,0 +1,139 @@
+general:
+  int_size: 8
+  max_time: 600000000
+  outputs:
+    dir: output
+    json: true
+    txt: true
+    vcd: true
+    xls: true
+hardware:
+  DDR:
+    buses: 2
+    num_banks: 8
+    page_size: 256 # total ddr row size in KB
+    hz: 300000000
+    width: 32
+  L1:
+    access_type: 1R1W
+    contexts: 4
+    data_banks:
+    - 128
+    - 126
+    dlpmain:
+      size: 8192
+    inst_banks:
+    - 32
+    param:
+      bank_id: 0
+      num_reserve: 0
+      size: 448
+    pingable: 120832
+    row_width: 32
+    stack:
+      bank_id: 0
+      size: 7088
+    usable: 253008
+    iram_start_address: 262144 #0x00040000
+    dram_start_address: 393216 #0x00060000
+    kernel_param_size: 448
+  L2:
+    access_type: 1R1W
+    bank_size: 128
+    contexts: 4
+    cp:
+      bank_id: 0
+      main_size: 4096
+      param_size: 4096
+    dma_patterns:
+      bank_id: 0
+      num_patterns: 0
+    scratch:
+      bank_id: 0
+      bytes: 96
+    num_banks: 64
+    reserve:
+    - eid: 63
+      sid: 60
+    row_width: 32
+    static_threshold: 0.9
+    start_address: 301989888 #0x12000000
+  L2-L1:
+    buses: 8
+    hz: 900000000
+    width: 32
+  cores: 8
+  ddr_hz: 1000000000
+  dlp:
+    alus: 576
+    ar: 16 * 768
+    cr: 16 * 324
+    reserve: []
+    vr: 32 * 448
+  dma:
+    ddr_burst_size: 128
+    ddr_bw_bytes: 16
+    ddr_bw_ratio: 3
+    pcie_burst_size: 128
+    pcie_bw_bytes: 4
+    pcie_bw_ratio: 3
+    l2_burst_size: 32
+    l2_bw_bytes: 32
+    latency:
+      DDRL2:
+        read: 150
+        write: 60
+      L1L2:
+        read: 60
+        write: 60
+      L2DDR:
+        read: 66
+        write: 75
+      L2L1:
+        read: 60
+        write: 60
+      PCIEL2:
+        read: 150
+        write: 60
+      wire_delay: 5
+    num_axi_requests: 32
+    total_contexts: 8
+    overlap_threshold_perc: 0.40
+    overlap_threshold_cycles: 0
+    ov: 20
+    allow_inter_layer_ddr_traffic: false
+  hz: 900000000
+  num_cps: 2
+  pcie_bw: 536870912
+  shard: 0
+  usb_bw: 536870912
+  num_pcie_bus: 1
+  pcie_bus_width: 32
+scheduler:
+  dlp_alloc_strategy: lru
+  l1_in_alloc_strategy: lru
+  l1_out_alloc_strategy: lruw
+  l2_alloc_strategy: lru
+  default_level_priority:
+    - l1l2
+    - dlp
+    - l1
+    - l2
+    - ddr
+    - l2ddr
+    - cp
+  pingpong_level_priority:
+    - dlp
+    - l1
+    - l2
+    - ddr
+    - l2ddr
+    - l1l2
+    - cp
+  type: priority
+emitter:
+  version:
+    major: 3
+    minor: 0
+    patch: 0
+    patch_minor: 0

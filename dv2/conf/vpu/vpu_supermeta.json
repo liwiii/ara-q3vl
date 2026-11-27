@@ -1,0 +1,707 @@
+{
+  "argmax": {
+    "id": 1,
+    "implemented": true,
+    "size": 1536
+  },
+  "aten": {
+    "id": 2,
+    "implemented": true,
+    "size": 960
+  },
+  "bboxtransform": {
+    "id": 3,
+    "implemented": true,
+    "size": 128
+  },
+  "bboxtransform_detectron2": {
+    "id": 4,
+    "implemented": true,
+    "size": 128
+  },
+  "boxwithnmslimit": {
+    "id": 5,
+    "implemented": true,
+    "size": 128
+  },
+  "collectrpnproposals": {
+    "id": 6,
+    "implemented": true,
+    "size": 128
+  },
+  "detectionoutput": {
+    "id": 7,
+    "implemented": true,
+    "size": 9408
+  },
+  "distributefpn": {
+    "id": 8,
+    "implemented": true,
+    "size": 128
+  },
+  "dividevectorbyscalar": {
+    "id": 9,
+    "implemented": true,
+    "size": 704
+  },
+  "duplicaten": {
+    "id": 10,
+    "implemented": true,
+    "size": 128
+  },
+  "dvcast": {
+    "id": 11,
+    "implemented": true,
+    "size": 2112
+  },
+  "dvcast_scof": {
+    "id": 12,
+    "implemented": true,
+    "size": 2432
+  },
+  "embedding": {
+    "id": 13,
+    "implemented": true,
+    "size": 128
+  },
+  "fused_add_mul_broadcast": {
+    "id": 14,
+    "implemented": true,
+    "size": 960
+  },
+  "generateproposals": {
+    "id": 15,
+    "implemented": true,
+    "size": 128
+  },
+  "l2norm": {
+    "id": 16,
+    "implemented": true,
+    "size": 128
+  },
+  "mxnet_abs": {
+    "id": 17,
+    "implemented": true,
+    "size": 640
+  },
+  "mxnet_activation": {
+    "id": 18,
+    "implemented": true,
+    "size": 2432
+  },
+  "mxnet_add_n": {
+    "id": 19,
+    "implemented": true,
+    "size": 1152
+  },
+  "mxnet_all_finite": {
+    "id": 20,
+    "implemented": true,
+    "size": 1024
+  },
+  "mxnet_batch_dot": {
+    "id": 21,
+    "implemented": true,
+    "size": 3904
+  },
+  "mxnet_batchnorm": {
+    "id": 22,
+    "implemented": true,
+    "size": 1216
+  },
+  "mxnet_cbrt": {
+    "id": 23,
+    "implemented": true,
+    "size": 640
+  },
+  "mxnet_convolution": {
+    "id": 24,
+    "implemented": true,
+    "size": 3328
+  },
+  "mxnet_elemwise_div": {
+    "id": 25,
+    "implemented": true,
+    "size": 1088
+  },
+  "mxnet_elemwise_sub": {
+    "id": 26,
+    "implemented": true,
+    "size": 1088
+  },
+  "mxnet_embedding": {
+    "id": 27,
+    "implemented": true,
+    "size": 128
+  },
+  "mxnet_erf": {
+    "id": 28,
+    "implemented": true,
+    "size": 640
+  },
+  "mxnet_exp": {
+    "id": 29,
+    "implemented": true,
+    "size": 640
+  },
+  "mxnet_expm1": {
+    "id": 30,
+    "implemented": true,
+    "size": 960
+  },
+  "mxnet_flip": {
+    "id": 31,
+    "implemented": true,
+    "size": 4224
+  },
+  "mxnet_gamma": {
+    "id": 32,
+    "implemented": true,
+    "size": 640
+  },
+  "mxnet_gammaln": {
+    "id": 33,
+    "implemented": true,
+    "size": 640
+  },
+  "mxnet_instancenorm": {
+    "id": 34,
+    "implemented": true,
+    "size": 1600
+  },
+  "mxnet_l2normalization": {
+    "id": 35,
+    "implemented": true,
+    "size": 2880
+  },
+  "mxnet_leakyrelu": {
+    "id": 36,
+    "implemented": true,
+    "size": 2688
+  },
+  "mxnet_log": {
+    "id": 37,
+    "implemented": true,
+    "size": 640
+  },
+  "mxnet_log10": {
+    "id": 38,
+    "implemented": true,
+    "size": 640
+  },
+  "mxnet_log2": {
+    "id": 39,
+    "implemented": true,
+    "size": 960
+  },
+  "mxnet_logical_not": {
+    "id": 40,
+    "implemented": true,
+    "size": 1152
+  },
+  "mxnet_lrn": {
+    "id": 41,
+    "implemented": true,
+    "size": 1088
+  },
+  "mxnet_mean": {
+    "id": 42,
+    "implemented": true,
+    "size": 3904
+  },
+  "mxnet_multi_all_finite": {
+    "id": 43,
+    "implemented": true,
+    "size": 704
+  },
+  "mxnet_multi_sum_sq": {
+    "id": 44,
+    "implemented": true,
+    "size": 128
+  },
+  "mxnet_negative": {
+    "id": 45,
+    "implemented": true,
+    "size": 960
+  },
+  "mxnet_pad": {
+    "id": 46,
+    "implemented": true,
+    "size": 2368
+  },
+  "mxnet_pooling": {
+    "id": 47,
+    "implemented": true,
+    "size": 2112
+  },
+  "mxnet_rcbrt": {
+    "id": 48,
+    "implemented": true,
+    "size": 640
+  },
+  "mxnet_reciprocal": {
+    "id": 49,
+    "implemented": true,
+    "size": 960
+  },
+  "mxnet_repeat": {
+    "id": 50,
+    "implemented": true,
+    "size": 1792
+  },
+  "mxnet_rsqrt": {
+    "id": 51,
+    "implemented": true,
+    "size": 960
+  },
+  "mxnet_sequencemask": {
+    "id": 52,
+    "implemented": true,
+    "size": 128
+  },
+  "mxnet_sign": {
+    "id": 53,
+    "implemented": true,
+    "size": 640
+  },
+  "mxnet_slice_like": {
+    "id": 54,
+    "implemented": true,
+    "size": 2112
+  },
+  "mxnet_softmaxactivation": {
+    "id": 55,
+    "implemented": true,
+    "size": 3328
+  },
+  "mxnet_softmaxoutput": {
+    "id": 56,
+    "implemented": true,
+    "size": 3264
+  },
+  "mxnet_sqrt": {
+    "id": 57,
+    "implemented": true,
+    "size": 640
+  },
+  "mxnet_square": {
+    "id": 58,
+    "implemented": true,
+    "size": 640
+  },
+  "mxnet_sum": {
+    "id": 59,
+    "implemented": true,
+    "size": 1280
+  },
+  "mxnet_take": {
+    "id": 60,
+    "implemented": true,
+    "size": 5248
+  },
+  "mxnet_transpose": {
+    "id": 61,
+    "implemented": true,
+    "size": 1344
+  },
+  "mxnet_upsampling": {
+    "id": 62,
+    "implemented": true,
+    "size": 1920
+  },
+  "nmspose": {
+    "id": 63,
+    "implemented": true,
+    "size": 4672
+  },
+  "nmsrtmdet": {
+    "id": 64,
+    "implemented": true,
+    "size": 4928
+  },
+  "onnx_abs": {
+    "id": 65,
+    "implemented": true,
+    "size": 1152
+  },
+  "onnx_averagepool": {
+    "id": 66,
+    "implemented": true,
+    "size": 3008
+  },
+  "onnx_batchpermutation": {
+    "id": 67,
+    "implemented": true,
+    "size": 128
+  },
+  "onnx_bboxtransform": {
+    "id": 68,
+    "implemented": true,
+    "size": 1536
+  },
+  "onnx_conv": {
+    "id": 69,
+    "implemented": true,
+    "size": 2880
+  },
+  "onnx_equal": {
+    "id": 70,
+    "implemented": true,
+    "size": 2944
+  },
+  "onnx_gather": {
+    "id": 71,
+    "implemented": true,
+    "size": 4416
+  },
+  "onnx_gatherelements": {
+    "id": 72,
+    "implemented": true,
+    "size": 6912
+  },
+  "onnx_gathernd": {
+    "id": 73,
+    "implemented": true,
+    "size": 4288
+  },
+  "onnx_generateproposals": {
+    "id": 74,
+    "implemented": true,
+    "size": 14720
+  },
+  "onnx_greaterorequal": {
+    "id": 75,
+    "implemented": true,
+    "size": 2944
+  },
+  "onnx_gridsample": {
+    "id": 141,
+    "implemented": true,
+    "size": 2304
+  },
+  "onnx_lrn": {
+    "id": 76,
+    "implemented": true,
+    "size": 1088
+  },
+  "onnx_neg": {
+    "id": 77,
+    "implemented": true,
+    "size": 960
+  },
+  "onnx_not": {
+    "id": 78,
+    "implemented": true,
+    "size": 1344
+  },
+  "onnx_scatternd": {
+    "id": 79,
+    "implemented": true,
+    "size": 2688
+  },
+  "onnx_slice": {
+    "id": 80,
+    "implemented": true,
+    "size": 2816
+  },
+  "onnx_tanh": {
+    "id": 81,
+    "implemented": true,
+    "size": 640
+  },
+  "onnx_upsample": {
+    "id": 82,
+    "implemented": true,
+    "size": 1280
+  },
+  "onnx_where": {
+    "id": 83,
+    "implemented": true,
+    "size": 2752
+  },
+  "scatternd": {
+    "id": 84,
+    "implemented": true,
+    "size": 128
+  },
+  "softmax": {
+    "id": 85,
+    "implemented": true,
+    "size": 1088
+  },
+  "test_vpu0": {
+    "id": 86,
+    "implemented": true,
+    "size": 4704678
+  },
+  "tf_abs": {
+    "id": 87,
+    "implemented": true,
+    "size": 1152
+  },
+  "tf_acos": {
+    "id": 88,
+    "implemented": true,
+    "size": 640
+  },
+  "tf_acosh": {
+    "id": 89,
+    "implemented": true,
+    "size": 704
+  },
+  "tf_addn": {
+    "id": 90,
+    "implemented": true,
+    "size": 1152
+  },
+  "tf_argmax": {
+    "id": 91,
+    "implemented": true,
+    "size": 6848
+  },
+  "tf_argmin": {
+    "id": 92,
+    "implemented": true,
+    "size": 3200
+  },
+  "tf_asin": {
+    "id": 93,
+    "implemented": true,
+    "size": 640
+  },
+  "tf_asinh": {
+    "id": 94,
+    "implemented": true,
+    "size": 640
+  },
+  "tf_atan": {
+    "id": 95,
+    "implemented": true,
+    "size": 640
+  },
+  "tf_atan2": {
+    "id": 96,
+    "implemented": true,
+    "size": 960
+  },
+  "tf_atanh": {
+    "id": 97,
+    "implemented": true,
+    "size": 640
+  },
+  "tf_avgpool": {
+    "id": 98,
+    "implemented": true,
+    "size": 2048
+  },
+  "tf_conv2d": {
+    "id": 99,
+    "implemented": true,
+    "size": 3008
+  },
+  "tf_cos": {
+    "id": 100,
+    "implemented": true,
+    "size": 640
+  },
+  "tf_cosh": {
+    "id": 101,
+    "implemented": true,
+    "size": 640
+  },
+  "tf_cropandresize": {
+    "id": 102,
+    "implemented": true,
+    "size": 3712
+  },
+  "tf_depthwiseconv2dnative": {
+    "id": 103,
+    "implemented": true,
+    "size": 2624
+  },
+  "tf_divnonan": {
+    "id": 104,
+    "implemented": true,
+    "size": 1216
+  },
+  "tf_equal": {
+    "id": 105,
+    "implemented": true,
+    "size": 1600
+  },
+  "tf_erf": {
+    "id": 106,
+    "implemented": true,
+    "size": 640
+  },
+  "tf_erfc": {
+    "id": 107,
+    "implemented": true,
+    "size": 640
+  },
+  "tf_exp": {
+    "id": 108,
+    "implemented": true,
+    "size": 640
+  },
+  "tf_expm1": {
+    "id": 109,
+    "implemented": true,
+    "size": 1024
+  },
+  "tf_fill": {
+    "id": 110,
+    "implemented": true,
+    "size": 640
+  },
+  "tf_floor": {
+    "id": 111,
+    "implemented": true,
+    "size": 640
+  },
+  "tf_floordiv": {
+    "id": 112,
+    "implemented": true,
+    "size": 704
+  },
+  "tf_floormod": {
+    "id": 113,
+    "implemented": true,
+    "size": 704
+  },
+  "tf_greater": {
+    "id": 114,
+    "implemented": true,
+    "size": 1280
+  },
+  "tf_less": {
+    "id": 115,
+    "implemented": true,
+    "size": 1280
+  },
+  "tf_lessequal": {
+    "id": 116,
+    "implemented": true,
+    "size": 1280
+  },
+  "tf_lrn": {
+    "id": 117,
+    "implemented": true,
+    "size": 1088
+  },
+  "tf_matmul": {
+    "id": 118,
+    "implemented": true,
+    "size": 1792
+  },
+  "tf_maximum": {
+    "id": 119,
+    "implemented": true,
+    "size": 1152
+  },
+  "tf_maxpool": {
+    "id": 120,
+    "implemented": true,
+    "size": 1792
+  },
+  "tf_mean": {
+    "id": 121,
+    "implemented": true,
+    "size": 3904
+  },
+  "tf_minimum": {
+    "id": 122,
+    "implemented": true,
+    "size": 1152
+  },
+  "tf_mish": {
+    "id": 123,
+    "implemented": true,
+    "size": 832
+  },
+  "tf_mul": {
+    "id": 124,
+    "implemented": true,
+    "size": 1536
+  },
+  "tf_relu6": {
+    "id": 125,
+    "implemented": true,
+    "size": 640
+  },
+  "tf_resizenearestneighbor": {
+    "id": 126,
+    "implemented": true,
+    "size": 1088
+  },
+  "tf_sigmoid": {
+    "id": 127,
+    "implemented": true,
+    "size": 704
+  },
+  "tf_softmax": {
+    "id": 128,
+    "implemented": true,
+    "size": 1728
+  },
+  "tf_softplus": {
+    "id": 129,
+    "implemented": true,
+    "size": 704
+  },
+  "tf_softsign": {
+    "id": 130,
+    "implemented": true,
+    "size": 1280
+  },
+  "tf_spacetobatchnd": {
+    "id": 131,
+    "implemented": true,
+    "size": 1472
+  },
+  "topkrtmdet": {
+    "id": 132,
+    "implemented": true,
+    "size": 1408
+  },
+  "tvm_nms": {
+    "id": 133,
+    "implemented": true,
+    "size": 2752
+  },
+  "vector_add": {
+    "id": 134,
+    "implemented": true,
+    "size": 640
+  },
+  "vector_mult": {
+    "id": 135,
+    "implemented": true,
+    "size": 640
+  },
+  "vector_sub": {
+    "id": 136,
+    "implemented": true,
+    "size": 640
+  },
+  "vpu0": {
+    "id": 137,
+    "implemented": true,
+    "size": 4704678
+  },
+  "vpu1": {
+    "id": 138,
+    "implemented": true,
+    "size": 4704678
+  },
+  "yolov10npost": {
+    "id": 139,
+    "implemented": true,
+    "size": 3200
+  },
+  "yolov11post": {
+    "id": 140,
+    "implemented": true,
+    "size": 10752
+  }
+}

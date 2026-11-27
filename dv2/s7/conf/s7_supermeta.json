@@ -1,0 +1,52 @@
+{
+  "cnn": {
+    "id": 0,
+    "implemented": true,
+    "size": 6080
+  },
+  "comm_GATHER": {
+    "id": 8,
+    "implemented": true,
+    "size": 4
+  },
+  "comm_SYNC": {
+    "id": 6,
+    "implemented": true,
+    "size": 4
+  },
+  "llava_multi_rope": {
+    "id": 5,
+    "implemented": true,
+    "size": 111832
+  },
+  "llava_prompt_cache": {
+    "id": 3,
+    "implemented": true,
+    "size": 126704
+  },
+  "llm": {
+    "id": 1,
+    "implemented": true,
+    "size": 119744
+  },
+  "llm_prompt_cache": {
+    "id": 2,
+    "implemented": true,
+    "size": 135920
+  },
+  "sharded_llm": {
+    "id": 7,
+    "implemented": true,
+    "size": 876536
+  },
+  "sharded_llm_llava": {
+    "id": 9,
+    "implemented": true,
+    "size": 867488
+  },
+  "whisper": {
+    "id": 4,
+    "implemented": true,
+    "size": 15344
+  }
+}

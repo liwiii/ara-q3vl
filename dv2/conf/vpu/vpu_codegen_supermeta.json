@@ -1,0 +1,32 @@
+{
+  "conv": {
+    "id": 10000,
+    "implemented": false,
+    "size": null
+  },
+  "onnx_eltd_tvm": {
+    "id": 10001,
+    "implemented": false,
+    "size": null
+  },
+  "onnx_eltm_tvm": {
+    "id": 10002,
+    "implemented": false,
+    "size": null
+  },
+  "onnx_eltw_tvm": {
+    "id": 10003,
+    "implemented": false,
+    "size": null
+  },
+  "onnx_matmul_tvm": {
+    "id": 10004,
+    "implemented": false,
+    "size": null
+  },
+  "onnx_maxpool_tvm": {
+    "id": 10005,
+    "implemented": false,
+    "size": null
+  }
+}

@@ -1,0 +1,128 @@
+platform_target: "Ara2"
+is_converted: true
+layer {
+  name: "input_ids_embedded"
+  type: "Input"
+  top: "input_ids_embedded"
+  base_type: "Input"
+  estimator_group: "Input"
+  input_param {
+    shape {
+      dim: 1
+      dim: 1
+      dim: 128
+      dim: 4096
+    }
+    layout: "NCHW"
+  }
+}
+layer {
+  name: "input_ids_embedded_scale"
+  type: "Input"
+  top: "input_ids_embedded_scale"
+  base_type: "Input"
+  estimator_group: "Input"
+  input_param {
+    shape {
+      dim: 1
+      dim: 1
+      dim: 128
+      dim: 64
+    }
+    layout: "NCHW"
+  }
+}
+
+
+layer {
+  name: "_model_norm_Mul_1"
+  type: "Ara2DynamicLayerNorm"
+  bottom: "input_ids_embedded"
+  bottom: "input_ids_embedded_scale"
+  top: "_model_norm_Mul_1"
+  top: "_model_norm_Mul_1_scale"
+  base_type: "DynamicLayerNorm"
+  estimator_group: "DynamicLayerNorm"
+  dynamic_layer_norm_param {
+    axis: 3
+    eps: 1e-05
+    output_mean_var: false
+    uses_mean: false
+  }
+}
+layer {
+  name: "last_perm"
+  type: "Ara2PermuteNnp"
+  bottom: "_model_norm_Mul_1"
+  top: "last_perm"
+  base_type: "PermuteNnp"
+  estimator_group: "PermuteNnp"
+  permute_nnp_param {
+    order: 0
+    order: 1
+    order: 3
+    order: 2
+  }
+}
+layer {
+  name: "last_perm_scale"
+  type: "Ara2PermuteNnp"
+  bottom: "_model_norm_Mul_1_scale"
+  top: "last_perm_scale"
+  base_type: "PermuteNnp"
+  estimator_group: "PermuteNnp"
+  permute_nnp_param {
+    order: 0
+    order: 1
+    order: 3
+    order: 2
+  }
+}
+layer {
+  name: "_model_layers_32_residue_rshp_4"
+  type: "Ara2Reshape"
+  bottom: "last_perm"
+  top: "_model_layers_32_residue_rshp_4"
+  base_type: "Reshape"
+  estimator_group: "Reshape"
+  reshape_param {
+    shape {
+      dim: 1
+      dim: 4096
+      dim: 1
+      dim: 128
+    }
+  }
+}
+layer {
+  name: "_model_layers_32_residue_rshp_4_scale"
+  type: "Ara2Reshape"
+  bottom: "last_perm_scale"
+  top: "_model_layers_32_residue_rshp_4_scale"
+  base_type: "Reshape"
+  estimator_group: "Reshape"
+  reshape_param {
+    shape {
+      dim: 1
+      dim: 64
+      dim: 1
+      dim: 128
+    }
+  }
+}
+layer {
+  name: "_lm_head_MatMul_ara_inrp"
+  type: "Ara2DynamicConvolution"
+  bottom: "_model_layers_32_residue_rshp_4"
+  bottom: "_model_layers_32_residue_rshp_4_scale"
+  top: "_lm_head_MatMul_ara_inrp"
+  top: "_lm_head_MatMul_ara_inrp_scale"
+  base_type: "DynamicConvolution"
+  estimator_group: "DynamicConvolution"
+  convolution_param {
+    num_output: 32000
+    bias_term: false
+    kernel_size: 1
+    kernel_size: 1
+  }
+}

@@ -1,0 +1,11 @@
+---
+  num_dlp_cores: 8
+  dlp_dram_banks: [16384, 32768, 32768]
+  dlp_iram_banks: [8192]
+  num_l2_banks: 64
+  l2_bank_size: 65536
+  kernel_param_size: 320
+  num_cps: 2
+  dlp_dram_start_address: 262144 #0x00040000
+  dlp_iram_start_address: 524288 #0x00080000
+  l2_start_address: 33554432 #0x2000000

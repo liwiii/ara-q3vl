@@ -1,0 +1,2 @@
+0x3fa25480 67 PROC_ID : {:#x} GIT_COMMIT : {:#x} PROC_Cycles : {:#x} RTC_Cycles {:#x} File : s7/kernels/whisper/kernel.c Line : 67 Severity : CRITICAL MSG : [TSE_UTIL_GET_PKT_ID] ERROR, not a valid desc\n 0: {:#x} 0: {:#x} 0: {:#x} 0: {:#x}
+0x3fa25480 99 PROC_ID : {:#x} GIT_COMMIT : {:#x} PROC_Cycles : {:#x} RTC_Cycles {:#x} File : s7/kernels/whisper/kernel.c Line : 99 Severity : CRITICAL MSG : [TSE_UTIL_GET_QID] ERROR, not a valid desc\n 0: {:#x} 0: {:#x} 0: {:#x} 0: {:#x}

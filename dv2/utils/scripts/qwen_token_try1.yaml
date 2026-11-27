@@ -1,0 +1,5541 @@
+LayerNames:
+  _lm_head_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -2304
+    outputDataPrecision:
+      - _lm_head_MatMul_ara_inrp: INT16
+    scale: 0.00056308246
+    weightPrecision:
+      - _lm_head_MatMul_ara_inrp: INT4
+  _model_layers_0_Add:
+    offset: 1024
+    outputDataPrecision:
+      - _model_layers_0_Add: INT16
+    scale: 9.63524872e-05
+  _model_layers_0_Add_1:
+    offset: 1280
+    outputDataPrecision:
+      - _model_layers_0_Add_1: INT16
+    scale: 0.000175935318
+  _model_layers_0_Add__model_layers_0_Add_0_split:
+    offset: 1024
+    scale: 9.63524872e-05
+  _model_layers_0_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: -17
+    scale: 0.00725849532
+  _model_layers_0_k_cache:
+    offset: 5
+    scale: 0.0504710376
+  _model_layers_0_mlp_Mul:
+    offset: -768
+    outputDataPrecision:
+      - _model_layers_0_mlp_Mul: INT16
+    scale: 0.000150946449
+  _model_layers_0_mlp_act_fn_Mul:
+    offset: -109
+    scale: 0.0144437226
+  _model_layers_0_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 256
+    outputDataPrecision:
+      - _model_layers_0_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.000162882134
+    weightPrecision:
+      - _model_layers_0_mlp_down_proj_MatMul_ara_inrp: INT3
+  _model_layers_0_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 26
+    scale: 0.0346243232
+    weightPrecision:
+      - _model_layers_0_mlp_gate_proj_MatMul_ara_inrp: INT3
+  _model_layers_0_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -35
+    scale: 0.0386506356
+    weightPrecision:
+      - _model_layers_0_mlp_up_proj_MatMul_ara_inrp: INT3
+  _model_layers_0_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: -33
+    scale: 0.00722352043
+  _model_layers_0_prm_5_PermuteNnp:
+    offset: 1024
+    scale: 9.63524872e-05
+  _model_layers_0_prm_6_PermuteNnp:
+    offset: -33
+    scale: 0.00722352043
+  _model_layers_0_residue_perm_1:
+    offset: -256
+    scale: 9.63398088e-06
+  _model_layers_0_residue_perm_2:
+    offset: -17
+    scale: 0.00725849532
+  _model_layers_0_residue_perm_3:
+    offset: 1280
+    scale: 0.000175935318
+  _model_layers_0_residue_rshp_1:
+    offset: -256
+    scale: 9.63398088e-06
+  _model_layers_0_residue_rshp_2:
+    offset: -17
+    scale: 0.00725849532
+  _model_layers_0_residue_rshp_2__model_layers_0_residue_rshp_2_0_split:
+    offset: -17
+    scale: 0.00725849532
+  _model_layers_0_residue_rshp_3:
+    offset: 1280
+    scale: 0.000175935318
+  _model_layers_0_residue_rshp_3__model_layers_0_residue_rshp_3_0_split:
+    offset: 1280
+    scale: 0.000175935318
+  _model_layers_0_rshp_5_Reshape:
+    offset: 1024
+    scale: 9.63524872e-05
+  _model_layers_0_rshp_6_Reshape:
+    offset: -33
+    scale: 0.00722352043
+  _model_layers_0_rshp_6_Reshape__model_layers_0_rshp_6_Reshape_0_split:
+    offset: -33
+    scale: 0.00722352043
+  _model_layers_0_self_attn_1_Reshape_1:
+    offset: 5
+    scale: 0.0504710376
+  _model_layers_0_self_attn_2_Reshape_1:
+    offset: -21
+    scale: 0.0135473665
+  _model_layers_0_self_attn_2a_Transpose_3_concat:
+    offset: 5
+    scale: 0.0504710376
+  _model_layers_0_self_attn_Add:
+    offset: 21
+    scale: 0.165769234
+  _model_layers_0_self_attn_Add_1:
+    offset: 5
+    scale: 0.0504710376
+  _model_layers_0_self_attn_Add_1__model_layers_0_self_attn_Add_1_0_split:
+    offset: 5
+    scale: 0.0504710376
+  _model_layers_0_self_attn_MatMul:
+    offset: -88
+    scale: 0.0694188252
+  _model_layers_0_self_attn_MatMul_1:
+    offset: 24
+    scale: 0.00832502451
+  _model_layers_0_self_attn_Reshape_1:
+    offset: 21
+    scale: 0.165769234
+  _model_layers_0_self_attn_Reshape_2:
+    offset: -21
+    scale: 0.0135473665
+  _model_layers_0_self_attn_Reshape_2_concat:
+    offset: -21
+    scale: 0.0135473665
+  _model_layers_0_self_attn_Reshape_3:
+    offset: 5
+    scale: 0.0504710376
+  _model_layers_0_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_0_self_attn_Transpose_2:
+    offset: -21
+    scale: 0.0135473665
+  _model_layers_0_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: 5
+    scale: 0.0504710376
+    weightPrecision:
+      - _model_layers_0_self_attn_k_proj_MatMul: INT3
+  _model_layers_0_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 1536
+    outputDataPrecision:
+      - _model_layers_0_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 9.62234626e-05
+    weightPrecision:
+      - _model_layers_0_self_attn_o_proj_MatMul_ara_inrp: INT3
+  _model_layers_0_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: 24
+    scale: 0.00832502451
+  _model_layers_0_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: 21
+    scale: 0.165769234
+    weightPrecision:
+      - _model_layers_0_self_attn_q_proj_MatMul: INT3
+  _model_layers_0_self_attn_v_proj_Add_original__model_layers_0_self_attn_v_proj_Add_original_0_split:
+    offset: -21
+    scale: 0.0135473665
+  _model_layers_0_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: -21
+    scale: 0.0135473665
+    weightPrecision:
+      - _model_layers_0_self_attn_v_proj_MatMul: INT3
+  _model_layers_0_v_cache:
+    offset: -21
+    scale: 0.0135473665
+  _model_layers_10_Add:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_10_Add: INT16
+    scale: 0.125519693
+  _model_layers_10_Add_1:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_10_Add_1: INT16
+    scale: 0.125618428
+  _model_layers_10_Add__model_layers_10_Add_0_split:
+    offset: 5888
+    scale: 0.125519693
+  _model_layers_10_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 18
+    scale: 0.0123372767
+  _model_layers_10_k_cache:
+    offset: -15
+    scale: 0.0848083273
+  _model_layers_10_mlp_Mul:
+    offset: 18176
+    outputDataPrecision:
+      - _model_layers_10_mlp_Mul: INT16
+    scale: 0.000293585414
+  _model_layers_10_mlp_act_fn_Mul:
+    offset: -117
+    scale: 0.0251858998
+  _model_layers_10_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 1792
+    outputDataPrecision:
+      - _model_layers_10_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.000539191125
+    weightPrecision:
+      - _model_layers_10_mlp_down_proj_MatMul_ara_inrp: INT3
+  _model_layers_10_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -12
+    scale: 0.0443658717
+    weightPrecision:
+      - _model_layers_10_mlp_gate_proj_MatMul_ara_inrp: INT3
+  _model_layers_10_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 5
+    scale: 0.0281513743
+    weightPrecision:
+      - _model_layers_10_mlp_up_proj_MatMul_ara_inrp: INT3
+  _model_layers_10_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 5
+    scale: 0.0128225423
+  _model_layers_10_prm_5_PermuteNnp:
+    offset: 5888
+    scale: 0.125519693
+  _model_layers_10_prm_6_PermuteNnp:
+    offset: 5
+    scale: 0.0128225423
+  _model_layers_10_residue_perm_1:
+    offset: 5888
+    scale: 0.125520065
+  _model_layers_10_residue_perm_2:
+    offset: 18
+    scale: 0.0123372767
+  _model_layers_10_residue_perm_3:
+    offset: 5888
+    scale: 0.125618428
+  _model_layers_10_residue_rshp_1:
+    offset: 5888
+    scale: 0.125520065
+  _model_layers_10_residue_rshp_2:
+    offset: 18
+    scale: 0.0123372767
+  _model_layers_10_residue_rshp_2__model_layers_10_residue_rshp_2_0_split:
+    offset: 18
+    scale: 0.0123372767
+  _model_layers_10_residue_rshp_3:
+    offset: 5888
+    scale: 0.125618428
+  _model_layers_10_residue_rshp_3__model_layers_10_residue_rshp_3_0_split:
+    offset: 5888
+    scale: 0.125618428
+  _model_layers_10_rshp_5_Reshape:
+    offset: 5888
+    scale: 0.125519693
+  _model_layers_10_rshp_6_Reshape:
+    offset: 5
+    scale: 0.0128225423
+  _model_layers_10_rshp_6_Reshape__model_layers_10_rshp_6_Reshape_0_split:
+    offset: 5
+    scale: 0.0128225423
+  _model_layers_10_self_attn_1_Reshape_1:
+    offset: -15
+    scale: 0.0848083273
+  _model_layers_10_self_attn_2_Reshape_1:
+    offset: -9
+    scale: 0.00666988501
+  _model_layers_10_self_attn_2a_Transpose_3_concat:
+    offset: -15
+    scale: 0.0848083273
+  _model_layers_10_self_attn_Add:
+    offset: 6
+    scale: 0.0725252777
+  _model_layers_10_self_attn_Add_1:
+    offset: -15
+    scale: 0.0848083273
+  _model_layers_10_self_attn_Add_1__model_layers_10_self_attn_Add_1_0_split:
+    offset: -15
+    scale: 0.0848083273
+  _model_layers_10_self_attn_MatMul:
+    offset: -32
+    scale: 0.0762286708
+  _model_layers_10_self_attn_MatMul_1:
+    offset: -14
+    scale: 0.00320945634
+  _model_layers_10_self_attn_Reshape_1:
+    offset: 6
+    scale: 0.072534062
+  _model_layers_10_self_attn_Reshape_2:
+    offset: -9
+    scale: 0.00666988501
+  _model_layers_10_self_attn_Reshape_2_concat:
+    offset: -9
+    scale: 0.00666988501
+  _model_layers_10_self_attn_Reshape_3:
+    offset: -15
+    scale: 0.0848112404
+  _model_layers_10_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_10_self_attn_Transpose_2:
+    offset: -9
+    scale: 0.00666988501
+  _model_layers_10_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: -15
+    scale: 0.0848112404
+    weightPrecision:
+      - _model_layers_10_self_attn_k_proj_MatMul: INT3
+  _model_layers_10_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -6144
+    outputDataPrecision:
+      - _model_layers_10_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 0.000170013984
+    weightPrecision:
+      - _model_layers_10_self_attn_o_proj_MatMul_ara_inrp: INT3
+  _model_layers_10_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: -14
+    scale: 0.00320945634
+  _model_layers_10_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: 6
+    scale: 0.072534062
+    weightPrecision:
+      - _model_layers_10_self_attn_q_proj_MatMul: INT3
+  _model_layers_10_self_attn_v_proj_Add_original__model_layers_10_self_attn_v_proj_Add_original_0_split:
+    offset: -9
+    scale: 0.00666988501
+  _model_layers_10_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: -9
+    scale: 0.00666988501
+    weightPrecision:
+      - _model_layers_10_self_attn_v_proj_MatMul: INT3
+  _model_layers_10_v_cache:
+    offset: -9
+    scale: 0.00666988501
+  _model_layers_11_Add:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_11_Add: INT16
+    scale: 0.125619993
+  _model_layers_11_Add_1:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_11_Add_1: INT16
+    scale: 0.125648692
+  _model_layers_11_Add__model_layers_11_Add_0_split:
+    offset: 5888
+    scale: 0.125619993
+  _model_layers_11_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 10
+    scale: 0.0116242263
+  _model_layers_11_k_cache:
+    offset: 17
+    scale: 0.0989489406
+  _model_layers_11_mlp_Mul:
+    offset: -6656
+    outputDataPrecision:
+      - _model_layers_11_mlp_Mul: INT16
+    scale: 0.000150080465
+  _model_layers_11_mlp_act_fn_Mul:
+    offset: -114
+    scale: 0.0200573299
+  _model_layers_11_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 768
+    outputDataPrecision:
+      - _model_layers_11_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.000248187192
+    weightPrecision:
+      - _model_layers_11_mlp_down_proj_MatMul_ara_inrp: INT3
+  _model_layers_11_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -12
+    scale: 0.0350743979
+    weightPrecision:
+      - _model_layers_11_mlp_gate_proj_MatMul_ara_inrp: INT3
+  _model_layers_11_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -1
+    scale: 0.0237319618
+    weightPrecision:
+      - _model_layers_11_mlp_up_proj_MatMul_ara_inrp: INT3
+  _model_layers_11_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: -5
+    scale: 0.0134025179
+  _model_layers_11_prm_5_PermuteNnp:
+    offset: 5888
+    scale: 0.125619993
+  _model_layers_11_prm_6_PermuteNnp:
+    offset: -5
+    scale: 0.0134025179
+  _model_layers_11_residue_perm_1:
+    offset: 5888
+    scale: 0.125618428
+  _model_layers_11_residue_perm_2:
+    offset: 10
+    scale: 0.0116242263
+  _model_layers_11_residue_perm_3:
+    offset: 5888
+    scale: 0.125648692
+  _model_layers_11_residue_rshp_1:
+    offset: 5888
+    scale: 0.125618428
+  _model_layers_11_residue_rshp_2:
+    offset: 10
+    scale: 0.0116242263
+  _model_layers_11_residue_rshp_2__model_layers_11_residue_rshp_2_0_split:
+    offset: 10
+    scale: 0.0116242263
+  _model_layers_11_residue_rshp_3:
+    offset: 5888
+    scale: 0.125648692
+  _model_layers_11_residue_rshp_3__model_layers_11_residue_rshp_3_0_split:
+    offset: 5888
+    scale: 0.125648692
+  _model_layers_11_rshp_5_Reshape:
+    offset: 5888
+    scale: 0.125619993
+  _model_layers_11_rshp_6_Reshape:
+    offset: -5
+    scale: 0.0134025179
+  _model_layers_11_rshp_6_Reshape__model_layers_11_rshp_6_Reshape_0_split:
+    offset: -5
+    scale: 0.0134025179
+  _model_layers_11_self_attn_1_Reshape_1:
+    offset: 17
+    scale: 0.0989489406
+  _model_layers_11_self_attn_2_Reshape_1:
+    offset: 11
+    scale: 0.00682809297
+  _model_layers_11_self_attn_2a_Transpose_3_concat:
+    offset: 17
+    scale: 0.0989489406
+  _model_layers_11_self_attn_Add:
+    offset: 4
+    scale: 0.0964355692
+  _model_layers_11_self_attn_Add_1:
+    offset: 17
+    scale: 0.0989489406
+  _model_layers_11_self_attn_Add_1__model_layers_11_self_attn_Add_1_0_split:
+    offset: 17
+    scale: 0.0989489406
+  _model_layers_11_self_attn_MatMul:
+    offset: 0
+    scale: 0.0899306089
+  _model_layers_11_self_attn_MatMul_1:
+    offset: 1
+    scale: 0.00302944798
+  _model_layers_11_self_attn_Reshape_1:
+    offset: 4
+    scale: 0.0964385718
+  _model_layers_11_self_attn_Reshape_2:
+    offset: 11
+    scale: 0.00682809297
+  _model_layers_11_self_attn_Reshape_2_concat:
+    offset: 11
+    scale: 0.00682809297
+  _model_layers_11_self_attn_Reshape_3:
+    offset: 17
+    scale: 0.0989371687
+  _model_layers_11_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_11_self_attn_Transpose_2:
+    offset: 11
+    scale: 0.00682809297
+  _model_layers_11_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: 17
+    scale: 0.0989371687
+    weightPrecision:
+      - _model_layers_11_self_attn_k_proj_MatMul: INT3
+  _model_layers_11_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -4096
+    outputDataPrecision:
+      - _model_layers_11_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 0.000121641133
+    weightPrecision:
+      - _model_layers_11_self_attn_o_proj_MatMul_ara_inrp: INT3
+  _model_layers_11_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: 1
+    scale: 0.00302944798
+  _model_layers_11_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: 4
+    scale: 0.0964385718
+    weightPrecision:
+      - _model_layers_11_self_attn_q_proj_MatMul: INT3
+  _model_layers_11_self_attn_v_proj_Add_original__model_layers_11_self_attn_v_proj_Add_original_0_split:
+    offset: 11
+    scale: 0.00682809297
+  _model_layers_11_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: 11
+    scale: 0.00682809297
+    weightPrecision:
+      - _model_layers_11_self_attn_v_proj_MatMul: INT3
+  _model_layers_11_v_cache:
+    offset: 11
+    scale: 0.00682809297
+  _model_layers_12_Add:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_12_Add: INT16
+    scale: 0.125661448
+  _model_layers_12_Add_1:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_12_Add_1: INT16
+    scale: 0.125687912
+  _model_layers_12_Add__model_layers_12_Add_0_split:
+    offset: 5888
+    scale: 0.125661448
+  _model_layers_12_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 17
+    scale: 0.0122900978
+  _model_layers_12_k_cache:
+    offset: -5
+    scale: 0.0992815495
+  _model_layers_12_mlp_Mul:
+    offset: -6912
+    outputDataPrecision:
+      - _model_layers_12_mlp_Mul: INT16
+    scale: 0.000120763412
+  _model_layers_12_mlp_act_fn_Mul:
+    offset: -109
+    scale: 0.0144747822
+  _model_layers_12_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -3328
+    outputDataPrecision:
+      - _model_layers_12_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.000249278033
+    weightPrecision:
+      - _model_layers_12_mlp_down_proj_MatMul_ara_inrp: INT3
+  _model_layers_12_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 24
+    scale: 0.0340830125
+    weightPrecision:
+      - _model_layers_12_mlp_gate_proj_MatMul_ara_inrp: INT3
+  _model_layers_12_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 12
+    scale: 0.0291737411
+    weightPrecision:
+      - _model_layers_12_mlp_up_proj_MatMul_ara_inrp: INT3
+  _model_layers_12_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 11
+    scale: 0.0129433591
+  _model_layers_12_prm_5_PermuteNnp:
+    offset: 5888
+    scale: 0.125661448
+  _model_layers_12_prm_6_PermuteNnp:
+    offset: 11
+    scale: 0.0129433591
+  _model_layers_12_residue_perm_1:
+    offset: 5888
+    scale: 0.125648692
+  _model_layers_12_residue_perm_2:
+    offset: 17
+    scale: 0.0122900978
+  _model_layers_12_residue_perm_3:
+    offset: 5888
+    scale: 0.125687912
+  _model_layers_12_residue_rshp_1:
+    offset: 5888
+    scale: 0.125648692
+  _model_layers_12_residue_rshp_2:
+    offset: 17
+    scale: 0.0122900978
+  _model_layers_12_residue_rshp_2__model_layers_12_residue_rshp_2_0_split:
+    offset: 17
+    scale: 0.0122900978
+  _model_layers_12_residue_rshp_3:
+    offset: 5888
+    scale: 0.125687912
+  _model_layers_12_residue_rshp_3__model_layers_12_residue_rshp_3_0_split:
+    offset: 5888
+    scale: 0.125687912
+  _model_layers_12_rshp_5_Reshape:
+    offset: 5888
+    scale: 0.125661448
+  _model_layers_12_rshp_6_Reshape:
+    offset: 11
+    scale: 0.0129433591
+  _model_layers_12_rshp_6_Reshape__model_layers_12_rshp_6_Reshape_0_split:
+    offset: 11
+    scale: 0.0129433591
+  _model_layers_12_self_attn_1_Reshape_1:
+    offset: -5
+    scale: 0.0992815495
+  _model_layers_12_self_attn_2_Reshape_1:
+    offset: -13
+    scale: 0.00732595893
+  _model_layers_12_self_attn_2a_Transpose_3_concat:
+    offset: -5
+    scale: 0.0992815495
+  _model_layers_12_self_attn_Add:
+    offset: -8
+    scale: 0.0841365382
+  _model_layers_12_self_attn_Add_1:
+    offset: -5
+    scale: 0.0992815495
+  _model_layers_12_self_attn_Add_1__model_layers_12_self_attn_Add_1_0_split:
+    offset: -5
+    scale: 0.0992815495
+  _model_layers_12_self_attn_MatMul:
+    offset: -16
+    scale: 0.090059109
+  _model_layers_12_self_attn_MatMul_1:
+    offset: -41
+    scale: 0.00325376517
+  _model_layers_12_self_attn_Reshape_1:
+    offset: -8
+    scale: 0.084134303
+  _model_layers_12_self_attn_Reshape_2:
+    offset: -13
+    scale: 0.00732595893
+  _model_layers_12_self_attn_Reshape_2_concat:
+    offset: -13
+    scale: 0.00732595893
+  _model_layers_12_self_attn_Reshape_3:
+    offset: -5
+    scale: 0.0992751494
+  _model_layers_12_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_12_self_attn_Transpose_2:
+    offset: -13
+    scale: 0.00732595893
+  _model_layers_12_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: -5
+    scale: 0.0992751494
+    weightPrecision:
+      - _model_layers_12_self_attn_k_proj_MatMul: INT3
+  _model_layers_12_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -2560
+    outputDataPrecision:
+      - _model_layers_12_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 0.000146177248
+    weightPrecision:
+      - _model_layers_12_self_attn_o_proj_MatMul_ara_inrp: INT3
+  _model_layers_12_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: -41
+    scale: 0.00325376517
+  _model_layers_12_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: -8
+    scale: 0.084134303
+    weightPrecision:
+      - _model_layers_12_self_attn_q_proj_MatMul: INT3
+  _model_layers_12_self_attn_v_proj_Add_original__model_layers_12_self_attn_v_proj_Add_original_0_split:
+    offset: -13
+    scale: 0.00732595893
+  _model_layers_12_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: -13
+    scale: 0.00732595893
+    weightPrecision:
+      - _model_layers_12_self_attn_v_proj_MatMul: INT3
+  _model_layers_12_v_cache:
+    offset: -13
+    scale: 0.00732595893
+  _model_layers_13_Add:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_13_Add: INT16
+    scale: 0.125693008
+  _model_layers_13_Add_1:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_13_Add_1: INT16
+    scale: 0.125728458
+  _model_layers_13_Add__model_layers_13_Add_0_split:
+    offset: 5888
+    scale: 0.125693008
+  _model_layers_13_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 17
+    scale: 0.0117770042
+  _model_layers_13_k_cache:
+    offset: 4
+    scale: 0.110479079
+  _model_layers_13_mlp_Mul:
+    offset: -6656
+    outputDataPrecision:
+      - _model_layers_13_mlp_Mul: INT16
+    scale: 0.000150994543
+  _model_layers_13_mlp_act_fn_Mul:
+    offset: -114
+    scale: 0.0201867092
+  _model_layers_13_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -2560
+    outputDataPrecision:
+      - _model_layers_13_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.000244467228
+    weightPrecision:
+      - _model_layers_13_mlp_down_proj_MatMul_ara_inrp: INT3
+  _model_layers_13_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -5
+    scale: 0.03706754
+    weightPrecision:
+      - _model_layers_13_mlp_gate_proj_MatMul_ara_inrp: INT3
+  _model_layers_13_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -4
+    scale: 0.0315548107
+    weightPrecision:
+      - _model_layers_13_mlp_up_proj_MatMul_ara_inrp: INT3
+  _model_layers_13_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 1
+    scale: 0.0127986474
+  _model_layers_13_prm_5_PermuteNnp:
+    offset: 5888
+    scale: 0.125693008
+  _model_layers_13_prm_6_PermuteNnp:
+    offset: 1
+    scale: 0.0127986474
+  _model_layers_13_residue_perm_1:
+    offset: 5888
+    scale: 0.125687912
+  _model_layers_13_residue_perm_2:
+    offset: 17
+    scale: 0.0117770042
+  _model_layers_13_residue_perm_3:
+    offset: 5888
+    scale: 0.125728458
+  _model_layers_13_residue_rshp_1:
+    offset: 5888
+    scale: 0.125687912
+  _model_layers_13_residue_rshp_2:
+    offset: 17
+    scale: 0.0117770042
+  _model_layers_13_residue_rshp_2__model_layers_13_residue_rshp_2_0_split:
+    offset: 17
+    scale: 0.0117770042
+  _model_layers_13_residue_rshp_3:
+    offset: 5888
+    scale: 0.125728458
+  _model_layers_13_residue_rshp_3__model_layers_13_residue_rshp_3_0_split:
+    offset: 5888
+    scale: 0.125728458
+  _model_layers_13_rshp_5_Reshape:
+    offset: 5888
+    scale: 0.125693008
+  _model_layers_13_rshp_6_Reshape:
+    offset: 1
+    scale: 0.0127986474
+  _model_layers_13_rshp_6_Reshape__model_layers_13_rshp_6_Reshape_0_split:
+    offset: 1
+    scale: 0.0127986474
+  _model_layers_13_self_attn_1_Reshape_1:
+    offset: 4
+    scale: 0.110479079
+  _model_layers_13_self_attn_2_Reshape_1:
+    offset: -19
+    scale: 0.00571489008
+  _model_layers_13_self_attn_2a_Transpose_3_concat:
+    offset: 4
+    scale: 0.110479079
+  _model_layers_13_self_attn_Add:
+    offset: -7
+    scale: 0.0706734732
+  _model_layers_13_self_attn_Add_1:
+    offset: 4
+    scale: 0.110479079
+  _model_layers_13_self_attn_Add_1__model_layers_13_self_attn_Add_1_0_split:
+    offset: 4
+    scale: 0.110479079
+  _model_layers_13_self_attn_MatMul:
+    offset: -14
+    scale: 0.0813978463
+  _model_layers_13_self_attn_MatMul_1:
+    offset: -16
+    scale: 0.00351884798
+  _model_layers_13_self_attn_Reshape_1:
+    offset: -7
+    scale: 0.070681341
+  _model_layers_13_self_attn_Reshape_2:
+    offset: -19
+    scale: 0.00571489008
+  _model_layers_13_self_attn_Reshape_2_concat:
+    offset: -19
+    scale: 0.00571489008
+  _model_layers_13_self_attn_Reshape_3:
+    offset: 4
+    scale: 0.110479079
+  _model_layers_13_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_13_self_attn_Transpose_2:
+    offset: -19
+    scale: 0.00571489008
+  _model_layers_13_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: 4
+    scale: 0.110479079
+    weightPrecision:
+      - _model_layers_13_self_attn_k_proj_MatMul: INT3
+  _model_layers_13_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -512
+    outputDataPrecision:
+      - _model_layers_13_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 0.000413797243
+    weightPrecision:
+      - _model_layers_13_self_attn_o_proj_MatMul_ara_inrp: INT3
+  _model_layers_13_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: -16
+    scale: 0.00351884798
+  _model_layers_13_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: -7
+    scale: 0.070681341
+    weightPrecision:
+      - _model_layers_13_self_attn_q_proj_MatMul: INT3
+  _model_layers_13_self_attn_v_proj_Add_original__model_layers_13_self_attn_v_proj_Add_original_0_split:
+    offset: -19
+    scale: 0.00571489008
+  _model_layers_13_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: -19
+    scale: 0.00571489008
+    weightPrecision:
+      - _model_layers_13_self_attn_v_proj_MatMul: INT3
+  _model_layers_13_v_cache:
+    offset: -19
+    scale: 0.00571489008
+  _model_layers_14_Add:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_14_Add: INT16
+    scale: 0.125732601
+  _model_layers_14_Add_1:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_14_Add_1: INT16
+    scale: 0.125766456
+  _model_layers_14_Add__model_layers_14_Add_0_split:
+    offset: 5888
+    scale: 0.125732601
+  _model_layers_14_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 16
+    scale: 0.0125984456
+  _model_layers_14_k_cache:
+    offset: 4
+    scale: 0.108055413
+  _model_layers_14_mlp_Mul:
+    offset: 13568
+    outputDataPrecision:
+      - _model_layers_14_mlp_Mul: INT16
+    scale: 0.000140983655
+  _model_layers_14_mlp_act_fn_Mul:
+    offset: -112
+    scale: 0.0173020791
+  _model_layers_14_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -2048
+    outputDataPrecision:
+      - _model_layers_14_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.000183312703
+    weightPrecision:
+      - _model_layers_14_mlp_down_proj_MatMul_ara_inrp: INT3
+  _model_layers_14_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 2
+    scale: 0.033631932
+    weightPrecision:
+      - _model_layers_14_mlp_gate_proj_MatMul_ara_inrp: INT3
+  _model_layers_14_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 9
+    scale: 0.027951397
+    weightPrecision:
+      - _model_layers_14_mlp_up_proj_MatMul_ara_inrp: INT3
+  _model_layers_14_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: -4
+    scale: 0.0121199507
+  _model_layers_14_prm_5_PermuteNnp:
+    offset: 5888
+    scale: 0.125732601
+  _model_layers_14_prm_6_PermuteNnp:
+    offset: -4
+    scale: 0.0121199507
+  _model_layers_14_residue_perm_1:
+    offset: 5888
+    scale: 0.125728458
+  _model_layers_14_residue_perm_2:
+    offset: 16
+    scale: 0.0125984456
+  _model_layers_14_residue_perm_3:
+    offset: 5888
+    scale: 0.125766456
+  _model_layers_14_residue_rshp_1:
+    offset: 5888
+    scale: 0.125728458
+  _model_layers_14_residue_rshp_2:
+    offset: 16
+    scale: 0.0125984456
+  _model_layers_14_residue_rshp_2__model_layers_14_residue_rshp_2_0_split:
+    offset: 16
+    scale: 0.0125984456
+  _model_layers_14_residue_rshp_3:
+    offset: 5888
+    scale: 0.125766456
+  _model_layers_14_residue_rshp_3__model_layers_14_residue_rshp_3_0_split:
+    offset: 5888
+    scale: 0.125766456
+  _model_layers_14_rshp_5_Reshape:
+    offset: 5888
+    scale: 0.125732601
+  _model_layers_14_rshp_6_Reshape:
+    offset: -4
+    scale: 0.0121199507
+  _model_layers_14_rshp_6_Reshape__model_layers_14_rshp_6_Reshape_0_split:
+    offset: -4
+    scale: 0.0121199507
+  _model_layers_14_self_attn_1_Reshape_1:
+    offset: 4
+    scale: 0.108055413
+  _model_layers_14_self_attn_2_Reshape_1:
+    offset: 8
+    scale: 0.00600418681
+  _model_layers_14_self_attn_2a_Transpose_3_concat:
+    offset: 4
+    scale: 0.108055413
+  _model_layers_14_self_attn_Add:
+    offset: 14
+    scale: 0.0791724399
+  _model_layers_14_self_attn_Add_1:
+    offset: 4
+    scale: 0.108055413
+  _model_layers_14_self_attn_Add_1__model_layers_14_self_attn_Add_1_0_split:
+    offset: 4
+    scale: 0.108055413
+  _model_layers_14_self_attn_MatMul:
+    offset: -21
+    scale: 0.0776152834
+  _model_layers_14_self_attn_MatMul_1:
+    offset: -5
+    scale: 0.0030892652
+  _model_layers_14_self_attn_Reshape_1:
+    offset: 14
+    scale: 0.0791729465
+  _model_layers_14_self_attn_Reshape_2:
+    offset: 8
+    scale: 0.00600418681
+  _model_layers_14_self_attn_Reshape_2_concat:
+    offset: 8
+    scale: 0.00600418681
+  _model_layers_14_self_attn_Reshape_3:
+    offset: 4
+    scale: 0.108055413
+  _model_layers_14_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_14_self_attn_Transpose_2:
+    offset: 8
+    scale: 0.00600418681
+  _model_layers_14_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: 4
+    scale: 0.108055413
+    weightPrecision:
+      - _model_layers_14_self_attn_k_proj_MatMul: INT3
+  _model_layers_14_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -1536
+    outputDataPrecision:
+      - _model_layers_14_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 0.000105854888
+    weightPrecision:
+      - _model_layers_14_self_attn_o_proj_MatMul_ara_inrp: INT3
+  _model_layers_14_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: -5
+    scale: 0.0030892652
+  _model_layers_14_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: 14
+    scale: 0.0791729465
+    weightPrecision:
+      - _model_layers_14_self_attn_q_proj_MatMul: INT3
+  _model_layers_14_self_attn_v_proj_Add_original__model_layers_14_self_attn_v_proj_Add_original_0_split:
+    offset: 8
+    scale: 0.00600418681
+  _model_layers_14_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: 8
+    scale: 0.00600418681
+    weightPrecision:
+      - _model_layers_14_self_attn_v_proj_MatMul: INT3
+  _model_layers_14_v_cache:
+    offset: 8
+    scale: 0.00600418681
+  _model_layers_15_Add:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_15_Add: INT16
+    scale: 0.125766173
+  _model_layers_15_Add_1:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_15_Add_1: INT16
+    scale: 0.12581037
+  _model_layers_15_Add__model_layers_15_Add_0_split:
+    offset: 5888
+    scale: 0.125766173
+  _model_layers_15_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 19
+    scale: 0.0124592502
+  _model_layers_15_k_cache:
+    offset: -8
+    scale: 0.0864420235
+  _model_layers_15_mlp_Mul:
+    offset: -11520
+    outputDataPrecision:
+      - _model_layers_15_mlp_Mul: INT16
+    scale: 0.000284473877
+  _model_layers_15_mlp_act_fn_Mul:
+    offset: -118
+    scale: 0.0272281393
+  _model_layers_15_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -3840
+    outputDataPrecision:
+      - _model_layers_15_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.000192318985
+    weightPrecision:
+      - _model_layers_15_mlp_down_proj_MatMul_ara_inrp: INT3
+  _model_layers_15_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -12
+    scale: 0.0480683222
+    weightPrecision:
+      - _model_layers_15_mlp_gate_proj_MatMul_ara_inrp: INT3
+  _model_layers_15_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -10
+    scale: 0.0358283333
+    weightPrecision:
+      - _model_layers_15_mlp_up_proj_MatMul_ara_inrp: INT3
+  _model_layers_15_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 3
+    scale: 0.0123580908
+  _model_layers_15_prm_5_PermuteNnp:
+    offset: 5888
+    scale: 0.125766173
+  _model_layers_15_prm_6_PermuteNnp:
+    offset: 3
+    scale: 0.0123580908
+  _model_layers_15_residue_perm_1:
+    offset: 5888
+    scale: 0.125766456
+  _model_layers_15_residue_perm_2:
+    offset: 19
+    scale: 0.0124592502
+  _model_layers_15_residue_perm_3:
+    offset: 5888
+    scale: 0.12581037
+  _model_layers_15_residue_rshp_1:
+    offset: 5888
+    scale: 0.125766456
+  _model_layers_15_residue_rshp_2:
+    offset: 19
+    scale: 0.0124592502
+  _model_layers_15_residue_rshp_2__model_layers_15_residue_rshp_2_0_split:
+    offset: 19
+    scale: 0.0124592502
+  _model_layers_15_residue_rshp_3:
+    offset: 5888
+    scale: 0.12581037
+  _model_layers_15_residue_rshp_3__model_layers_15_residue_rshp_3_0_split:
+    offset: 5888
+    scale: 0.12581037
+  _model_layers_15_rshp_5_Reshape:
+    offset: 5888
+    scale: 0.125766173
+  _model_layers_15_rshp_6_Reshape:
+    offset: 3
+    scale: 0.0123580908
+  _model_layers_15_rshp_6_Reshape__model_layers_15_rshp_6_Reshape_0_split:
+    offset: 3
+    scale: 0.0123580908
+  _model_layers_15_self_attn_1_Reshape_1:
+    offset: -8
+    scale: 0.0864420235
+  _model_layers_15_self_attn_2_Reshape_1:
+    offset: -7
+    scale: 0.006013643
+  _model_layers_15_self_attn_2a_Transpose_3_concat:
+    offset: -8
+    scale: 0.0864420235
+  _model_layers_15_self_attn_Add:
+    offset: 32
+    scale: 0.106639743
+  _model_layers_15_self_attn_Add_1:
+    offset: -8
+    scale: 0.0864420235
+  _model_layers_15_self_attn_Add_1__model_layers_15_self_attn_Add_1_0_split:
+    offset: -8
+    scale: 0.0864420235
+  _model_layers_15_self_attn_MatMul:
+    offset: -45
+    scale: 0.068329528
+  _model_layers_15_self_attn_MatMul_1:
+    offset: -7
+    scale: 0.00279047783
+  _model_layers_15_self_attn_Reshape_1:
+    offset: 32
+    scale: 0.106635824
+  _model_layers_15_self_attn_Reshape_2:
+    offset: -7
+    scale: 0.006013643
+  _model_layers_15_self_attn_Reshape_2_concat:
+    offset: -7
+    scale: 0.006013643
+  _model_layers_15_self_attn_Reshape_3:
+    offset: -8
+    scale: 0.0864420235
+  _model_layers_15_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_15_self_attn_Transpose_2:
+    offset: -7
+    scale: 0.006013643
+  _model_layers_15_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: -8
+    scale: 0.0864420235
+    weightPrecision:
+      - _model_layers_15_self_attn_k_proj_MatMul: INT3
+  _model_layers_15_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -1536
+    outputDataPrecision:
+      - _model_layers_15_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 0.000116729832
+    weightPrecision:
+      - _model_layers_15_self_attn_o_proj_MatMul_ara_inrp: INT3
+  _model_layers_15_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: -7
+    scale: 0.00279047783
+  _model_layers_15_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: 32
+    scale: 0.106635824
+    weightPrecision:
+      - _model_layers_15_self_attn_q_proj_MatMul: INT3
+  _model_layers_15_self_attn_v_proj_Add_original__model_layers_15_self_attn_v_proj_Add_original_0_split:
+    offset: -7
+    scale: 0.006013643
+  _model_layers_15_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: -7
+    scale: 0.006013643
+    weightPrecision:
+      - _model_layers_15_self_attn_v_proj_MatMul: INT3
+  _model_layers_15_v_cache:
+    offset: -7
+    scale: 0.006013643
+  _model_layers_16_Add:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_16_Add: INT16
+    scale: 0.125806957
+  _model_layers_16_Add_1:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_16_Add_1: INT16
+    scale: 0.125827178
+  _model_layers_16_Add__model_layers_16_Add_0_split:
+    offset: 5888
+    scale: 0.125806957
+  _model_layers_16_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 15
+    scale: 0.0115487827
+  _model_layers_16_k_cache:
+    offset: -11
+    scale: 0.111570723
+  _model_layers_16_mlp_Mul:
+    offset: 13824
+    outputDataPrecision:
+      - _model_layers_16_mlp_Mul: INT16
+    scale: 0.000317735277
+  _model_layers_16_mlp_act_fn_Mul:
+    offset: -115
+    scale: 0.0206498466
+  _model_layers_16_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -2048
+    outputDataPrecision:
+      - _model_layers_16_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.00023801309
+    weightPrecision:
+      - _model_layers_16_mlp_down_proj_MatMul_ara_inrp: INT3
+  _model_layers_16_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -3
+    scale: 0.0387390479
+    weightPrecision:
+      - _model_layers_16_mlp_gate_proj_MatMul_ara_inrp: INT3
+  _model_layers_16_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -7
+    scale: 0.0407377668
+    weightPrecision:
+      - _model_layers_16_mlp_up_proj_MatMul_ara_inrp: INT3
+  _model_layers_16_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: -3
+    scale: 0.0133692818
+  _model_layers_16_prm_5_PermuteNnp:
+    offset: 5888
+    scale: 0.125806957
+  _model_layers_16_prm_6_PermuteNnp:
+    offset: -3
+    scale: 0.0133692818
+  _model_layers_16_residue_perm_1:
+    offset: 5888
+    scale: 0.12581037
+  _model_layers_16_residue_perm_2:
+    offset: 15
+    scale: 0.0115487827
+  _model_layers_16_residue_perm_3:
+    offset: 5888
+    scale: 0.125827178
+  _model_layers_16_residue_rshp_1:
+    offset: 5888
+    scale: 0.12581037
+  _model_layers_16_residue_rshp_2:
+    offset: 15
+    scale: 0.0115487827
+  _model_layers_16_residue_rshp_2__model_layers_16_residue_rshp_2_0_split:
+    offset: 15
+    scale: 0.0115487827
+  _model_layers_16_residue_rshp_3:
+    offset: 5888
+    scale: 0.125827178
+  _model_layers_16_residue_rshp_3__model_layers_16_residue_rshp_3_0_split:
+    offset: 5888
+    scale: 0.125827178
+  _model_layers_16_rshp_5_Reshape:
+    offset: 5888
+    scale: 0.125806957
+  _model_layers_16_rshp_6_Reshape:
+    offset: -3
+    scale: 0.0133692818
+  _model_layers_16_rshp_6_Reshape__model_layers_16_rshp_6_Reshape_0_split:
+    offset: -3
+    scale: 0.0133692818
+  _model_layers_16_self_attn_1_Reshape_1:
+    offset: -11
+    scale: 0.111570723
+  _model_layers_16_self_attn_2_Reshape_1:
+    offset: -19
+    scale: 0.00867611635
+  _model_layers_16_self_attn_2a_Transpose_3_concat:
+    offset: -11
+    scale: 0.111570723
+  _model_layers_16_self_attn_Add:
+    offset: 5
+    scale: 0.0759762451
+  _model_layers_16_self_attn_Add_1:
+    offset: -11
+    scale: 0.111570723
+  _model_layers_16_self_attn_Add_1__model_layers_16_self_attn_Add_1_0_split:
+    offset: -11
+    scale: 0.111570723
+  _model_layers_16_self_attn_MatMul:
+    offset: -47
+    scale: 0.0713989213
+  _model_layers_16_self_attn_MatMul_1:
+    offset: 13
+    scale: 0.00301670888
+  _model_layers_16_self_attn_Reshape_1:
+    offset: 5
+    scale: 0.0759831667
+  _model_layers_16_self_attn_Reshape_2:
+    offset: -19
+    scale: 0.00867611635
+  _model_layers_16_self_attn_Reshape_2_concat:
+    offset: -19
+    scale: 0.00867611635
+  _model_layers_16_self_attn_Reshape_3:
+    offset: -11
+    scale: 0.111570723
+  _model_layers_16_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_16_self_attn_Transpose_2:
+    offset: -19
+    scale: 0.00867611635
+  _model_layers_16_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: -11
+    scale: 0.111570723
+    weightPrecision:
+      - _model_layers_16_self_attn_k_proj_MatMul: INT3
+  _model_layers_16_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 3840
+    outputDataPrecision:
+      - _model_layers_16_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 0.000122152866
+    weightPrecision:
+      - _model_layers_16_self_attn_o_proj_MatMul_ara_inrp: INT3
+  _model_layers_16_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: 13
+    scale: 0.00301670888
+  _model_layers_16_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: 5
+    scale: 0.0759831667
+    weightPrecision:
+      - _model_layers_16_self_attn_q_proj_MatMul: INT3
+  _model_layers_16_self_attn_v_proj_Add_original__model_layers_16_self_attn_v_proj_Add_original_0_split:
+    offset: -19
+    scale: 0.00867611635
+  _model_layers_16_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: -19
+    scale: 0.00867611635
+    weightPrecision:
+      - _model_layers_16_self_attn_v_proj_MatMul: INT3
+  _model_layers_16_v_cache:
+    offset: -19
+    scale: 0.00867611635
+  _model_layers_17_Add:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_17_Add: INT16
+    scale: 0.12582019
+  _model_layers_17_Add_1:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_17_Add_1: INT16
+    scale: 0.125852346
+  _model_layers_17_Add__model_layers_17_Add_0_split:
+    offset: 5888
+    scale: 0.12582019
+  _model_layers_17_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 12
+    scale: 0.0120494198
+  _model_layers_17_k_cache:
+    offset: 8
+    scale: 0.11188338
+  _model_layers_17_mlp_Mul:
+    offset: -11776
+    outputDataPrecision:
+      - _model_layers_17_mlp_Mul: INT16
+    scale: 0.000310675241
+  _model_layers_17_mlp_act_fn_Mul:
+    offset: -118
+    scale: 0.0270982627
+  _model_layers_17_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -4864
+    outputDataPrecision:
+      - _model_layers_17_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.000231226106
+    weightPrecision:
+      - _model_layers_17_mlp_down_proj_MatMul_ara_inrp: INT3
+  _model_layers_17_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -16
+    scale: 0.0463621356
+    weightPrecision:
+      - _model_layers_17_mlp_gate_proj_MatMul_ara_inrp: INT3
+  _model_layers_17_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -8
+    scale: 0.0409924835
+    weightPrecision:
+      - _model_layers_17_mlp_up_proj_MatMul_ara_inrp: INT3
+  _model_layers_17_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 0
+    scale: 0.0148292361
+  _model_layers_17_prm_5_PermuteNnp:
+    offset: 5888
+    scale: 0.12582019
+  _model_layers_17_prm_6_PermuteNnp:
+    offset: 0
+    scale: 0.0148292361
+  _model_layers_17_residue_perm_1:
+    offset: 5888
+    scale: 0.125827178
+  _model_layers_17_residue_perm_2:
+    offset: 12
+    scale: 0.0120494198
+  _model_layers_17_residue_perm_3:
+    offset: 5888
+    scale: 0.125852346
+  _model_layers_17_residue_rshp_1:
+    offset: 5888
+    scale: 0.125827178
+  _model_layers_17_residue_rshp_2:
+    offset: 12
+    scale: 0.0120494198
+  _model_layers_17_residue_rshp_2__model_layers_17_residue_rshp_2_0_split:
+    offset: 12
+    scale: 0.0120494198
+  _model_layers_17_residue_rshp_3:
+    offset: 5888
+    scale: 0.125852346
+  _model_layers_17_residue_rshp_3__model_layers_17_residue_rshp_3_0_split:
+    offset: 5888
+    scale: 0.125852346
+  _model_layers_17_rshp_5_Reshape:
+    offset: 5888
+    scale: 0.12582019
+  _model_layers_17_rshp_6_Reshape:
+    offset: 0
+    scale: 0.0148292361
+  _model_layers_17_rshp_6_Reshape__model_layers_17_rshp_6_Reshape_0_split:
+    offset: 0
+    scale: 0.0148292361
+  _model_layers_17_self_attn_1_Reshape_1:
+    offset: 8
+    scale: 0.11188338
+  _model_layers_17_self_attn_2_Reshape_1:
+    offset: 1
+    scale: 0.00653372193
+  _model_layers_17_self_attn_2a_Transpose_3_concat:
+    offset: 8
+    scale: 0.11188338
+  _model_layers_17_self_attn_Add:
+    offset: -3
+    scale: 0.106687263
+  _model_layers_17_self_attn_Add_1:
+    offset: 8
+    scale: 0.11188338
+  _model_layers_17_self_attn_Add_1__model_layers_17_self_attn_Add_1_0_split:
+    offset: 8
+    scale: 0.11188338
+  _model_layers_17_self_attn_MatMul:
+    offset: -67
+    scale: 0.0585519299
+  _model_layers_17_self_attn_MatMul_1:
+    offset: 11
+    scale: 0.00311529217
+  _model_layers_17_self_attn_Reshape_1:
+    offset: -3
+    scale: 0.106690802
+  _model_layers_17_self_attn_Reshape_2:
+    offset: 1
+    scale: 0.00653372193
+  _model_layers_17_self_attn_Reshape_2_concat:
+    offset: 1
+    scale: 0.00653372193
+  _model_layers_17_self_attn_Reshape_3:
+    offset: 8
+    scale: 0.11188338
+  _model_layers_17_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_17_self_attn_Transpose_2:
+    offset: 1
+    scale: 0.00653372193
+  _model_layers_17_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: 8
+    scale: 0.11188338
+    weightPrecision:
+      - _model_layers_17_self_attn_k_proj_MatMul: INT3
+  _model_layers_17_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 4096
+    outputDataPrecision:
+      - _model_layers_17_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 7.64754805e-05
+    weightPrecision:
+      - _model_layers_17_self_attn_o_proj_MatMul_ara_inrp: INT3
+  _model_layers_17_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: 11
+    scale: 0.00311529217
+  _model_layers_17_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: -3
+    scale: 0.106690802
+    weightPrecision:
+      - _model_layers_17_self_attn_q_proj_MatMul: INT3
+  _model_layers_17_self_attn_v_proj_Add_original__model_layers_17_self_attn_v_proj_Add_original_0_split:
+    offset: 1
+    scale: 0.00653372193
+  _model_layers_17_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: 1
+    scale: 0.00653372193
+    weightPrecision:
+      - _model_layers_17_self_attn_v_proj_MatMul: INT3
+  _model_layers_17_v_cache:
+    offset: 1
+    scale: 0.00653372193
+  _model_layers_18_Add:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_18_Add: INT16
+    scale: 0.125847235
+  _model_layers_18_Add_1:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_18_Add_1: INT16
+    scale: 0.125877991
+  _model_layers_18_Add__model_layers_18_Add_0_split:
+    offset: 5888
+    scale: 0.125847235
+  _model_layers_18_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 13
+    scale: 0.0109688388
+  _model_layers_18_k_cache:
+    offset: -4
+    scale: 0.117650591
+  _model_layers_18_mlp_Mul:
+    offset: 512
+    outputDataPrecision:
+      - _model_layers_18_mlp_Mul: INT16
+    scale: 0.000432773086
+  _model_layers_18_mlp_act_fn_Mul:
+    offset: -114
+    scale: 0.0196787436
+  _model_layers_18_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_18_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.000283666159
+    weightPrecision:
+      - _model_layers_18_mlp_down_proj_MatMul_ara_inrp: INT3
+  _model_layers_18_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 5
+    scale: 0.0391871743
+    weightPrecision:
+      - _model_layers_18_mlp_gate_proj_MatMul_ara_inrp: INT3
+  _model_layers_18_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -14
+    scale: 0.0379147455
+    weightPrecision:
+      - _model_layers_18_mlp_up_proj_MatMul_ara_inrp: INT3
+  _model_layers_18_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: -6
+    scale: 0.0144589618
+  _model_layers_18_prm_5_PermuteNnp:
+    offset: 5888
+    scale: 0.125847235
+  _model_layers_18_prm_6_PermuteNnp:
+    offset: -6
+    scale: 0.0144589618
+  _model_layers_18_residue_perm_1:
+    offset: 5888
+    scale: 0.125852346
+  _model_layers_18_residue_perm_2:
+    offset: 13
+    scale: 0.0109688388
+  _model_layers_18_residue_perm_3:
+    offset: 5888
+    scale: 0.125877991
+  _model_layers_18_residue_rshp_1:
+    offset: 5888
+    scale: 0.125852346
+  _model_layers_18_residue_rshp_2:
+    offset: 13
+    scale: 0.0109688388
+  _model_layers_18_residue_rshp_2__model_layers_18_residue_rshp_2_0_split:
+    offset: 13
+    scale: 0.0109688388
+  _model_layers_18_residue_rshp_3:
+    offset: 5888
+    scale: 0.125877991
+  _model_layers_18_residue_rshp_3__model_layers_18_residue_rshp_3_0_split:
+    offset: 5888
+    scale: 0.125877991
+  _model_layers_18_rshp_5_Reshape:
+    offset: 5888
+    scale: 0.125847235
+  _model_layers_18_rshp_6_Reshape:
+    offset: -6
+    scale: 0.0144589618
+  _model_layers_18_rshp_6_Reshape__model_layers_18_rshp_6_Reshape_0_split:
+    offset: -6
+    scale: 0.0144589618
+  _model_layers_18_self_attn_1_Reshape_1:
+    offset: -4
+    scale: 0.117650591
+  _model_layers_18_self_attn_2_Reshape_1:
+    offset: 2
+    scale: 0.00647496385
+  _model_layers_18_self_attn_2a_Transpose_3_concat:
+    offset: -4
+    scale: 0.117650591
+  _model_layers_18_self_attn_Add:
+    offset: 14
+    scale: 0.0708645433
+  _model_layers_18_self_attn_Add_1:
+    offset: -4
+    scale: 0.117650591
+  _model_layers_18_self_attn_Add_1__model_layers_18_self_attn_Add_1_0_split:
+    offset: -4
+    scale: 0.117650591
+  _model_layers_18_self_attn_MatMul:
+    offset: -37
+    scale: 0.0720818192
+  _model_layers_18_self_attn_MatMul_1:
+    offset: 10
+    scale: 0.00364128989
+  _model_layers_18_self_attn_Reshape_1:
+    offset: 14
+    scale: 0.0708520859
+  _model_layers_18_self_attn_Reshape_2:
+    offset: 2
+    scale: 0.00647496385
+  _model_layers_18_self_attn_Reshape_2_concat:
+    offset: 2
+    scale: 0.00647496385
+  _model_layers_18_self_attn_Reshape_3:
+    offset: -4
+    scale: 0.117650591
+  _model_layers_18_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_18_self_attn_Transpose_2:
+    offset: 2
+    scale: 0.00647496385
+  _model_layers_18_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: -4
+    scale: 0.117650591
+    weightPrecision:
+      - _model_layers_18_self_attn_k_proj_MatMul: INT3
+  _model_layers_18_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 6144
+    outputDataPrecision:
+      - _model_layers_18_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 0.000139028183
+    weightPrecision:
+      - _model_layers_18_self_attn_o_proj_MatMul_ara_inrp: INT3
+  _model_layers_18_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: 10
+    scale: 0.00364128989
+  _model_layers_18_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: 14
+    scale: 0.0708520859
+    weightPrecision:
+      - _model_layers_18_self_attn_q_proj_MatMul: INT3
+  _model_layers_18_self_attn_v_proj_Add_original__model_layers_18_self_attn_v_proj_Add_original_0_split:
+    offset: 2
+    scale: 0.00647496385
+  _model_layers_18_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: 2
+    scale: 0.00647496385
+    weightPrecision:
+      - _model_layers_18_self_attn_v_proj_MatMul: INT3
+  _model_layers_18_v_cache:
+    offset: 2
+    scale: 0.00647496385
+  _model_layers_19_Add:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_19_Add: INT16
+    scale: 0.125878289
+  _model_layers_19_Add_1:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_19_Add_1: INT16
+    scale: 0.125903502
+  _model_layers_19_Add__model_layers_19_Add_0_split:
+    offset: 5888
+    scale: 0.125878289
+  _model_layers_19_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 20
+    scale: 0.0109037245
+  _model_layers_19_k_cache:
+    offset: 30
+    scale: 0.135968849
+  _model_layers_19_mlp_Mul:
+    offset: 5632
+    outputDataPrecision:
+      - _model_layers_19_mlp_Mul: INT16
+    scale: 0.000395652023
+  _model_layers_19_mlp_act_fn_Mul:
+    offset: -116
+    scale: 0.0241662078
+  _model_layers_19_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -6400
+    outputDataPrecision:
+      - _model_layers_19_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.000249488308
+    weightPrecision:
+      - _model_layers_19_mlp_down_proj_MatMul_ara_inrp: INT3
+  _model_layers_19_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -8
+    scale: 0.0437219515
+    weightPrecision:
+      - _model_layers_19_mlp_gate_proj_MatMul_ara_inrp: INT3
+  _model_layers_19_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 27
+    scale: 0.047894638
+    weightPrecision:
+      - _model_layers_19_mlp_up_proj_MatMul_ara_inrp: INT3
+  _model_layers_19_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 1
+    scale: 0.0156554747
+  _model_layers_19_prm_5_PermuteNnp:
+    offset: 5888
+    scale: 0.125878289
+  _model_layers_19_prm_6_PermuteNnp:
+    offset: 1
+    scale: 0.0156554747
+  _model_layers_19_residue_perm_1:
+    offset: 5888
+    scale: 0.125877991
+  _model_layers_19_residue_perm_2:
+    offset: 20
+    scale: 0.0109037245
+  _model_layers_19_residue_perm_3:
+    offset: 5888
+    scale: 0.125903502
+  _model_layers_19_residue_rshp_1:
+    offset: 5888
+    scale: 0.125877991
+  _model_layers_19_residue_rshp_2:
+    offset: 20
+    scale: 0.0109037245
+  _model_layers_19_residue_rshp_2__model_layers_19_residue_rshp_2_0_split:
+    offset: 20
+    scale: 0.0109037245
+  _model_layers_19_residue_rshp_3:
+    offset: 5888
+    scale: 0.125903502
+  _model_layers_19_residue_rshp_3__model_layers_19_residue_rshp_3_0_split:
+    offset: 5888
+    scale: 0.125903502
+  _model_layers_19_rshp_5_Reshape:
+    offset: 5888
+    scale: 0.125878289
+  _model_layers_19_rshp_6_Reshape:
+    offset: 1
+    scale: 0.0156554747
+  _model_layers_19_rshp_6_Reshape__model_layers_19_rshp_6_Reshape_0_split:
+    offset: 1
+    scale: 0.0156554747
+  _model_layers_19_self_attn_1_Reshape_1:
+    offset: 30
+    scale: 0.135968849
+  _model_layers_19_self_attn_2_Reshape_1:
+    offset: 15
+    scale: 0.0115893772
+  _model_layers_19_self_attn_2a_Transpose_3_concat:
+    offset: 30
+    scale: 0.135968849
+  _model_layers_19_self_attn_Add:
+    offset: 16
+    scale: 0.0813464075
+  _model_layers_19_self_attn_Add_1:
+    offset: 30
+    scale: 0.135968849
+  _model_layers_19_self_attn_Add_1__model_layers_19_self_attn_Add_1_0_split:
+    offset: 30
+    scale: 0.135968849
+  _model_layers_19_self_attn_MatMul:
+    offset: 4
+    scale: 0.0864716321
+  _model_layers_19_self_attn_MatMul_1:
+    offset: -12
+    scale: 0.00381073123
+  _model_layers_19_self_attn_Reshape_1:
+    offset: 16
+    scale: 0.0813472345
+  _model_layers_19_self_attn_Reshape_2:
+    offset: 15
+    scale: 0.0115893772
+  _model_layers_19_self_attn_Reshape_2_concat:
+    offset: 15
+    scale: 0.0115893772
+  _model_layers_19_self_attn_Reshape_3:
+    offset: 30
+    scale: 0.135987639
+  _model_layers_19_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_19_self_attn_Transpose_2:
+    offset: 15
+    scale: 0.0115893772
+  _model_layers_19_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: 30
+    scale: 0.135987639
+    weightPrecision:
+      - _model_layers_19_self_attn_k_proj_MatMul: INT3
+  _model_layers_19_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 6400
+    outputDataPrecision:
+      - _model_layers_19_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 8.26821852e-05
+    weightPrecision:
+      - _model_layers_19_self_attn_o_proj_MatMul_ara_inrp: INT3
+  _model_layers_19_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: -12
+    scale: 0.00381073123
+  _model_layers_19_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: 16
+    scale: 0.0813472345
+    weightPrecision:
+      - _model_layers_19_self_attn_q_proj_MatMul: INT3
+  _model_layers_19_self_attn_v_proj_Add_original__model_layers_19_self_attn_v_proj_Add_original_0_split:
+    offset: 15
+    scale: 0.0115893772
+  _model_layers_19_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: 15
+    scale: 0.0115893772
+    weightPrecision:
+      - _model_layers_19_self_attn_v_proj_MatMul: INT3
+  _model_layers_19_v_cache:
+    offset: 15
+    scale: 0.0115893772
+  _model_layers_1_Add:
+    offset: 256
+    outputDataPrecision:
+      - _model_layers_1_Add: INT16
+    scale: 0.000162403434
+  _model_layers_1_Add_1:
+    offset: 3840
+    outputDataPrecision:
+      - _model_layers_1_Add_1: INT16
+    scale: 0.000357163895
+  _model_layers_1_Add__model_layers_1_Add_0_split:
+    offset: 256
+    scale: 0.000162403434
+  _model_layers_1_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: -10
+    scale: 0.00908766873
+  _model_layers_1_k_cache:
+    offset: -8
+    scale: 0.0613795556
+  _model_layers_1_mlp_Mul:
+    offset: 13824
+    outputDataPrecision:
+      - _model_layers_1_mlp_Mul: INT16
+    scale: 0.000146505001
+  _model_layers_1_mlp_act_fn_Mul:
+    offset: -114
+    scale: 0.0197352059
+  _model_layers_1_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 6144
+    outputDataPrecision:
+      - _model_layers_1_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.000272883161
+    weightPrecision:
+      - _model_layers_1_mlp_down_proj_MatMul_ara_inrp: INT3
+  _model_layers_1_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 0
+    scale: 0.0378103666
+    weightPrecision:
+      - _model_layers_1_mlp_gate_proj_MatMul_ara_inrp: INT3
+  _model_layers_1_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 26
+    scale: 0.0188028067
+    weightPrecision:
+      - _model_layers_1_mlp_up_proj_MatMul_ara_inrp: INT3
+  _model_layers_1_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: -68
+    scale: 0.00471293833
+  _model_layers_1_prm_5_PermuteNnp:
+    offset: 256
+    scale: 0.000162403434
+  _model_layers_1_prm_6_PermuteNnp:
+    offset: -68
+    scale: 0.00471293833
+  _model_layers_1_residue_perm_1:
+    offset: 1280
+    scale: 0.000175935318
+  _model_layers_1_residue_perm_2:
+    offset: -10
+    scale: 0.00908766873
+  _model_layers_1_residue_perm_3:
+    offset: 3840
+    scale: 0.000357163895
+  _model_layers_1_residue_rshp_1:
+    offset: 1280
+    scale: 0.000175935318
+  _model_layers_1_residue_rshp_2:
+    offset: -10
+    scale: 0.00908766873
+  _model_layers_1_residue_rshp_2__model_layers_1_residue_rshp_2_0_split:
+    offset: -10
+    scale: 0.00908766873
+  _model_layers_1_residue_rshp_3:
+    offset: 3840
+    scale: 0.000357163895
+  _model_layers_1_residue_rshp_3__model_layers_1_residue_rshp_3_0_split:
+    offset: 3840
+    scale: 0.000357163895
+  _model_layers_1_rshp_5_Reshape:
+    offset: 256
+    scale: 0.000162403434
+  _model_layers_1_rshp_6_Reshape:
+    offset: -68
+    scale: 0.00471293833
+  _model_layers_1_rshp_6_Reshape__model_layers_1_rshp_6_Reshape_0_split:
+    offset: -68
+    scale: 0.00471293833
+  _model_layers_1_self_attn_1_Reshape_1:
+    offset: -8
+    scale: 0.0613795556
+  _model_layers_1_self_attn_2_Reshape_1:
+    offset: -46
+    scale: 0.00733155664
+  _model_layers_1_self_attn_2a_Transpose_3_concat:
+    offset: -8
+    scale: 0.0613795556
+  _model_layers_1_self_attn_Add:
+    offset: -4
+    scale: 0.171719775
+  _model_layers_1_self_attn_Add_1:
+    offset: -8
+    scale: 0.0613795556
+  _model_layers_1_self_attn_Add_1__model_layers_1_self_attn_Add_1_0_split:
+    offset: -8
+    scale: 0.0613795556
+  _model_layers_1_self_attn_MatMul:
+    offset: -58
+    scale: 0.0719867423
+  _model_layers_1_self_attn_MatMul_1:
+    offset: 17
+    scale: 0.00359444972
+  _model_layers_1_self_attn_Reshape_1:
+    offset: -4
+    scale: 0.171719775
+  _model_layers_1_self_attn_Reshape_2:
+    offset: -46
+    scale: 0.00733155664
+  _model_layers_1_self_attn_Reshape_2_concat:
+    offset: -46
+    scale: 0.00733155664
+  _model_layers_1_self_attn_Reshape_3:
+    offset: 9
+    scale: 0.0541025475
+  _model_layers_1_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_1_self_attn_Transpose_2:
+    offset: -46
+    scale: 0.00733155664
+  _model_layers_1_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: 9
+    scale: 0.0541025475
+    weightPrecision:
+      - _model_layers_1_self_attn_k_proj_MatMul: INT3
+  _model_layers_1_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -1280
+    outputDataPrecision:
+      - _model_layers_1_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 0.000116698022
+    weightPrecision:
+      - _model_layers_1_self_attn_o_proj_MatMul_ara_inrp: INT3
+  _model_layers_1_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: 17
+    scale: 0.00359444972
+  _model_layers_1_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: -4
+    scale: 0.171719775
+    weightPrecision:
+      - _model_layers_1_self_attn_q_proj_MatMul: INT3
+  _model_layers_1_self_attn_v_proj_Add_original__model_layers_1_self_attn_v_proj_Add_original_0_split:
+    offset: -46
+    scale: 0.00733155664
+  _model_layers_1_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: -46
+    scale: 0.00733155664
+    weightPrecision:
+      - _model_layers_1_self_attn_v_proj_MatMul: INT3
+  _model_layers_1_v_cache:
+    offset: -46
+    scale: 0.00733155664
+  _model_layers_20_Add:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_20_Add: INT16
+    scale: 0.125908077
+  _model_layers_20_Add_1:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_20_Add_1: INT16
+    scale: 0.125933319
+  _model_layers_20_Add__model_layers_20_Add_0_split:
+    offset: 5888
+    scale: 0.125908077
+  _model_layers_20_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 18
+    scale: 0.0108601721
+  _model_layers_20_k_cache:
+    offset: 4
+    scale: 0.0934196338
+  _model_layers_20_mlp_Mul:
+    offset: 768
+    outputDataPrecision:
+      - _model_layers_20_mlp_Mul: INT16
+    scale: 0.000513387669
+  _model_layers_20_mlp_act_fn_Mul:
+    offset: -116
+    scale: 0.022375185
+  _model_layers_20_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -4352
+    outputDataPrecision:
+      - _model_layers_20_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.000410193315
+    weightPrecision:
+      - _model_layers_20_mlp_down_proj_MatMul_ara_inrp: INT3
+  _model_layers_20_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -5
+    scale: 0.0414318442
+    weightPrecision:
+      - _model_layers_20_mlp_gate_proj_MatMul_ara_inrp: INT3
+  _model_layers_20_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 17
+    scale: 0.0451106131
+    weightPrecision:
+      - _model_layers_20_mlp_up_proj_MatMul_ara_inrp: INT3
+  _model_layers_20_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 3
+    scale: 0.0159782823
+  _model_layers_20_prm_5_PermuteNnp:
+    offset: 5888
+    scale: 0.125908077
+  _model_layers_20_prm_6_PermuteNnp:
+    offset: 3
+    scale: 0.0159782823
+  _model_layers_20_residue_perm_1:
+    offset: 5888
+    scale: 0.125903502
+  _model_layers_20_residue_perm_2:
+    offset: 18
+    scale: 0.0108601721
+  _model_layers_20_residue_perm_3:
+    offset: 5888
+    scale: 0.125933319
+  _model_layers_20_residue_rshp_1:
+    offset: 5888
+    scale: 0.125903502
+  _model_layers_20_residue_rshp_2:
+    offset: 18
+    scale: 0.0108601721
+  _model_layers_20_residue_rshp_2__model_layers_20_residue_rshp_2_0_split:
+    offset: 18
+    scale: 0.0108601721
+  _model_layers_20_residue_rshp_3:
+    offset: 5888
+    scale: 0.125933319
+  _model_layers_20_residue_rshp_3__model_layers_20_residue_rshp_3_0_split:
+    offset: 5888
+    scale: 0.125933319
+  _model_layers_20_rshp_5_Reshape:
+    offset: 5888
+    scale: 0.125908077
+  _model_layers_20_rshp_6_Reshape:
+    offset: 3
+    scale: 0.0159782823
+  _model_layers_20_rshp_6_Reshape__model_layers_20_rshp_6_Reshape_0_split:
+    offset: 3
+    scale: 0.0159782823
+  _model_layers_20_self_attn_1_Reshape_1:
+    offset: 4
+    scale: 0.0934196338
+  _model_layers_20_self_attn_2_Reshape_1:
+    offset: -5
+    scale: 0.00747788139
+  _model_layers_20_self_attn_2a_Transpose_3_concat:
+    offset: 4
+    scale: 0.0934196338
+  _model_layers_20_self_attn_Add:
+    offset: 9
+    scale: 0.0694360808
+  _model_layers_20_self_attn_Add_1:
+    offset: 4
+    scale: 0.0934196338
+  _model_layers_20_self_attn_Add_1__model_layers_20_self_attn_Add_1_0_split:
+    offset: 4
+    scale: 0.0934196338
+  _model_layers_20_self_attn_MatMul:
+    offset: -48
+    scale: 0.0651013032
+  _model_layers_20_self_attn_MatMul_1:
+    offset: 18
+    scale: 0.00372650637
+  _model_layers_20_self_attn_Reshape_1:
+    offset: 9
+    scale: 0.0694387332
+  _model_layers_20_self_attn_Reshape_2:
+    offset: -5
+    scale: 0.00747788139
+  _model_layers_20_self_attn_Reshape_2_concat:
+    offset: -5
+    scale: 0.00747788139
+  _model_layers_20_self_attn_Reshape_3:
+    offset: 4
+    scale: 0.09341003
+  _model_layers_20_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_20_self_attn_Transpose_2:
+    offset: -5
+    scale: 0.00747788139
+  _model_layers_20_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: 4
+    scale: 0.09341003
+    weightPrecision:
+      - _model_layers_20_self_attn_k_proj_MatMul: INT3
+  _model_layers_20_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 5632
+    outputDataPrecision:
+      - _model_layers_20_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 0.000111428781
+    weightPrecision:
+      - _model_layers_20_self_attn_o_proj_MatMul_ara_inrp: INT3
+  _model_layers_20_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: 18
+    scale: 0.00372650637
+  _model_layers_20_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: 9
+    scale: 0.0694387332
+    weightPrecision:
+      - _model_layers_20_self_attn_q_proj_MatMul: INT3
+  _model_layers_20_self_attn_v_proj_Add_original__model_layers_20_self_attn_v_proj_Add_original_0_split:
+    offset: -5
+    scale: 0.00747788139
+  _model_layers_20_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: -5
+    scale: 0.00747788139
+    weightPrecision:
+      - _model_layers_20_self_attn_v_proj_MatMul: INT3
+  _model_layers_20_v_cache:
+    offset: -5
+    scale: 0.00747788139
+  _model_layers_21_Add:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_21_Add: INT16
+    scale: 0.125937045
+  _model_layers_21_Add_1:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_21_Add_1: INT16
+    scale: 0.125954449
+  _model_layers_21_Add__model_layers_21_Add_0_split:
+    offset: 5888
+    scale: 0.125937045
+  _model_layers_21_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 25
+    scale: 0.0108345253
+  _model_layers_21_k_cache:
+    offset: -1
+    scale: 0.103011571
+  _model_layers_21_mlp_Mul:
+    offset: 3328
+    outputDataPrecision:
+      - _model_layers_21_mlp_Mul: INT16
+    scale: 0.00032530204
+  _model_layers_21_mlp_act_fn_Mul:
+    offset: -120
+    scale: 0.0335385762
+  _model_layers_21_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -9472
+    outputDataPrecision:
+      - _model_layers_21_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.0003284915
+    weightPrecision:
+      - _model_layers_21_mlp_down_proj_MatMul_ara_inrp: INT3
+  _model_layers_21_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -31
+    scale: 0.0524599627
+    weightPrecision:
+      - _model_layers_21_mlp_gate_proj_MatMul_ara_inrp: INT3
+  _model_layers_21_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 23
+    scale: 0.0425373167
+    weightPrecision:
+      - _model_layers_21_mlp_up_proj_MatMul_ara_inrp: INT3
+  _model_layers_21_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 7
+    scale: 0.0164014623
+  _model_layers_21_prm_5_PermuteNnp:
+    offset: 5888
+    scale: 0.125937045
+  _model_layers_21_prm_6_PermuteNnp:
+    offset: 7
+    scale: 0.0164014623
+  _model_layers_21_residue_perm_1:
+    offset: 5888
+    scale: 0.125933319
+  _model_layers_21_residue_perm_2:
+    offset: 25
+    scale: 0.0108345253
+  _model_layers_21_residue_perm_3:
+    offset: 5888
+    scale: 0.125954449
+  _model_layers_21_residue_rshp_1:
+    offset: 5888
+    scale: 0.125933319
+  _model_layers_21_residue_rshp_2:
+    offset: 25
+    scale: 0.0108345253
+  _model_layers_21_residue_rshp_2__model_layers_21_residue_rshp_2_0_split:
+    offset: 25
+    scale: 0.0108345253
+  _model_layers_21_residue_rshp_3:
+    offset: 5888
+    scale: 0.125954449
+  _model_layers_21_residue_rshp_3__model_layers_21_residue_rshp_3_0_split:
+    offset: 5888
+    scale: 0.125954449
+  _model_layers_21_rshp_5_Reshape:
+    offset: 5888
+    scale: 0.125937045
+  _model_layers_21_rshp_6_Reshape:
+    offset: 7
+    scale: 0.0164014623
+  _model_layers_21_rshp_6_Reshape__model_layers_21_rshp_6_Reshape_0_split:
+    offset: 7
+    scale: 0.0164014623
+  _model_layers_21_self_attn_1_Reshape_1:
+    offset: -1
+    scale: 0.103011571
+  _model_layers_21_self_attn_2_Reshape_1:
+    offset: -9
+    scale: 0.0067922622
+  _model_layers_21_self_attn_2a_Transpose_3_concat:
+    offset: -1
+    scale: 0.103011571
+  _model_layers_21_self_attn_Add:
+    offset: 32
+    scale: 0.0956517085
+  _model_layers_21_self_attn_Add_1:
+    offset: -1
+    scale: 0.103011571
+  _model_layers_21_self_attn_Add_1__model_layers_21_self_attn_Add_1_0_split:
+    offset: -1
+    scale: 0.103011571
+  _model_layers_21_self_attn_MatMul:
+    offset: -65
+    scale: 0.0645946115
+  _model_layers_21_self_attn_MatMul_1:
+    offset: -6
+    scale: 0.00369331986
+  _model_layers_21_self_attn_Reshape_1:
+    offset: 32
+    scale: 0.0956609324
+  _model_layers_21_self_attn_Reshape_2:
+    offset: -9
+    scale: 0.0067922622
+  _model_layers_21_self_attn_Reshape_2_concat:
+    offset: -9
+    scale: 0.0067922622
+  _model_layers_21_self_attn_Reshape_3:
+    offset: -1
+    scale: 0.103003226
+  _model_layers_21_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_21_self_attn_Transpose_2:
+    offset: -9
+    scale: 0.0067922622
+  _model_layers_21_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: -1
+    scale: 0.103003226
+    weightPrecision:
+      - _model_layers_21_self_attn_k_proj_MatMul: INT3
+  _model_layers_21_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -8192
+    outputDataPrecision:
+      - _model_layers_21_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 0.000100679667
+    weightPrecision:
+      - _model_layers_21_self_attn_o_proj_MatMul_ara_inrp: INT3
+  _model_layers_21_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: -6
+    scale: 0.00369331986
+  _model_layers_21_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: 32
+    scale: 0.0956609324
+    weightPrecision:
+      - _model_layers_21_self_attn_q_proj_MatMul: INT3
+  _model_layers_21_self_attn_v_proj_Add_original__model_layers_21_self_attn_v_proj_Add_original_0_split:
+    offset: -9
+    scale: 0.0067922622
+  _model_layers_21_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: -9
+    scale: 0.0067922622
+    weightPrecision:
+      - _model_layers_21_self_attn_v_proj_MatMul: INT3
+  _model_layers_21_v_cache:
+    offset: -9
+    scale: 0.0067922622
+  _model_layers_22_Add:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_22_Add: INT16
+    scale: 0.125966832
+  _model_layers_22_Add_1:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_22_Add_1: INT16
+    scale: 0.125982001
+  _model_layers_22_Add__model_layers_22_Add_0_split:
+    offset: 5888
+    scale: 0.125966832
+  _model_layers_22_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 17
+    scale: 0.0106585044
+  _model_layers_22_k_cache:
+    offset: -2
+    scale: 0.102799103
+  _model_layers_22_mlp_Mul:
+    offset: 7680
+    outputDataPrecision:
+      - _model_layers_22_mlp_Mul: INT16
+    scale: 0.000497512228
+  _model_layers_22_mlp_act_fn_Mul:
+    offset: -118
+    scale: 0.0281139035
+  _model_layers_22_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -9216
+    outputDataPrecision:
+      - _model_layers_22_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.000338405662
+    weightPrecision:
+      - _model_layers_22_mlp_down_proj_MatMul_ara_inrp: INT3
+  _model_layers_22_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -26
+    scale: 0.0451908633
+    weightPrecision:
+      - _model_layers_22_mlp_gate_proj_MatMul_ara_inrp: INT2
+  _model_layers_22_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -7
+    scale: 0.0406663492
+    weightPrecision:
+      - _model_layers_22_mlp_up_proj_MatMul_ara_inrp: INT2
+  _model_layers_22_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 3
+    scale: 0.0188794639
+  _model_layers_22_prm_5_PermuteNnp:
+    offset: 5888
+    scale: 0.125966832
+  _model_layers_22_prm_6_PermuteNnp:
+    offset: 3
+    scale: 0.0188794639
+  _model_layers_22_residue_perm_1:
+    offset: 5888
+    scale: 0.125954449
+  _model_layers_22_residue_perm_2:
+    offset: 17
+    scale: 0.0106585044
+  _model_layers_22_residue_perm_3:
+    offset: 5888
+    scale: 0.125982001
+  _model_layers_22_residue_rshp_1:
+    offset: 5888
+    scale: 0.125954449
+  _model_layers_22_residue_rshp_2:
+    offset: 17
+    scale: 0.0106585044
+  _model_layers_22_residue_rshp_2__model_layers_22_residue_rshp_2_0_split:
+    offset: 17
+    scale: 0.0106585044
+  _model_layers_22_residue_rshp_3:
+    offset: 5888
+    scale: 0.125982001
+  _model_layers_22_residue_rshp_3__model_layers_22_residue_rshp_3_0_split:
+    offset: 5888
+    scale: 0.125982001
+  _model_layers_22_rshp_5_Reshape:
+    offset: 5888
+    scale: 0.125966832
+  _model_layers_22_rshp_6_Reshape:
+    offset: 3
+    scale: 0.0188794639
+  _model_layers_22_rshp_6_Reshape__model_layers_22_rshp_6_Reshape_0_split:
+    offset: 3
+    scale: 0.0188794639
+  _model_layers_22_self_attn_1_Reshape_1:
+    offset: -2
+    scale: 0.102799103
+  _model_layers_22_self_attn_2_Reshape_1:
+    offset: -6
+    scale: 0.0118257953
+  _model_layers_22_self_attn_2a_Transpose_3_concat:
+    offset: -2
+    scale: 0.102799103
+  _model_layers_22_self_attn_Add:
+    offset: -21
+    scale: 0.172376692
+  _model_layers_22_self_attn_Add_1:
+    offset: -2
+    scale: 0.102799103
+  _model_layers_22_self_attn_Add_1__model_layers_22_self_attn_Add_1_0_split:
+    offset: -2
+    scale: 0.102799103
+  _model_layers_22_self_attn_MatMul:
+    offset: -24
+    scale: 0.0714820027
+  _model_layers_22_self_attn_MatMul_1:
+    offset: -1
+    scale: 0.00483322889
+  _model_layers_22_self_attn_Reshape_1:
+    offset: -21
+    scale: 0.172382087
+  _model_layers_22_self_attn_Reshape_2:
+    offset: -6
+    scale: 0.0118257953
+  _model_layers_22_self_attn_Reshape_2_concat:
+    offset: -6
+    scale: 0.0118257953
+  _model_layers_22_self_attn_Reshape_3:
+    offset: -2
+    scale: 0.102799103
+  _model_layers_22_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_22_self_attn_Transpose_2:
+    offset: -6
+    scale: 0.0118257953
+  _model_layers_22_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: -2
+    scale: 0.102799103
+    weightPrecision:
+      - _model_layers_22_self_attn_k_proj_MatMul: INT2
+  _model_layers_22_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -15616
+    outputDataPrecision:
+      - _model_layers_22_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 0.00022429692
+    weightPrecision:
+      - _model_layers_22_self_attn_o_proj_MatMul_ara_inrp: INT2
+  _model_layers_22_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: -1
+    scale: 0.00483322889
+  _model_layers_22_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: -21
+    scale: 0.172382087
+    weightPrecision:
+      - _model_layers_22_self_attn_q_proj_MatMul: INT2
+  _model_layers_22_self_attn_v_proj_Add_original__model_layers_22_self_attn_v_proj_Add_original_0_split:
+    offset: -6
+    scale: 0.0118257953
+  _model_layers_22_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: -6
+    scale: 0.0118257953
+    weightPrecision:
+      - _model_layers_22_self_attn_v_proj_MatMul: INT2
+  _model_layers_22_v_cache:
+    offset: -6
+    scale: 0.0118257953
+  _model_layers_23_Add:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_23_Add: INT16
+    scale: 0.125990912
+  _model_layers_23_Add_1:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_23_Add_1: INT16
+    scale: 0.125994027
+  _model_layers_23_Add__model_layers_23_Add_0_split:
+    offset: 5888
+    scale: 0.125990912
+  _model_layers_23_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 19
+    scale: 0.0107054589
+  _model_layers_23_k_cache:
+    offset: 2
+    scale: 0.121804655
+  _model_layers_23_mlp_Mul:
+    offset: -2048
+    outputDataPrecision:
+      - _model_layers_23_mlp_Mul: INT16
+    scale: 0.000334394572
+  _model_layers_23_mlp_act_fn_Mul:
+    offset: -116
+    scale: 0.0222795904
+  _model_layers_23_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -20480
+    outputDataPrecision:
+      - _model_layers_23_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.000445205456
+    weightPrecision:
+      - _model_layers_23_mlp_down_proj_MatMul_ara_inrp: INT3
+  _model_layers_23_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -1
+    scale: 0.0424927846
+    weightPrecision:
+      - _model_layers_23_mlp_gate_proj_MatMul_ara_inrp: INT2
+  _model_layers_23_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 1
+    scale: 0.0380811691
+    weightPrecision:
+      - _model_layers_23_mlp_up_proj_MatMul_ara_inrp: INT2
+  _model_layers_23_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: -2
+    scale: 0.0172466412
+  _model_layers_23_prm_5_PermuteNnp:
+    offset: 5888
+    scale: 0.125990912
+  _model_layers_23_prm_6_PermuteNnp:
+    offset: -2
+    scale: 0.0172466412
+  _model_layers_23_residue_perm_1:
+    offset: 5888
+    scale: 0.125982001
+  _model_layers_23_residue_perm_2:
+    offset: 19
+    scale: 0.0107054589
+  _model_layers_23_residue_perm_3:
+    offset: 5888
+    scale: 0.125994027
+  _model_layers_23_residue_rshp_1:
+    offset: 5888
+    scale: 0.125982001
+  _model_layers_23_residue_rshp_2:
+    offset: 19
+    scale: 0.0107054589
+  _model_layers_23_residue_rshp_2__model_layers_23_residue_rshp_2_0_split:
+    offset: 19
+    scale: 0.0107054589
+  _model_layers_23_residue_rshp_3:
+    offset: 5888
+    scale: 0.125994027
+  _model_layers_23_residue_rshp_3__model_layers_23_residue_rshp_3_0_split:
+    offset: 5888
+    scale: 0.125994027
+  _model_layers_23_rshp_5_Reshape:
+    offset: 5888
+    scale: 0.125990912
+  _model_layers_23_rshp_6_Reshape:
+    offset: -2
+    scale: 0.0172466412
+  _model_layers_23_rshp_6_Reshape__model_layers_23_rshp_6_Reshape_0_split:
+    offset: -2
+    scale: 0.0172466412
+  _model_layers_23_self_attn_1_Reshape_1:
+    offset: 2
+    scale: 0.121804655
+  _model_layers_23_self_attn_2_Reshape_1:
+    offset: 3
+    scale: 0.00837328192
+  _model_layers_23_self_attn_2a_Transpose_3_concat:
+    offset: 2
+    scale: 0.121804655
+  _model_layers_23_self_attn_Add:
+    offset: -6
+    scale: 0.139732108
+  _model_layers_23_self_attn_Add_1:
+    offset: 2
+    scale: 0.121804655
+  _model_layers_23_self_attn_Add_1__model_layers_23_self_attn_Add_1_0_split:
+    offset: 2
+    scale: 0.121804655
+  _model_layers_23_self_attn_MatMul:
+    offset: -71
+    scale: 0.0594966635
+  _model_layers_23_self_attn_MatMul_1:
+    offset: 6
+    scale: 0.0039676209
+  _model_layers_23_self_attn_Reshape_1:
+    offset: -6
+    scale: 0.139739186
+  _model_layers_23_self_attn_Reshape_2:
+    offset: 3
+    scale: 0.00837328192
+  _model_layers_23_self_attn_Reshape_2_concat:
+    offset: 3
+    scale: 0.00837328192
+  _model_layers_23_self_attn_Reshape_3:
+    offset: 2
+    scale: 0.121797778
+  _model_layers_23_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_23_self_attn_Transpose_2:
+    offset: 3
+    scale: 0.00837328192
+  _model_layers_23_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: 2
+    scale: 0.121797778
+    weightPrecision:
+      - _model_layers_23_self_attn_k_proj_MatMul: INT2
+  _model_layers_23_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -18944
+    outputDataPrecision:
+      - _model_layers_23_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 0.000169241597
+    weightPrecision:
+      - _model_layers_23_self_attn_o_proj_MatMul_ara_inrp: INT2
+  _model_layers_23_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: 6
+    scale: 0.0039676209
+  _model_layers_23_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: -6
+    scale: 0.139739186
+    weightPrecision:
+      - _model_layers_23_self_attn_q_proj_MatMul: INT2
+  _model_layers_23_self_attn_v_proj_Add_original__model_layers_23_self_attn_v_proj_Add_original_0_split:
+    offset: 3
+    scale: 0.00837328192
+  _model_layers_23_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: 3
+    scale: 0.00837328192
+    weightPrecision:
+      - _model_layers_23_self_attn_v_proj_MatMul: INT2
+  _model_layers_23_v_cache:
+    offset: 3
+    scale: 0.00837328192
+  _model_layers_24_Add:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_24_Add: INT16
+    scale: 0.125999436
+  _model_layers_24_Add_1:
+    offset: 6144
+    outputDataPrecision:
+      - _model_layers_24_Add_1: INT16
+    scale: 0.125999972
+  _model_layers_24_Add__model_layers_24_Add_0_split:
+    offset: 5888
+    scale: 0.125999436
+  _model_layers_24_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 23
+    scale: 0.0114209028
+  _model_layers_24_k_cache:
+    offset: 6
+    scale: 0.113087632
+  _model_layers_24_mlp_Mul:
+    offset: -6400
+    outputDataPrecision:
+      - _model_layers_24_mlp_Mul: INT16
+    scale: 0.000395351526
+  _model_layers_24_mlp_act_fn_Mul:
+    offset: -117
+    scale: 0.0259692427
+  _model_layers_24_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -17152
+    outputDataPrecision:
+      - _model_layers_24_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.000394027738
+    weightPrecision:
+      - _model_layers_24_mlp_down_proj_MatMul_ara_inrp: INT3
+  _model_layers_24_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -18
+    scale: 0.0438618138
+    weightPrecision:
+      - _model_layers_24_mlp_gate_proj_MatMul_ara_inrp: INT2
+  _model_layers_24_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -16
+    scale: 0.0553817004
+    weightPrecision:
+      - _model_layers_24_mlp_up_proj_MatMul_ara_inrp: INT2
+  _model_layers_24_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 14
+    scale: 0.0216310788
+  _model_layers_24_prm_5_PermuteNnp:
+    offset: 5888
+    scale: 0.125999436
+  _model_layers_24_prm_6_PermuteNnp:
+    offset: 14
+    scale: 0.0216310788
+  _model_layers_24_residue_perm_1:
+    offset: 5888
+    scale: 0.125994027
+  _model_layers_24_residue_perm_2:
+    offset: 23
+    scale: 0.0114209028
+  _model_layers_24_residue_perm_3:
+    offset: 6144
+    scale: 0.125999972
+  _model_layers_24_residue_rshp_1:
+    offset: 5888
+    scale: 0.125994027
+  _model_layers_24_residue_rshp_2:
+    offset: 23
+    scale: 0.0114209028
+  _model_layers_24_residue_rshp_2__model_layers_24_residue_rshp_2_0_split:
+    offset: 23
+    scale: 0.0114209028
+  _model_layers_24_residue_rshp_3:
+    offset: 6144
+    scale: 0.125999972
+  _model_layers_24_residue_rshp_3__model_layers_24_residue_rshp_3_0_split:
+    offset: 6144
+    scale: 0.125999972
+  _model_layers_24_rshp_5_Reshape:
+    offset: 5888
+    scale: 0.125999436
+  _model_layers_24_rshp_6_Reshape:
+    offset: 14
+    scale: 0.0216310788
+  _model_layers_24_rshp_6_Reshape__model_layers_24_rshp_6_Reshape_0_split:
+    offset: 14
+    scale: 0.0216310788
+  _model_layers_24_self_attn_1_Reshape_1:
+    offset: 6
+    scale: 0.113087632
+  _model_layers_24_self_attn_2_Reshape_1:
+    offset: 48
+    scale: 0.0145071661
+  _model_layers_24_self_attn_2a_Transpose_3_concat:
+    offset: 6
+    scale: 0.113087632
+  _model_layers_24_self_attn_Add:
+    offset: -3
+    scale: 0.15332225
+  _model_layers_24_self_attn_Add_1:
+    offset: 6
+    scale: 0.113087632
+  _model_layers_24_self_attn_Add_1__model_layers_24_self_attn_Add_1_0_split:
+    offset: 6
+    scale: 0.113087632
+  _model_layers_24_self_attn_MatMul:
+    offset: -67
+    scale: 0.0676600263
+  _model_layers_24_self_attn_MatMul_1:
+    offset: 17
+    scale: 0.00653506536
+  _model_layers_24_self_attn_Reshape_1:
+    offset: -3
+    scale: 0.15332216
+  _model_layers_24_self_attn_Reshape_2:
+    offset: 48
+    scale: 0.0145071661
+  _model_layers_24_self_attn_Reshape_2_concat:
+    offset: 48
+    scale: 0.0145071661
+  _model_layers_24_self_attn_Reshape_3:
+    offset: 6
+    scale: 0.113087632
+  _model_layers_24_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_24_self_attn_Transpose_2:
+    offset: 48
+    scale: 0.0145071661
+  _model_layers_24_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: 6
+    scale: 0.113087632
+    weightPrecision:
+      - _model_layers_24_self_attn_k_proj_MatMul: INT2
+  _model_layers_24_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -17920
+    outputDataPrecision:
+      - _model_layers_24_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 0.000232920574
+    weightPrecision:
+      - _model_layers_24_self_attn_o_proj_MatMul_ara_inrp: INT2
+  _model_layers_24_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: 17
+    scale: 0.00653506536
+  _model_layers_24_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: -3
+    scale: 0.15332216
+    weightPrecision:
+      - _model_layers_24_self_attn_q_proj_MatMul: INT2
+  _model_layers_24_self_attn_v_proj_Add_original__model_layers_24_self_attn_v_proj_Add_original_0_split:
+    offset: 48
+    scale: 0.0145071661
+  _model_layers_24_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: 48
+    scale: 0.0145071661
+    weightPrecision:
+      - _model_layers_24_self_attn_v_proj_MatMul: INT2
+  _model_layers_24_v_cache:
+    offset: 48
+    scale: 0.0145071661
+  _model_layers_25_Add:
+    offset: 6144
+    outputDataPrecision:
+      - _model_layers_25_Add: INT16
+    scale: 0.126012415
+  _model_layers_25_Add_1:
+    offset: 6144
+    outputDataPrecision:
+      - _model_layers_25_Add_1: INT16
+    scale: 0.126000211
+  _model_layers_25_Add__model_layers_25_Add_0_split:
+    offset: 6144
+    scale: 0.126012415
+  _model_layers_25_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 24
+    scale: 0.0116717666
+  _model_layers_25_k_cache:
+    offset: 4
+    scale: 0.105265357
+  _model_layers_25_mlp_Mul:
+    offset: 20992
+    outputDataPrecision:
+      - _model_layers_25_mlp_Mul: INT16
+    scale: 0.000690178305
+  _model_layers_25_mlp_act_fn_Mul:
+    offset: -120
+    scale: 0.0332687013
+  _model_layers_25_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -14080
+    outputDataPrecision:
+      - _model_layers_25_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.000231042737
+    weightPrecision:
+      - _model_layers_25_mlp_down_proj_MatMul_ara_inrp: INT3
+  _model_layers_25_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -32
+    scale: 0.0514573902
+    weightPrecision:
+      - _model_layers_25_mlp_gate_proj_MatMul_ara_inrp: INT2
+  _model_layers_25_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 8
+    scale: 0.061981529
+    weightPrecision:
+      - _model_layers_25_mlp_up_proj_MatMul_ara_inrp: INT2
+  _model_layers_25_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 11
+    scale: 0.0185798388
+  _model_layers_25_prm_5_PermuteNnp:
+    offset: 6144
+    scale: 0.126012415
+  _model_layers_25_prm_6_PermuteNnp:
+    offset: 11
+    scale: 0.0185798388
+  _model_layers_25_residue_perm_1:
+    offset: 6144
+    scale: 0.125999972
+  _model_layers_25_residue_perm_2:
+    offset: 24
+    scale: 0.0116717666
+  _model_layers_25_residue_perm_3:
+    offset: 6144
+    scale: 0.126000211
+  _model_layers_25_residue_rshp_1:
+    offset: 6144
+    scale: 0.125999972
+  _model_layers_25_residue_rshp_2:
+    offset: 24
+    scale: 0.0116717666
+  _model_layers_25_residue_rshp_2__model_layers_25_residue_rshp_2_0_split:
+    offset: 24
+    scale: 0.0116717666
+  _model_layers_25_residue_rshp_3:
+    offset: 6144
+    scale: 0.126000211
+  _model_layers_25_residue_rshp_3__model_layers_25_residue_rshp_3_0_split:
+    offset: 6144
+    scale: 0.126000211
+  _model_layers_25_rshp_5_Reshape:
+    offset: 6144
+    scale: 0.126012415
+  _model_layers_25_rshp_6_Reshape:
+    offset: 11
+    scale: 0.0185798388
+  _model_layers_25_rshp_6_Reshape__model_layers_25_rshp_6_Reshape_0_split:
+    offset: 11
+    scale: 0.0185798388
+  _model_layers_25_self_attn_1_Reshape_1:
+    offset: 4
+    scale: 0.105265357
+  _model_layers_25_self_attn_2_Reshape_1:
+    offset: -12
+    scale: 0.00948118698
+  _model_layers_25_self_attn_2a_Transpose_3_concat:
+    offset: 4
+    scale: 0.105265357
+  _model_layers_25_self_attn_Add:
+    offset: -17
+    scale: 0.135269552
+  _model_layers_25_self_attn_Add_1:
+    offset: 4
+    scale: 0.105265357
+  _model_layers_25_self_attn_Add_1__model_layers_25_self_attn_Add_1_0_split:
+    offset: 4
+    scale: 0.105265357
+  _model_layers_25_self_attn_MatMul:
+    offset: -46
+    scale: 0.074084498
+  _model_layers_25_self_attn_MatMul_1:
+    offset: 5
+    scale: 0.00493447436
+  _model_layers_25_self_attn_Reshape_1:
+    offset: -17
+    scale: 0.135269523
+  _model_layers_25_self_attn_Reshape_2:
+    offset: -12
+    scale: 0.00948118698
+  _model_layers_25_self_attn_Reshape_2_concat:
+    offset: -12
+    scale: 0.00948118698
+  _model_layers_25_self_attn_Reshape_3:
+    offset: 4
+    scale: 0.105261847
+  _model_layers_25_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_25_self_attn_Transpose_2:
+    offset: -12
+    scale: 0.00948118698
+  _model_layers_25_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: 4
+    scale: 0.105261847
+    weightPrecision:
+      - _model_layers_25_self_attn_k_proj_MatMul: INT2
+  _model_layers_25_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -16896
+    outputDataPrecision:
+      - _model_layers_25_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 0.000275007274
+    weightPrecision:
+      - _model_layers_25_self_attn_o_proj_MatMul_ara_inrp: INT2
+  _model_layers_25_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: 5
+    scale: 0.00493447436
+  _model_layers_25_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: -17
+    scale: 0.135269523
+    weightPrecision:
+      - _model_layers_25_self_attn_q_proj_MatMul: INT2
+  _model_layers_25_self_attn_v_proj_Add_original__model_layers_25_self_attn_v_proj_Add_original_0_split:
+    offset: -12
+    scale: 0.00948118698
+  _model_layers_25_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: -12
+    scale: 0.00948118698
+    weightPrecision:
+      - _model_layers_25_self_attn_v_proj_MatMul: INT2
+  _model_layers_25_v_cache:
+    offset: -12
+    scale: 0.00948118698
+  _model_layers_26_Add:
+    offset: 6144
+    outputDataPrecision:
+      - _model_layers_26_Add: INT16
+    scale: 0.126013085
+  _model_layers_26_Add_1:
+    offset: 6144
+    outputDataPrecision:
+      - _model_layers_26_Add_1: INT16
+    scale: 0.125991255
+  _model_layers_26_Add__model_layers_26_Add_0_split:
+    offset: 6144
+    scale: 0.126013085
+  _model_layers_26_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 26
+    scale: 0.0118197221
+  _model_layers_26_k_cache:
+    offset: -12
+    scale: 0.114062473
+  _model_layers_26_mlp_Mul:
+    offset: 6912
+    outputDataPrecision:
+      - _model_layers_26_mlp_Mul: INT16
+    scale: 0.000248906959
+  _model_layers_26_mlp_act_fn_Mul:
+    offset: -114
+    scale: 0.0195134562
+  _model_layers_26_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -17408
+    outputDataPrecision:
+      - _model_layers_26_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.000309222698
+    weightPrecision:
+      - _model_layers_26_mlp_down_proj_MatMul_ara_inrp: INT3
+  _model_layers_26_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 3
+    scale: 0.0382329524
+    weightPrecision:
+      - _model_layers_26_mlp_gate_proj_MatMul_ara_inrp: INT2
+  _model_layers_26_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -18
+    scale: 0.0459618047
+    weightPrecision:
+      - _model_layers_26_mlp_up_proj_MatMul_ara_inrp: INT2
+  _model_layers_26_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: -2
+    scale: 0.0195164476
+  _model_layers_26_prm_5_PermuteNnp:
+    offset: 6144
+    scale: 0.126013085
+  _model_layers_26_prm_6_PermuteNnp:
+    offset: -2
+    scale: 0.0195164476
+  _model_layers_26_residue_perm_1:
+    offset: 6144
+    scale: 0.126000211
+  _model_layers_26_residue_perm_2:
+    offset: 26
+    scale: 0.0118197221
+  _model_layers_26_residue_perm_3:
+    offset: 6144
+    scale: 0.125991255
+  _model_layers_26_residue_rshp_1:
+    offset: 6144
+    scale: 0.126000211
+  _model_layers_26_residue_rshp_2:
+    offset: 26
+    scale: 0.0118197221
+  _model_layers_26_residue_rshp_2__model_layers_26_residue_rshp_2_0_split:
+    offset: 26
+    scale: 0.0118197221
+  _model_layers_26_residue_rshp_3:
+    offset: 6144
+    scale: 0.125991255
+  _model_layers_26_residue_rshp_3__model_layers_26_residue_rshp_3_0_split:
+    offset: 6144
+    scale: 0.125991255
+  _model_layers_26_rshp_5_Reshape:
+    offset: 6144
+    scale: 0.126013085
+  _model_layers_26_rshp_6_Reshape:
+    offset: -2
+    scale: 0.0195164476
+  _model_layers_26_rshp_6_Reshape__model_layers_26_rshp_6_Reshape_0_split:
+    offset: -2
+    scale: 0.0195164476
+  _model_layers_26_self_attn_1_Reshape_1:
+    offset: -12
+    scale: 0.114062473
+  _model_layers_26_self_attn_2_Reshape_1:
+    offset: -13
+    scale: 0.00972220954
+  _model_layers_26_self_attn_2a_Transpose_3_concat:
+    offset: -12
+    scale: 0.114062473
+  _model_layers_26_self_attn_Add:
+    offset: -8
+    scale: 0.151390672
+  _model_layers_26_self_attn_Add_1:
+    offset: -12
+    scale: 0.114062473
+  _model_layers_26_self_attn_Add_1__model_layers_26_self_attn_Add_1_0_split:
+    offset: -12
+    scale: 0.114062473
+  _model_layers_26_self_attn_MatMul:
+    offset: -56
+    scale: 0.072232835
+  _model_layers_26_self_attn_MatMul_1:
+    offset: -27
+    scale: 0.00727374945
+  _model_layers_26_self_attn_Reshape_1:
+    offset: -8
+    scale: 0.151393607
+  _model_layers_26_self_attn_Reshape_2:
+    offset: -13
+    scale: 0.00972220954
+  _model_layers_26_self_attn_Reshape_2_concat:
+    offset: -13
+    scale: 0.00972220954
+  _model_layers_26_self_attn_Reshape_3:
+    offset: -12
+    scale: 0.114062473
+  _model_layers_26_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_26_self_attn_Transpose_2:
+    offset: -13
+    scale: 0.00972220954
+  _model_layers_26_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: -12
+    scale: 0.114062473
+    weightPrecision:
+      - _model_layers_26_self_attn_k_proj_MatMul: INT2
+  _model_layers_26_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -17408
+    outputDataPrecision:
+      - _model_layers_26_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 0.000597525679
+    weightPrecision:
+      - _model_layers_26_self_attn_o_proj_MatMul_ara_inrp: INT2
+  _model_layers_26_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: -27
+    scale: 0.00727374945
+  _model_layers_26_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: -8
+    scale: 0.151393607
+    weightPrecision:
+      - _model_layers_26_self_attn_q_proj_MatMul: INT2
+  _model_layers_26_self_attn_v_proj_Add_original__model_layers_26_self_attn_v_proj_Add_original_0_split:
+    offset: -13
+    scale: 0.00972220954
+  _model_layers_26_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: -13
+    scale: 0.00972220954
+    weightPrecision:
+      - _model_layers_26_self_attn_v_proj_MatMul: INT2
+  _model_layers_26_v_cache:
+    offset: -13
+    scale: 0.00972220954
+  _model_layers_27_Add:
+    offset: 6144
+    outputDataPrecision:
+      - _model_layers_27_Add: INT16
+    scale: 0.12600033
+  _model_layers_27_Add_1:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_27_Add_1: INT16
+    scale: 0.116856277
+  _model_layers_27_Add__model_layers_27_Add_0_split:
+    offset: 6144
+    scale: 0.12600033
+  _model_layers_27_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 25
+    scale: 0.0128578776
+  _model_layers_27_k_cache:
+    offset: -7
+    scale: 0.116029836
+  _model_layers_27_mlp_Mul:
+    offset: 29696
+    outputDataPrecision:
+      - _model_layers_27_mlp_Mul: INT16
+    scale: 0.00709779141
+  _model_layers_27_mlp_act_fn_Mul:
+    offset: -126
+    scale: 0.122762613
+  _model_layers_27_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -7424
+    outputDataPrecision:
+      - _model_layers_27_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.00991987344
+    weightPrecision:
+      - _model_layers_27_mlp_down_proj_MatMul_ara_inrp: INT3
+  _model_layers_27_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -76
+    scale: 0.152809605
+    weightPrecision:
+      - _model_layers_27_mlp_gate_proj_MatMul_ara_inrp: INT2
+  _model_layers_27_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 81
+    scale: 0.210474163
+    weightPrecision:
+      - _model_layers_27_mlp_up_proj_MatMul_ara_inrp: INT2
+  _model_layers_27_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 19
+    scale: 0.0312467646
+  _model_layers_27_prm_5_PermuteNnp:
+    offset: 6144
+    scale: 0.12600033
+  _model_layers_27_prm_6_PermuteNnp:
+    offset: 19
+    scale: 0.0312467646
+  _model_layers_27_residue_perm_1:
+    offset: 6144
+    scale: 0.125991255
+  _model_layers_27_residue_perm_2:
+    offset: 25
+    scale: 0.0128578776
+  _model_layers_27_residue_perm_3:
+    offset: 5888
+    scale: 0.116856277
+  _model_layers_27_residue_rshp_1:
+    offset: 6144
+    scale: 0.125991255
+  _model_layers_27_residue_rshp_2:
+    offset: 25
+    scale: 0.0128578776
+  _model_layers_27_residue_rshp_2__model_layers_27_residue_rshp_2_0_split:
+    offset: 25
+    scale: 0.0128578776
+  _model_layers_27_residue_rshp_3:
+    offset: 5888
+    scale: 0.116856277
+  _model_layers_27_residue_rshp_3__model_layers_27_residue_rshp_3_0_split:
+    offset: 5888
+    scale: 0.116856277
+  _model_layers_27_rshp_5_Reshape:
+    offset: 6144
+    scale: 0.12600033
+  _model_layers_27_rshp_6_Reshape:
+    offset: 19
+    scale: 0.0312467646
+  _model_layers_27_rshp_6_Reshape__model_layers_27_rshp_6_Reshape_0_split:
+    offset: 19
+    scale: 0.0312467646
+  _model_layers_27_self_attn_1_Reshape_1:
+    offset: -7
+    scale: 0.116029836
+  _model_layers_27_self_attn_2_Reshape_1:
+    offset: 0
+    scale: 0.00714104204
+  _model_layers_27_self_attn_2a_Transpose_3_concat:
+    offset: -7
+    scale: 0.116029836
+  _model_layers_27_self_attn_Add:
+    offset: 29
+    scale: 0.13844049
+  _model_layers_27_self_attn_Add_1:
+    offset: -7
+    scale: 0.116029836
+  _model_layers_27_self_attn_Add_1__model_layers_27_self_attn_Add_1_0_split:
+    offset: -7
+    scale: 0.116029836
+  _model_layers_27_self_attn_MatMul:
+    offset: -41
+    scale: 0.0795737803
+  _model_layers_27_self_attn_MatMul_1:
+    offset: 13
+    scale: 0.00434919167
+  _model_layers_27_self_attn_Reshape_1:
+    offset: 29
+    scale: 0.138438001
+  _model_layers_27_self_attn_Reshape_2:
+    offset: 0
+    scale: 0.00714104204
+  _model_layers_27_self_attn_Reshape_2_concat:
+    offset: 0
+    scale: 0.00714104204
+  _model_layers_27_self_attn_Reshape_3:
+    offset: -7
+    scale: 0.116025127
+  _model_layers_27_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_27_self_attn_Transpose_2:
+    offset: 0
+    scale: 0.00714104204
+  _model_layers_27_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: -7
+    scale: 0.116025127
+    weightPrecision:
+      - _model_layers_27_self_attn_k_proj_MatMul: INT2
+  _model_layers_27_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -18688
+    outputDataPrecision:
+      - _model_layers_27_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 0.00037270601
+    weightPrecision:
+      - _model_layers_27_self_attn_o_proj_MatMul_ara_inrp: INT2
+  _model_layers_27_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: 13
+    scale: 0.00434919167
+  _model_layers_27_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: 29
+    scale: 0.138438001
+    weightPrecision:
+      - _model_layers_27_self_attn_q_proj_MatMul: INT2
+  _model_layers_27_self_attn_v_proj_Add_original__model_layers_27_self_attn_v_proj_Add_original_0_split:
+    offset: 0
+    scale: 0.00714104204
+  _model_layers_27_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: 0
+    scale: 0.00714104204
+    weightPrecision:
+      - _model_layers_27_self_attn_v_proj_MatMul: INT2
+  _model_layers_27_v_cache:
+    offset: 0
+    scale: 0.00714104204
+  _model_layers_28_Add:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_28_Add: INT16
+    scale: 0.116866305
+  _model_layers_28_Add_1:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_28_Add_1: INT16
+    scale: 0.0890044421
+  _model_layers_28_Add__model_layers_28_Add_0_split:
+    offset: 5888
+    scale: 0.116866305
+  _model_layers_28_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 36
+    scale: 0.0162816923
+  _model_layers_28_k_cache:
+    offset: 2
+    scale: 0.110038668
+  _model_layers_28_mlp_Mul:
+    offset: 17920
+    outputDataPrecision:
+      - _model_layers_28_mlp_Mul: INT16
+    scale: 0.0252324715
+  _model_layers_28_mlp_act_fn_Mul:
+    offset: -127
+    scale: 0.209452435
+  _model_layers_28_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -4608
+    outputDataPrecision:
+      - _model_layers_28_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.032444261
+    weightPrecision:
+      - _model_layers_28_mlp_down_proj_MatMul_ara_inrp: INT4
+  _model_layers_28_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -99
+    scale: 0.235339403
+    weightPrecision:
+      - _model_layers_28_mlp_gate_proj_MatMul_ara_inrp: INT3
+  _model_layers_28_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 44
+    scale: 0.202611312
+    weightPrecision:
+      - _model_layers_28_mlp_up_proj_MatMul_ara_inrp: INT3
+  _model_layers_28_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 16
+    scale: 0.0280412901
+  _model_layers_28_prm_5_PermuteNnp:
+    offset: 5888
+    scale: 0.116866305
+  _model_layers_28_prm_6_PermuteNnp:
+    offset: 16
+    scale: 0.0280412901
+  _model_layers_28_residue_perm_1:
+    offset: 5888
+    scale: 0.116856277
+  _model_layers_28_residue_perm_2:
+    offset: 36
+    scale: 0.0162816923
+  _model_layers_28_residue_perm_3:
+    offset: 5888
+    scale: 0.0890044421
+  _model_layers_28_residue_rshp_1:
+    offset: 5888
+    scale: 0.116856277
+  _model_layers_28_residue_rshp_2:
+    offset: 36
+    scale: 0.0162816923
+  _model_layers_28_residue_rshp_2__model_layers_28_residue_rshp_2_0_split:
+    offset: 36
+    scale: 0.0162816923
+  _model_layers_28_residue_rshp_3:
+    offset: 5888
+    scale: 0.0890044421
+  _model_layers_28_residue_rshp_3__model_layers_28_residue_rshp_3_0_split:
+    offset: 5888
+    scale: 0.0890044421
+  _model_layers_28_rshp_5_Reshape:
+    offset: 5888
+    scale: 0.116866305
+  _model_layers_28_rshp_6_Reshape:
+    offset: 16
+    scale: 0.0280412901
+  _model_layers_28_rshp_6_Reshape__model_layers_28_rshp_6_Reshape_0_split:
+    offset: 16
+    scale: 0.0280412901
+  _model_layers_28_self_attn_1_Reshape_1:
+    offset: 2
+    scale: 0.110038668
+  _model_layers_28_self_attn_2_Reshape_1:
+    offset: -2
+    scale: 0.00663073454
+  _model_layers_28_self_attn_2a_Transpose_3_concat:
+    offset: 2
+    scale: 0.110038668
+  _model_layers_28_self_attn_Add:
+    offset: 2
+    scale: 0.0821348578
+  _model_layers_28_self_attn_Add_1:
+    offset: 2
+    scale: 0.110038668
+  _model_layers_28_self_attn_Add_1__model_layers_28_self_attn_Add_1_0_split:
+    offset: 2
+    scale: 0.110038668
+  _model_layers_28_self_attn_MatMul:
+    offset: -60
+    scale: 0.0858250186
+  _model_layers_28_self_attn_MatMul_1:
+    offset: 13
+    scale: 0.00430931104
+  _model_layers_28_self_attn_Reshape_1:
+    offset: 1
+    scale: 0.0821423158
+  _model_layers_28_self_attn_Reshape_2:
+    offset: -2
+    scale: 0.00663073454
+  _model_layers_28_self_attn_Reshape_2_concat:
+    offset: -2
+    scale: 0.00663073454
+  _model_layers_28_self_attn_Reshape_3:
+    offset: 2
+    scale: 0.110038668
+  _model_layers_28_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_28_self_attn_Transpose_2:
+    offset: -2
+    scale: 0.00663073454
+  _model_layers_28_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: 2
+    scale: 0.110038668
+    weightPrecision:
+      - _model_layers_28_self_attn_k_proj_MatMul: INT3
+  _model_layers_28_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -17408
+    outputDataPrecision:
+      - _model_layers_28_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 0.000208520389
+    weightPrecision:
+      - _model_layers_28_self_attn_o_proj_MatMul_ara_inrp: INT3
+  _model_layers_28_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: 13
+    scale: 0.00430931104
+  _model_layers_28_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: 1
+    scale: 0.0821423158
+    weightPrecision:
+      - _model_layers_28_self_attn_q_proj_MatMul: INT3
+  _model_layers_28_self_attn_v_proj_Add_original__model_layers_28_self_attn_v_proj_Add_original_0_split:
+    offset: -2
+    scale: 0.00663073454
+  _model_layers_28_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: -2
+    scale: 0.00663073454
+    weightPrecision:
+      - _model_layers_28_self_attn_v_proj_MatMul: INT3
+  _model_layers_28_v_cache:
+    offset: -2
+    scale: 0.00663073454
+  _model_layers_29_Add:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_29_Add: INT16
+    scale: 0.0890233964
+  _model_layers_29_Add_1:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_29_Add_1: INT16
+    scale: 0.07913775
+  _model_layers_29_Add__model_layers_29_Add_0_split:
+    offset: 5888
+    scale: 0.0890233964
+  _model_layers_29_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: -4
+    scale: 0.0113015529
+  _model_layers_29_k_cache:
+    offset: 1
+    scale: 0.138763428
+  _model_layers_29_mlp_Mul:
+    offset: 5632
+    outputDataPrecision:
+      - _model_layers_29_mlp_Mul: INT16
+    scale: 0.00683012651
+  _model_layers_29_mlp_act_fn_Mul:
+    offset: -124
+    scale: 0.0646836609
+  _model_layers_29_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -5120
+    outputDataPrecision:
+      - _model_layers_29_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.00988564733
+    weightPrecision:
+      - _model_layers_29_mlp_down_proj_MatMul_ara_inrp: INT4
+  _model_layers_29_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -1
+    scale: 0.126506254
+    weightPrecision:
+      - _model_layers_29_mlp_gate_proj_MatMul_ara_inrp: INT3
+  _model_layers_29_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -1
+    scale: 0.208418489
+    weightPrecision:
+      - _model_layers_29_mlp_up_proj_MatMul_ara_inrp: INT3
+  _model_layers_29_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 10
+    scale: 0.0393003188
+  _model_layers_29_prm_5_PermuteNnp:
+    offset: 5888
+    scale: 0.0890233964
+  _model_layers_29_prm_6_PermuteNnp:
+    offset: 10
+    scale: 0.0393003188
+  _model_layers_29_residue_perm_1:
+    offset: 5888
+    scale: 0.0890044421
+  _model_layers_29_residue_perm_2:
+    offset: -4
+    scale: 0.0113015529
+  _model_layers_29_residue_perm_3:
+    offset: 5888
+    scale: 0.07913775
+  _model_layers_29_residue_rshp_1:
+    offset: 5888
+    scale: 0.0890044421
+  _model_layers_29_residue_rshp_2:
+    offset: -4
+    scale: 0.0113015529
+  _model_layers_29_residue_rshp_2__model_layers_29_residue_rshp_2_0_split:
+    offset: -4
+    scale: 0.0113015529
+  _model_layers_29_residue_rshp_3:
+    offset: 5888
+    scale: 0.07913775
+  _model_layers_29_residue_rshp_3__model_layers_29_residue_rshp_3_0_split:
+    offset: 5888
+    scale: 0.07913775
+  _model_layers_29_rshp_5_Reshape:
+    offset: 5888
+    scale: 0.0890233964
+  _model_layers_29_rshp_6_Reshape:
+    offset: 10
+    scale: 0.0393003188
+  _model_layers_29_rshp_6_Reshape__model_layers_29_rshp_6_Reshape_0_split:
+    offset: 10
+    scale: 0.0393003188
+  _model_layers_29_self_attn_1_Reshape_1:
+    offset: 1
+    scale: 0.138763428
+  _model_layers_29_self_attn_2_Reshape_1:
+    offset: -12
+    scale: 0.00785628706
+  _model_layers_29_self_attn_2a_Transpose_3_concat:
+    offset: 1
+    scale: 0.138763428
+  _model_layers_29_self_attn_Add:
+    offset: -9
+    scale: 0.0923089907
+  _model_layers_29_self_attn_Add_1:
+    offset: 1
+    scale: 0.138763428
+  _model_layers_29_self_attn_Add_1__model_layers_29_self_attn_Add_1_0_split:
+    offset: 1
+    scale: 0.138763428
+  _model_layers_29_self_attn_MatMul:
+    offset: 16
+    scale: 0.0914622173
+  _model_layers_29_self_attn_MatMul_1:
+    offset: -20
+    scale: 0.00438806135
+  _model_layers_29_self_attn_Reshape_1:
+    offset: -9
+    scale: 0.0923040807
+  _model_layers_29_self_attn_Reshape_2:
+    offset: -12
+    scale: 0.00785628706
+  _model_layers_29_self_attn_Reshape_2_concat:
+    offset: -12
+    scale: 0.00785628706
+  _model_layers_29_self_attn_Reshape_3:
+    offset: 1
+    scale: 0.138763428
+  _model_layers_29_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_29_self_attn_Transpose_2:
+    offset: -12
+    scale: 0.00785628706
+  _model_layers_29_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: 1
+    scale: 0.138763428
+    weightPrecision:
+      - _model_layers_29_self_attn_k_proj_MatMul: INT3
+  _model_layers_29_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -18688
+    outputDataPrecision:
+      - _model_layers_29_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 0.000420850032
+    weightPrecision:
+      - _model_layers_29_self_attn_o_proj_MatMul_ara_inrp: INT3
+  _model_layers_29_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: -20
+    scale: 0.00438806135
+  _model_layers_29_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: -9
+    scale: 0.0923040807
+    weightPrecision:
+      - _model_layers_29_self_attn_q_proj_MatMul: INT3
+  _model_layers_29_self_attn_v_proj_Add_original__model_layers_29_self_attn_v_proj_Add_original_0_split:
+    offset: -12
+    scale: 0.00785628706
+  _model_layers_29_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: -12
+    scale: 0.00785628706
+    weightPrecision:
+      - _model_layers_29_self_attn_v_proj_MatMul: INT3
+  _model_layers_29_v_cache:
+    offset: -12
+    scale: 0.00785628706
+  _model_layers_2_Add:
+    offset: 4096
+    outputDataPrecision:
+      - _model_layers_2_Add: INT16
+    scale: 0.000286465278
+  _model_layers_2_Add_1:
+    offset: 23296
+    outputDataPrecision:
+      - _model_layers_2_Add_1: INT16
+    scale: 0.00534139201
+  _model_layers_2_Add__model_layers_2_Add_0_split:
+    offset: 4096
+    scale: 0.000286465278
+  _model_layers_2_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 5
+    scale: 0.00649705762
+  _model_layers_2_k_cache:
+    offset: 7
+    scale: 0.0618508831
+  _model_layers_2_mlp_Mul:
+    offset: -28416
+    outputDataPrecision:
+      - _model_layers_2_mlp_Mul: INT16
+    scale: 0.00276323152
+  _model_layers_2_mlp_act_fn_Mul:
+    offset: -124
+    scale: 0.0640996173
+  _model_layers_2_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 24064
+    outputDataPrecision:
+      - _model_layers_2_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.00508818496
+    weightPrecision:
+      - _model_layers_2_mlp_down_proj_MatMul_ara_inrp: INT4
+  _model_layers_2_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -18
+    scale: 0.110638395
+    weightPrecision:
+      - _model_layers_2_mlp_gate_proj_MatMul_ara_inrp: INT3
+  _model_layers_2_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -68
+    scale: 0.0554746576
+    weightPrecision:
+      - _model_layers_2_mlp_up_proj_MatMul_ara_inrp: INT3
+  _model_layers_2_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 45
+    scale: 0.00762841571
+  _model_layers_2_prm_5_PermuteNnp:
+    offset: 4096
+    scale: 0.000286465278
+  _model_layers_2_prm_6_PermuteNnp:
+    offset: 45
+    scale: 0.00762841571
+  _model_layers_2_residue_perm_1:
+    offset: 3840
+    scale: 0.000357163895
+  _model_layers_2_residue_perm_2:
+    offset: 5
+    scale: 0.00649705762
+  _model_layers_2_residue_perm_3:
+    offset: 23296
+    scale: 0.00534139201
+  _model_layers_2_residue_rshp_1:
+    offset: 3840
+    scale: 0.000357163895
+  _model_layers_2_residue_rshp_2:
+    offset: 5
+    scale: 0.00649705762
+  _model_layers_2_residue_rshp_2__model_layers_2_residue_rshp_2_0_split:
+    offset: 5
+    scale: 0.00649705762
+  _model_layers_2_residue_rshp_3:
+    offset: 23296
+    scale: 0.00534139201
+  _model_layers_2_residue_rshp_3__model_layers_2_residue_rshp_3_0_split:
+    offset: 23296
+    scale: 0.00534139201
+  _model_layers_2_rshp_5_Reshape:
+    offset: 4096
+    scale: 0.000286465278
+  _model_layers_2_rshp_6_Reshape:
+    offset: 45
+    scale: 0.00762841571
+  _model_layers_2_rshp_6_Reshape__model_layers_2_rshp_6_Reshape_0_split:
+    offset: 45
+    scale: 0.00762841571
+  _model_layers_2_self_attn_1_Reshape_1:
+    offset: 7
+    scale: 0.0618508831
+  _model_layers_2_self_attn_2_Reshape_1:
+    offset: -7
+    scale: 0.00671059126
+  _model_layers_2_self_attn_2a_Transpose_3_concat:
+    offset: 7
+    scale: 0.0618508831
+  _model_layers_2_self_attn_Add:
+    offset: 16
+    scale: 0.177349344
+  _model_layers_2_self_attn_Add_1:
+    offset: 7
+    scale: 0.0618508831
+  _model_layers_2_self_attn_Add_1__model_layers_2_self_attn_Add_1_0_split:
+    offset: 7
+    scale: 0.0618508831
+  _model_layers_2_self_attn_MatMul:
+    offset: -67
+    scale: 0.0692942142
+  _model_layers_2_self_attn_MatMul_1:
+    offset: 12
+    scale: 0.00548547786
+  _model_layers_2_self_attn_Reshape_1:
+    offset: 16
+    scale: 0.177349344
+  _model_layers_2_self_attn_Reshape_2:
+    offset: -7
+    scale: 0.00671059126
+  _model_layers_2_self_attn_Reshape_2_concat:
+    offset: -7
+    scale: 0.00671059126
+  _model_layers_2_self_attn_Reshape_3:
+    offset: 7
+    scale: 0.0616859421
+  _model_layers_2_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_2_self_attn_Transpose_2:
+    offset: -7
+    scale: 0.00671059126
+  _model_layers_2_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: 7
+    scale: 0.0616859421
+    weightPrecision:
+      - _model_layers_2_self_attn_k_proj_MatMul: INT3
+  _model_layers_2_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -1280
+    outputDataPrecision:
+      - _model_layers_2_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 0.000175088207
+    weightPrecision:
+      - _model_layers_2_self_attn_o_proj_MatMul_ara_inrp: INT3
+  _model_layers_2_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: 12
+    scale: 0.00548547786
+  _model_layers_2_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: 16
+    scale: 0.177349344
+    weightPrecision:
+      - _model_layers_2_self_attn_q_proj_MatMul: INT3
+  _model_layers_2_self_attn_v_proj_Add_original__model_layers_2_self_attn_v_proj_Add_original_0_split:
+    offset: -7
+    scale: 0.00671059126
+  _model_layers_2_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: -7
+    scale: 0.00671059126
+    weightPrecision:
+      - _model_layers_2_self_attn_v_proj_MatMul: INT3
+  _model_layers_2_v_cache:
+    offset: -7
+    scale: 0.00671059126
+  _model_layers_30_Add:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_30_Add: INT16
+    scale: 0.0790657029
+  _model_layers_30_Add_1:
+    offset: 6656
+    outputDataPrecision:
+      - _model_layers_30_Add_1: INT16
+    scale: 0.046374321
+  _model_layers_30_Add__model_layers_30_Add_0_split:
+    offset: 5888
+    scale: 0.0790657029
+  _model_layers_30_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: -9
+    scale: 0.0123412851
+  _model_layers_30_k_cache:
+    offset: -1
+    scale: 0.117628492
+  _model_layers_30_mlp_Mul:
+    offset: 2560
+    outputDataPrecision:
+      - _model_layers_30_mlp_Mul: INT16
+    scale: 0.00850284845
+  _model_layers_30_mlp_act_fn_Mul:
+    offset: -127
+    scale: 0.299697191
+  _model_layers_30_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -5120
+    outputDataPrecision:
+      - _model_layers_30_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.0326913819
+    weightPrecision:
+      - _model_layers_30_mlp_down_proj_MatMul_ara_inrp: INT4
+  _model_layers_30_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -7
+    scale: 0.570076466
+    weightPrecision:
+      - _model_layers_30_mlp_gate_proj_MatMul_ara_inrp: INT3
+  _model_layers_30_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 3
+    scale: 0.393501163
+    weightPrecision:
+      - _model_layers_30_mlp_up_proj_MatMul_ara_inrp: INT3
+  _model_layers_30_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 11
+    scale: 0.0380634815
+  _model_layers_30_prm_5_PermuteNnp:
+    offset: 5888
+    scale: 0.0790657029
+  _model_layers_30_prm_6_PermuteNnp:
+    offset: 11
+    scale: 0.0380634815
+  _model_layers_30_residue_perm_1:
+    offset: 5888
+    scale: 0.07913775
+  _model_layers_30_residue_perm_2:
+    offset: -9
+    scale: 0.0123412851
+  _model_layers_30_residue_perm_3:
+    offset: 6656
+    scale: 0.046374321
+  _model_layers_30_residue_rshp_1:
+    offset: 5888
+    scale: 0.07913775
+  _model_layers_30_residue_rshp_2:
+    offset: -9
+    scale: 0.0123412851
+  _model_layers_30_residue_rshp_2__model_layers_30_residue_rshp_2_0_split:
+    offset: -9
+    scale: 0.0123412851
+  _model_layers_30_residue_rshp_3:
+    offset: 6656
+    scale: 0.046374321
+  _model_layers_30_residue_rshp_3__model_layers_30_residue_rshp_3_0_split:
+    offset: 6656
+    scale: 0.046374321
+  _model_layers_30_rshp_5_Reshape:
+    offset: 5888
+    scale: 0.0790657029
+  _model_layers_30_rshp_6_Reshape:
+    offset: 11
+    scale: 0.0380634815
+  _model_layers_30_rshp_6_Reshape__model_layers_30_rshp_6_Reshape_0_split:
+    offset: 11
+    scale: 0.0380634815
+  _model_layers_30_self_attn_1_Reshape_1:
+    offset: -1
+    scale: 0.117628492
+  _model_layers_30_self_attn_2_Reshape_1:
+    offset: 15
+    scale: 0.00802464131
+  _model_layers_30_self_attn_2a_Transpose_3_concat:
+    offset: -1
+    scale: 0.117628492
+  _model_layers_30_self_attn_Add:
+    offset: 50
+    scale: 0.153284132
+  _model_layers_30_self_attn_Add_1:
+    offset: -1
+    scale: 0.117628492
+  _model_layers_30_self_attn_Add_1__model_layers_30_self_attn_Add_1_0_split:
+    offset: -1
+    scale: 0.117628492
+  _model_layers_30_self_attn_MatMul:
+    offset: -13
+    scale: 0.103585213
+  _model_layers_30_self_attn_MatMul_1:
+    offset: -11
+    scale: 0.00574655738
+  _model_layers_30_self_attn_Reshape_1:
+    offset: 50
+    scale: 0.153280482
+  _model_layers_30_self_attn_Reshape_2:
+    offset: 15
+    scale: 0.00802464131
+  _model_layers_30_self_attn_Reshape_2_concat:
+    offset: 15
+    scale: 0.00802464131
+  _model_layers_30_self_attn_Reshape_3:
+    offset: -1
+    scale: 0.117628492
+  _model_layers_30_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_30_self_attn_Transpose_2:
+    offset: 15
+    scale: 0.00802464131
+  _model_layers_30_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: -1
+    scale: 0.117628492
+    weightPrecision:
+      - _model_layers_30_self_attn_k_proj_MatMul: INT3
+  _model_layers_30_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -15360
+    outputDataPrecision:
+      - _model_layers_30_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 0.000605562411
+    weightPrecision:
+      - _model_layers_30_self_attn_o_proj_MatMul_ara_inrp: INT3
+  _model_layers_30_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: -11
+    scale: 0.00574655738
+  _model_layers_30_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: 50
+    scale: 0.153280482
+    weightPrecision:
+      - _model_layers_30_self_attn_q_proj_MatMul: INT3
+  _model_layers_30_self_attn_v_proj_Add_original__model_layers_30_self_attn_v_proj_Add_original_0_split:
+    offset: 15
+    scale: 0.00802464131
+  _model_layers_30_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: 15
+    scale: 0.00802464131
+    weightPrecision:
+      - _model_layers_30_self_attn_v_proj_MatMul: INT3
+  _model_layers_30_v_cache:
+    offset: 15
+    scale: 0.00802464131
+  _model_layers_31_Add:
+    offset: -3840
+    outputDataPrecision:
+      - _model_layers_31_Add: INT16
+    scale: 0.0233418103
+  _model_layers_31_Add_1:
+    offset: -3840
+    outputDataPrecision:
+      - _model_layers_31_Add_1: INT16
+    scale: 0.0226862468
+  _model_layers_31_Add__model_layers_31_Add_0_split:
+    offset: -3840
+    scale: 0.0233418103
+  _model_layers_31_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 13
+    scale: 0.0176908076
+  _model_layers_31_k_cache:
+    offset: -14
+    scale: 0.114669554
+  _model_layers_31_mlp_Mul:
+    offset: 5376
+    outputDataPrecision:
+      - _model_layers_31_mlp_Mul: INT16
+    scale: 0.00272647082
+  _model_layers_31_mlp_act_fn_Mul:
+    offset: -125
+    scale: 0.097357735
+  _model_layers_31_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -2560
+    outputDataPrecision:
+      - _model_layers_31_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.00752232224
+    weightPrecision:
+      - _model_layers_31_mlp_down_proj_MatMul_ara_inrp: INT4
+  _model_layers_31_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -58
+    scale: 0.132892683
+    weightPrecision:
+      - _model_layers_31_mlp_gate_proj_MatMul_ara_inrp: INT3
+  _model_layers_31_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -16
+    scale: 0.153575137
+    weightPrecision:
+      - _model_layers_31_mlp_up_proj_MatMul_ara_inrp: INT3
+  _model_layers_31_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 3
+    scale: 0.0334881917
+  _model_layers_31_prm_5_PermuteNnp:
+    offset: -3840
+    scale: 0.0233418103
+  _model_layers_31_prm_6_PermuteNnp:
+    offset: 3
+    scale: 0.0334881917
+  _model_layers_31_residue_perm_1:
+    offset: 6656
+    scale: 0.046374321
+  _model_layers_31_residue_perm_2:
+    offset: 13
+    scale: 0.0176908076
+  _model_layers_31_residue_perm_3:
+    offset: -3840
+    scale: 0.0226862468
+  _model_layers_31_residue_perm_4:
+    offset: -13568
+    scale: 0.00610978622
+  _model_layers_31_residue_rshp_1:
+    offset: 6656
+    scale: 0.046374321
+  _model_layers_31_residue_rshp_2:
+    offset: 13
+    scale: 0.0176908076
+  _model_layers_31_residue_rshp_2__model_layers_31_residue_rshp_2_0_split:
+    offset: 13
+    scale: 0.0176908076
+  _model_layers_31_residue_rshp_3:
+    offset: -3840
+    scale: 0.0226862468
+  _model_layers_31_residue_rshp_4:
+    offset: -13568
+    scale: 0.00610978622
+  _model_layers_31_rshp_5_Reshape:
+    offset: -3840
+    scale: 0.0233418103
+  _model_layers_31_rshp_6_Reshape:
+    offset: 3
+    scale: 0.0334881917
+  _model_layers_31_rshp_6_Reshape__model_layers_31_rshp_6_Reshape_0_split:
+    offset: 3
+    scale: 0.0334881917
+  _model_layers_31_self_attn_1_Reshape_1:
+    offset: -14
+    scale: 0.114669554
+  _model_layers_31_self_attn_2_Reshape_1:
+    offset: 9
+    scale: 0.05020459
+  _model_layers_31_self_attn_2a_Transpose_3_concat:
+    offset: -14
+    scale: 0.114669554
+  _model_layers_31_self_attn_Add:
+    offset: -21
+    scale: 0.282335639
+  _model_layers_31_self_attn_Add_1:
+    offset: -14
+    scale: 0.114669554
+  _model_layers_31_self_attn_Add_1__model_layers_31_self_attn_Add_1_0_split:
+    offset: -14
+    scale: 0.114669554
+  _model_layers_31_self_attn_MatMul:
+    offset: -16
+    scale: 0.162824258
+  _model_layers_31_self_attn_MatMul_1:
+    offset: 9
+    scale: 0.05020459
+  _model_layers_31_self_attn_Reshape_1:
+    offset: -21
+    scale: 0.282335639
+  _model_layers_31_self_attn_Reshape_2:
+    offset: 9
+    scale: 0.05020459
+  _model_layers_31_self_attn_Reshape_2_concat:
+    offset: 9
+    scale: 0.05020459
+  _model_layers_31_self_attn_Reshape_3:
+    offset: -14
+    scale: 0.114669554
+  _model_layers_31_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_31_self_attn_Transpose_2:
+    offset: 9
+    scale: 0.05020459
+  _model_layers_31_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: -14
+    scale: 0.114669554
+    weightPrecision:
+      - _model_layers_31_self_attn_k_proj_MatMul: INT3
+  _model_layers_31_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -6912
+    outputDataPrecision:
+      - _model_layers_31_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 0.0330721401
+    weightPrecision:
+      - _model_layers_31_self_attn_o_proj_MatMul_ara_inrp: INT3
+  _model_layers_31_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: 9
+    scale: 0.05020459
+  _model_layers_31_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: -21
+    scale: 0.282335639
+    weightPrecision:
+      - _model_layers_31_self_attn_q_proj_MatMul: INT3
+  _model_layers_31_self_attn_v_proj_Add_original__model_layers_31_self_attn_v_proj_Add_original_0_split:
+    offset: 9
+    scale: 0.05020459
+  _model_layers_31_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: 9
+    scale: 0.05020459
+    weightPrecision:
+      - _model_layers_31_self_attn_v_proj_MatMul: INT3
+  _model_layers_31_v_cache:
+    offset: 9
+    scale: 0.05020459
+  _model_layers_3_Add:
+    offset: 23296
+    outputDataPrecision:
+      - _model_layers_3_Add: INT16
+    scale: 0.00533635076
+  _model_layers_3_Add_1:
+    offset: 23040
+    outputDataPrecision:
+      - _model_layers_3_Add_1: INT16
+    scale: 0.00540990289
+  _model_layers_3_Add__model_layers_3_Add_0_split:
+    offset: 23296
+    scale: 0.00533635076
+  _model_layers_3_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: -20
+    scale: 0.00936440751
+  _model_layers_3_k_cache:
+    offset: 2
+    scale: 0.0547675192
+  _model_layers_3_mlp_Mul:
+    offset: 2048
+    outputDataPrecision:
+      - _model_layers_3_mlp_Mul: INT16
+    scale: 0.00010809068
+  _model_layers_3_mlp_act_fn_Mul:
+    offset: -112
+    scale: 0.0168890618
+  _model_layers_3_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 14848
+    outputDataPrecision:
+      - _model_layers_3_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.000205683624
+    weightPrecision:
+      - _model_layers_3_mlp_down_proj_MatMul_ara_inrp: INT3
+  _model_layers_3_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -16
+    scale: 0.0286107901
+    weightPrecision:
+      - _model_layers_3_mlp_gate_proj_MatMul_ara_inrp: INT3
+  _model_layers_3_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -46
+    scale: 0.0284197722
+    weightPrecision:
+      - _model_layers_3_mlp_up_proj_MatMul_ara_inrp: INT3
+  _model_layers_3_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 7
+    scale: 0.00887647178
+  _model_layers_3_prm_5_PermuteNnp:
+    offset: 23296
+    scale: 0.00533635076
+  _model_layers_3_prm_6_PermuteNnp:
+    offset: 7
+    scale: 0.00887647178
+  _model_layers_3_residue_perm_1:
+    offset: 23296
+    scale: 0.00534139201
+  _model_layers_3_residue_perm_2:
+    offset: -20
+    scale: 0.00936440751
+  _model_layers_3_residue_perm_3:
+    offset: 23040
+    scale: 0.00540990289
+  _model_layers_3_residue_rshp_1:
+    offset: 23296
+    scale: 0.00534139201
+  _model_layers_3_residue_rshp_2:
+    offset: -20
+    scale: 0.00936440751
+  _model_layers_3_residue_rshp_2__model_layers_3_residue_rshp_2_0_split:
+    offset: -20
+    scale: 0.00936440751
+  _model_layers_3_residue_rshp_3:
+    offset: 23040
+    scale: 0.00540990289
+  _model_layers_3_residue_rshp_3__model_layers_3_residue_rshp_3_0_split:
+    offset: 23040
+    scale: 0.00540990289
+  _model_layers_3_rshp_5_Reshape:
+    offset: 23296
+    scale: 0.00533635076
+  _model_layers_3_rshp_6_Reshape:
+    offset: 7
+    scale: 0.00887647178
+  _model_layers_3_rshp_6_Reshape__model_layers_3_rshp_6_Reshape_0_split:
+    offset: 7
+    scale: 0.00887647178
+  _model_layers_3_self_attn_1_Reshape_1:
+    offset: 2
+    scale: 0.0547675192
+  _model_layers_3_self_attn_2_Reshape_1:
+    offset: 35
+    scale: 0.00764558185
+  _model_layers_3_self_attn_2a_Transpose_3_concat:
+    offset: 2
+    scale: 0.0547675192
+  _model_layers_3_self_attn_Add:
+    offset: -15
+    scale: 0.159531623
+  _model_layers_3_self_attn_Add_1:
+    offset: 2
+    scale: 0.0547675192
+  _model_layers_3_self_attn_Add_1__model_layers_3_self_attn_Add_1_0_split:
+    offset: 2
+    scale: 0.0547675192
+  _model_layers_3_self_attn_MatMul:
+    offset: -37
+    scale: 0.0690541044
+  _model_layers_3_self_attn_MatMul_1:
+    offset: -7
+    scale: 0.00277672149
+  _model_layers_3_self_attn_Reshape_1:
+    offset: 6
+    scale: 0.17320329
+  _model_layers_3_self_attn_Reshape_2:
+    offset: 35
+    scale: 0.00764558185
+  _model_layers_3_self_attn_Reshape_2_concat:
+    offset: 35
+    scale: 0.00764558185
+  _model_layers_3_self_attn_Reshape_3:
+    offset: 2
+    scale: 0.0547687225
+  _model_layers_3_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_3_self_attn_Transpose_2:
+    offset: 35
+    scale: 0.00764558185
+  _model_layers_3_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: 2
+    scale: 0.0547687225
+    weightPrecision:
+      - _model_layers_3_self_attn_k_proj_MatMul: INT3
+  _model_layers_3_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -9984
+    outputDataPrecision:
+      - _model_layers_3_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 6.52675226e-05
+    weightPrecision:
+      - _model_layers_3_self_attn_o_proj_MatMul_ara_inrp: INT3
+  _model_layers_3_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: -7
+    scale: 0.00277672149
+  _model_layers_3_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: 6
+    scale: 0.17320329
+    weightPrecision:
+      - _model_layers_3_self_attn_q_proj_MatMul: INT3
+  _model_layers_3_self_attn_v_proj_Add_original__model_layers_3_self_attn_v_proj_Add_original_0_split:
+    offset: 35
+    scale: 0.00764558185
+  _model_layers_3_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: 35
+    scale: 0.00764558185
+    weightPrecision:
+      - _model_layers_3_self_attn_v_proj_MatMul: INT3
+  _model_layers_3_v_cache:
+    offset: 35
+    scale: 0.00764558185
+  _model_layers_4_Add:
+    offset: 23296
+    outputDataPrecision:
+      - _model_layers_4_Add: INT16
+    scale: 0.00539699849
+  _model_layers_4_Add_1:
+    offset: 23296
+    outputDataPrecision:
+      - _model_layers_4_Add_1: INT16
+    scale: 0.0054007112
+  _model_layers_4_Add__model_layers_4_Add_0_split:
+    offset: 23296
+    scale: 0.00539699849
+  _model_layers_4_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: -9
+    scale: 0.0092425663
+  _model_layers_4_k_cache:
+    offset: -15
+    scale: 0.0669446215
+  _model_layers_4_mlp_Mul:
+    offset: -9472
+    outputDataPrecision:
+      - _model_layers_4_mlp_Mul: INT16
+    scale: 6.59875659e-05
+  _model_layers_4_mlp_act_fn_Mul:
+    offset: -99
+    scale: 0.00951915793
+  _model_layers_4_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 6400
+    outputDataPrecision:
+      - _model_layers_4_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 7.38004746e-05
+    weightPrecision:
+      - _model_layers_4_mlp_down_proj_MatMul_ara_inrp: INT3
+  _model_layers_4_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 32
+    scale: 0.0248218179
+    weightPrecision:
+      - _model_layers_4_mlp_gate_proj_MatMul_ara_inrp: INT3
+  _model_layers_4_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -17
+    scale: 0.0233675521
+    weightPrecision:
+      - _model_layers_4_mlp_up_proj_MatMul_ara_inrp: INT3
+  _model_layers_4_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 19
+    scale: 0.0123566119
+  _model_layers_4_prm_5_PermuteNnp:
+    offset: 23296
+    scale: 0.00539699849
+  _model_layers_4_prm_6_PermuteNnp:
+    offset: 19
+    scale: 0.0123566119
+  _model_layers_4_residue_perm_1:
+    offset: 23040
+    scale: 0.00540990289
+  _model_layers_4_residue_perm_2:
+    offset: -9
+    scale: 0.0092425663
+  _model_layers_4_residue_perm_3:
+    offset: 23296
+    scale: 0.0054007112
+  _model_layers_4_residue_rshp_1:
+    offset: 23040
+    scale: 0.00540990289
+  _model_layers_4_residue_rshp_2:
+    offset: -9
+    scale: 0.0092425663
+  _model_layers_4_residue_rshp_2__model_layers_4_residue_rshp_2_0_split:
+    offset: -9
+    scale: 0.0092425663
+  _model_layers_4_residue_rshp_3:
+    offset: 23296
+    scale: 0.0054007112
+  _model_layers_4_residue_rshp_3__model_layers_4_residue_rshp_3_0_split:
+    offset: 23296
+    scale: 0.0054007112
+  _model_layers_4_rshp_5_Reshape:
+    offset: 23296
+    scale: 0.00539699849
+  _model_layers_4_rshp_6_Reshape:
+    offset: 19
+    scale: 0.0123566119
+  _model_layers_4_rshp_6_Reshape__model_layers_4_rshp_6_Reshape_0_split:
+    offset: 19
+    scale: 0.0123566119
+  _model_layers_4_self_attn_1_Reshape_1:
+    offset: -15
+    scale: 0.0669446215
+  _model_layers_4_self_attn_2_Reshape_1:
+    offset: -12
+    scale: 0.0125879608
+  _model_layers_4_self_attn_2a_Transpose_3_concat:
+    offset: -15
+    scale: 0.0669446215
+  _model_layers_4_self_attn_Add:
+    offset: -28
+    scale: 0.131800681
+  _model_layers_4_self_attn_Add_1:
+    offset: -15
+    scale: 0.0669446215
+  _model_layers_4_self_attn_Add_1__model_layers_4_self_attn_Add_1_0_split:
+    offset: -15
+    scale: 0.0669446215
+  _model_layers_4_self_attn_MatMul:
+    offset: -30
+    scale: 0.108712099
+  _model_layers_4_self_attn_MatMul_1:
+    offset: -3
+    scale: 0.00233239215
+  _model_layers_4_self_attn_Reshape_1:
+    offset: -28
+    scale: 0.131798625
+  _model_layers_4_self_attn_Reshape_2:
+    offset: -12
+    scale: 0.0125879608
+  _model_layers_4_self_attn_Reshape_2_concat:
+    offset: -12
+    scale: 0.0125879608
+  _model_layers_4_self_attn_Reshape_3:
+    offset: -15
+    scale: 0.0669459105
+  _model_layers_4_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_4_self_attn_Transpose_2:
+    offset: -12
+    scale: 0.0125879608
+  _model_layers_4_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: -15
+    scale: 0.0669459105
+    weightPrecision:
+      - _model_layers_4_self_attn_k_proj_MatMul: INT3
+  _model_layers_4_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -6400
+    outputDataPrecision:
+      - _model_layers_4_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 4.06467261e-05
+    weightPrecision:
+      - _model_layers_4_self_attn_o_proj_MatMul_ara_inrp: INT3
+  _model_layers_4_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: -3
+    scale: 0.00233239215
+  _model_layers_4_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: -28
+    scale: 0.131798625
+    weightPrecision:
+      - _model_layers_4_self_attn_q_proj_MatMul: INT3
+  _model_layers_4_self_attn_v_proj_Add_original__model_layers_4_self_attn_v_proj_Add_original_0_split:
+    offset: -12
+    scale: 0.0125879608
+  _model_layers_4_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: -12
+    scale: 0.0125879608
+    weightPrecision:
+      - _model_layers_4_self_attn_v_proj_MatMul: INT3
+  _model_layers_4_v_cache:
+    offset: -12
+    scale: 0.0125879608
+  _model_layers_5_Add:
+    offset: 23296
+    outputDataPrecision:
+      - _model_layers_5_Add: INT16
+    scale: 0.00538460584
+  _model_layers_5_Add_1:
+    offset: 23296
+    outputDataPrecision:
+      - _model_layers_5_Add_1: INT16
+    scale: 0.0053527425
+  _model_layers_5_Add__model_layers_5_Add_0_split:
+    offset: 23296
+    scale: 0.00538460584
+  _model_layers_5_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: -7
+    scale: 0.0100723682
+  _model_layers_5_k_cache:
+    offset: 7
+    scale: 0.0689524934
+  _model_layers_5_mlp_Mul:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_5_mlp_Mul: INT16
+    scale: 0.000144764592
+  _model_layers_5_mlp_act_fn_Mul:
+    offset: -106
+    scale: 0.0127961263
+  _model_layers_5_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -6144
+    outputDataPrecision:
+      - _model_layers_5_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.000177172784
+    weightPrecision:
+      - _model_layers_5_mlp_down_proj_MatMul_ara_inrp: INT3
+  _model_layers_5_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 22
+    scale: 0.029595403
+    weightPrecision:
+      - _model_layers_5_mlp_gate_proj_MatMul_ara_inrp: INT3
+  _model_layers_5_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 15
+    scale: 0.0277284142
+    weightPrecision:
+      - _model_layers_5_mlp_up_proj_MatMul_ara_inrp: INT3
+  _model_layers_5_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 12
+    scale: 0.00942701939
+  _model_layers_5_prm_5_PermuteNnp:
+    offset: 23296
+    scale: 0.00538460584
+  _model_layers_5_prm_6_PermuteNnp:
+    offset: 12
+    scale: 0.00942701939
+  _model_layers_5_residue_perm_1:
+    offset: 23296
+    scale: 0.0054007112
+  _model_layers_5_residue_perm_2:
+    offset: -7
+    scale: 0.0100723682
+  _model_layers_5_residue_perm_3:
+    offset: 23296
+    scale: 0.0053527425
+  _model_layers_5_residue_rshp_1:
+    offset: 23296
+    scale: 0.0054007112
+  _model_layers_5_residue_rshp_2:
+    offset: -7
+    scale: 0.0100723682
+  _model_layers_5_residue_rshp_2__model_layers_5_residue_rshp_2_0_split:
+    offset: -7
+    scale: 0.0100723682
+  _model_layers_5_residue_rshp_3:
+    offset: 23296
+    scale: 0.0053527425
+  _model_layers_5_residue_rshp_3__model_layers_5_residue_rshp_3_0_split:
+    offset: 23296
+    scale: 0.0053527425
+  _model_layers_5_rshp_5_Reshape:
+    offset: 23296
+    scale: 0.00538460584
+  _model_layers_5_rshp_6_Reshape:
+    offset: 12
+    scale: 0.00942701939
+  _model_layers_5_rshp_6_Reshape__model_layers_5_rshp_6_Reshape_0_split:
+    offset: 12
+    scale: 0.00942701939
+  _model_layers_5_self_attn_1_Reshape_1:
+    offset: 7
+    scale: 0.0689524934
+  _model_layers_5_self_attn_2_Reshape_1:
+    offset: 15
+    scale: 0.011516287
+  _model_layers_5_self_attn_2a_Transpose_3_concat:
+    offset: 7
+    scale: 0.0689524934
+  _model_layers_5_self_attn_Add:
+    offset: 7
+    scale: 0.13398397
+  _model_layers_5_self_attn_Add_1:
+    offset: 7
+    scale: 0.0689524934
+  _model_layers_5_self_attn_Add_1__model_layers_5_self_attn_Add_1_0_split:
+    offset: 7
+    scale: 0.0689524934
+  _model_layers_5_self_attn_MatMul:
+    offset: -64
+    scale: 0.0678011328
+  _model_layers_5_self_attn_MatMul_1:
+    offset: -4
+    scale: 0.00336904521
+  _model_layers_5_self_attn_Reshape_1:
+    offset: 7
+    scale: 0.13398464
+  _model_layers_5_self_attn_Reshape_2:
+    offset: 15
+    scale: 0.011516287
+  _model_layers_5_self_attn_Reshape_2_concat:
+    offset: 15
+    scale: 0.011516287
+  _model_layers_5_self_attn_Reshape_3:
+    offset: 7
+    scale: 0.0690286905
+  _model_layers_5_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_5_self_attn_Transpose_2:
+    offset: 15
+    scale: 0.011516287
+  _model_layers_5_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: 7
+    scale: 0.0690286905
+    weightPrecision:
+      - _model_layers_5_self_attn_k_proj_MatMul: INT3
+  _model_layers_5_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -8704
+    outputDataPrecision:
+      - _model_layers_5_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 6.73099566e-05
+    weightPrecision:
+      - _model_layers_5_self_attn_o_proj_MatMul_ara_inrp: INT3
+  _model_layers_5_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: -4
+    scale: 0.00336904521
+  _model_layers_5_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: 7
+    scale: 0.13398464
+    weightPrecision:
+      - _model_layers_5_self_attn_q_proj_MatMul: INT3
+  _model_layers_5_self_attn_v_proj_Add_original__model_layers_5_self_attn_v_proj_Add_original_0_split:
+    offset: 15
+    scale: 0.011516287
+  _model_layers_5_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: 15
+    scale: 0.011516287
+    weightPrecision:
+      - _model_layers_5_self_attn_v_proj_MatMul: INT3
+  _model_layers_5_v_cache:
+    offset: 15
+    scale: 0.011516287
+  _model_layers_6_Add:
+    offset: 23552
+    outputDataPrecision:
+      - _model_layers_6_Add: INT16
+    scale: 0.00528656598
+  _model_layers_6_Add_1:
+    offset: 24064
+    outputDataPrecision:
+      - _model_layers_6_Add_1: INT16
+    scale: 0.00516374409
+  _model_layers_6_Add__model_layers_6_Add_0_split:
+    offset: 23552
+    scale: 0.00528656598
+  _model_layers_6_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 0
+    scale: 0.00866456889
+  _model_layers_6_k_cache:
+    offset: 4
+    scale: 0.0737133399
+  _model_layers_6_mlp_Mul:
+    offset: -8448
+    outputDataPrecision:
+      - _model_layers_6_mlp_Mul: INT16
+    scale: 0.000108002008
+  _model_layers_6_mlp_act_fn_Mul:
+    offset: -116
+    scale: 0.0232470501
+  _model_layers_6_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -4352
+    outputDataPrecision:
+      - _model_layers_6_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.000342899264
+    weightPrecision:
+      - _model_layers_6_mlp_down_proj_MatMul_ara_inrp: INT3
+  _model_layers_6_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 13
+    scale: 0.0497031026
+    weightPrecision:
+      - _model_layers_6_mlp_gate_proj_MatMul_ara_inrp: INT3
+  _model_layers_6_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 29
+    scale: 0.0492501929
+    weightPrecision:
+      - _model_layers_6_mlp_up_proj_MatMul_ara_inrp: INT3
+  _model_layers_6_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 19
+    scale: 0.0119546698
+  _model_layers_6_prm_5_PermuteNnp:
+    offset: 23552
+    scale: 0.00528656598
+  _model_layers_6_prm_6_PermuteNnp:
+    offset: 19
+    scale: 0.0119546698
+  _model_layers_6_residue_perm_1:
+    offset: 23296
+    scale: 0.0053527425
+  _model_layers_6_residue_perm_2:
+    offset: 0
+    scale: 0.00866456889
+  _model_layers_6_residue_perm_3:
+    offset: 24064
+    scale: 0.00516374409
+  _model_layers_6_residue_rshp_1:
+    offset: 23296
+    scale: 0.0053527425
+  _model_layers_6_residue_rshp_2:
+    offset: 0
+    scale: 0.00866456889
+  _model_layers_6_residue_rshp_2__model_layers_6_residue_rshp_2_0_split:
+    offset: 0
+    scale: 0.00866456889
+  _model_layers_6_residue_rshp_3:
+    offset: 24064
+    scale: 0.00516374409
+  _model_layers_6_residue_rshp_3__model_layers_6_residue_rshp_3_0_split:
+    offset: 24064
+    scale: 0.00516374409
+  _model_layers_6_rshp_5_Reshape:
+    offset: 23552
+    scale: 0.00528656598
+  _model_layers_6_rshp_6_Reshape:
+    offset: 19
+    scale: 0.0119546698
+  _model_layers_6_rshp_6_Reshape__model_layers_6_rshp_6_Reshape_0_split:
+    offset: 19
+    scale: 0.0119546698
+  _model_layers_6_self_attn_1_Reshape_1:
+    offset: 4
+    scale: 0.0737133399
+  _model_layers_6_self_attn_2_Reshape_1:
+    offset: 16
+    scale: 0.00702208374
+  _model_layers_6_self_attn_2a_Transpose_3_concat:
+    offset: 4
+    scale: 0.0737133399
+  _model_layers_6_self_attn_Add:
+    offset: -7
+    scale: 0.130173951
+  _model_layers_6_self_attn_Add_1:
+    offset: 4
+    scale: 0.0737133399
+  _model_layers_6_self_attn_Add_1__model_layers_6_self_attn_Add_1_0_split:
+    offset: 4
+    scale: 0.0737133399
+  _model_layers_6_self_attn_MatMul:
+    offset: -90
+    scale: 0.0559561029
+  _model_layers_6_self_attn_MatMul_1:
+    offset: -2
+    scale: 0.00319825462
+  _model_layers_6_self_attn_Reshape_1:
+    offset: -7
+    scale: 0.130176947
+  _model_layers_6_self_attn_Reshape_2:
+    offset: 16
+    scale: 0.00702208374
+  _model_layers_6_self_attn_Reshape_2_concat:
+    offset: 16
+    scale: 0.00702208374
+  _model_layers_6_self_attn_Reshape_3:
+    offset: 4
+    scale: 0.0737062767
+  _model_layers_6_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_6_self_attn_Transpose_2:
+    offset: 16
+    scale: 0.00702208374
+  _model_layers_6_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: 4
+    scale: 0.0737062767
+    weightPrecision:
+      - _model_layers_6_self_attn_k_proj_MatMul: INT3
+  _model_layers_6_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -7936
+    outputDataPrecision:
+      - _model_layers_6_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 0.000203438685
+    weightPrecision:
+      - _model_layers_6_self_attn_o_proj_MatMul_ara_inrp: INT3
+  _model_layers_6_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: -2
+    scale: 0.00319825462
+  _model_layers_6_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: -7
+    scale: 0.130176947
+    weightPrecision:
+      - _model_layers_6_self_attn_q_proj_MatMul: INT3
+  _model_layers_6_self_attn_v_proj_Add_original__model_layers_6_self_attn_v_proj_Add_original_0_split:
+    offset: 16
+    scale: 0.00702208374
+  _model_layers_6_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: 16
+    scale: 0.00702208374
+    weightPrecision:
+      - _model_layers_6_self_attn_v_proj_MatMul: INT3
+  _model_layers_6_v_cache:
+    offset: 16
+    scale: 0.00702208374
+  _model_layers_7_Add:
+    offset: 24320
+    outputDataPrecision:
+      - _model_layers_7_Add: INT16
+    scale: 0.00506975502
+  _model_layers_7_Add_1:
+    offset: 24064
+    outputDataPrecision:
+      - _model_layers_7_Add_1: INT16
+    scale: 0.00474986015
+  _model_layers_7_Add__model_layers_7_Add_0_split:
+    offset: 24320
+    scale: 0.00506975502
+  _model_layers_7_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 14
+    scale: 0.00889323372
+  _model_layers_7_k_cache:
+    offset: 0
+    scale: 0.0694509447
+  _model_layers_7_mlp_Mul:
+    offset: 5120
+    outputDataPrecision:
+      - _model_layers_7_mlp_Mul: INT16
+    scale: 0.000537323242
+  _model_layers_7_mlp_act_fn_Mul:
+    offset: -121
+    scale: 0.0392841697
+  _model_layers_7_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 5632
+    outputDataPrecision:
+      - _model_layers_7_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.00072788645
+    weightPrecision:
+      - _model_layers_7_mlp_down_proj_MatMul_ara_inrp: INT3
+  _model_layers_7_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -43
+    scale: 0.057442721
+    weightPrecision:
+      - _model_layers_7_mlp_gate_proj_MatMul_ara_inrp: INT3
+  _model_layers_7_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 7
+    scale: 0.0585439689
+    weightPrecision:
+      - _model_layers_7_mlp_up_proj_MatMul_ara_inrp: INT3
+  _model_layers_7_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 23
+    scale: 0.0147684962
+  _model_layers_7_prm_5_PermuteNnp:
+    offset: 24320
+    scale: 0.00506975502
+  _model_layers_7_prm_6_PermuteNnp:
+    offset: 23
+    scale: 0.0147684962
+  _model_layers_7_residue_perm_1:
+    offset: 24064
+    scale: 0.00516374409
+  _model_layers_7_residue_perm_2:
+    offset: 14
+    scale: 0.00889323372
+  _model_layers_7_residue_perm_3:
+    offset: 24064
+    scale: 0.00474986015
+  _model_layers_7_residue_rshp_1:
+    offset: 24064
+    scale: 0.00516374409
+  _model_layers_7_residue_rshp_2:
+    offset: 14
+    scale: 0.00889323372
+  _model_layers_7_residue_rshp_2__model_layers_7_residue_rshp_2_0_split:
+    offset: 14
+    scale: 0.00889323372
+  _model_layers_7_residue_rshp_3:
+    offset: 24064
+    scale: 0.00474986015
+  _model_layers_7_residue_rshp_3__model_layers_7_residue_rshp_3_0_split:
+    offset: 24064
+    scale: 0.00474986015
+  _model_layers_7_rshp_5_Reshape:
+    offset: 24320
+    scale: 0.00506975502
+  _model_layers_7_rshp_6_Reshape:
+    offset: 23
+    scale: 0.0147684962
+  _model_layers_7_rshp_6_Reshape__model_layers_7_rshp_6_Reshape_0_split:
+    offset: 23
+    scale: 0.0147684962
+  _model_layers_7_self_attn_1_Reshape_1:
+    offset: 0
+    scale: 0.0694509447
+  _model_layers_7_self_attn_2_Reshape_1:
+    offset: -27
+    scale: 0.00799828488
+  _model_layers_7_self_attn_2a_Transpose_3_concat:
+    offset: 0
+    scale: 0.0694509447
+  _model_layers_7_self_attn_Add:
+    offset: 5
+    scale: 0.0887763873
+  _model_layers_7_self_attn_Add_1:
+    offset: 0
+    scale: 0.0694509447
+  _model_layers_7_self_attn_Add_1__model_layers_7_self_attn_Add_1_0_split:
+    offset: 0
+    scale: 0.0694509447
+  _model_layers_7_self_attn_MatMul:
+    offset: -109
+    scale: 0.0553078577
+  _model_layers_7_self_attn_MatMul_1:
+    offset: -15
+    scale: 0.00345088635
+  _model_layers_7_self_attn_Reshape_1:
+    offset: 5
+    scale: 0.0887620822
+  _model_layers_7_self_attn_Reshape_2:
+    offset: -27
+    scale: 0.00799828488
+  _model_layers_7_self_attn_Reshape_2_concat:
+    offset: -27
+    scale: 0.00799828488
+  _model_layers_7_self_attn_Reshape_3:
+    offset: 0
+    scale: 0.0694788322
+  _model_layers_7_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_7_self_attn_Transpose_2:
+    offset: -27
+    scale: 0.00799828488
+  _model_layers_7_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: 0
+    scale: 0.0694788322
+    weightPrecision:
+      - _model_layers_7_self_attn_k_proj_MatMul: INT3
+  _model_layers_7_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -7168
+    outputDataPrecision:
+      - _model_layers_7_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 0.00016998405
+    weightPrecision:
+      - _model_layers_7_self_attn_o_proj_MatMul_ara_inrp: INT3
+  _model_layers_7_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: -15
+    scale: 0.00345088635
+  _model_layers_7_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: 5
+    scale: 0.0887620822
+    weightPrecision:
+      - _model_layers_7_self_attn_q_proj_MatMul: INT3
+  _model_layers_7_self_attn_v_proj_Add_original__model_layers_7_self_attn_v_proj_Add_original_0_split:
+    offset: -27
+    scale: 0.00799828488
+  _model_layers_7_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: -27
+    scale: 0.00799828488
+    weightPrecision:
+      - _model_layers_7_self_attn_v_proj_MatMul: INT3
+  _model_layers_7_v_cache:
+    offset: -27
+    scale: 0.00799828488
+  _model_layers_8_Add:
+    offset: 4864
+    outputDataPrecision:
+      - _model_layers_8_Add: INT16
+    scale: 0.00168344995
+  _model_layers_8_Add_1:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_8_Add_1: INT16
+    scale: 0.125364885
+  _model_layers_8_Add__model_layers_8_Add_0_split:
+    offset: 4864
+    scale: 0.00168344995
+  _model_layers_8_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 32
+    scale: 0.012279477
+  _model_layers_8_k_cache:
+    offset: 13
+    scale: 0.0785306618
+  _model_layers_8_mlp_Mul:
+    offset: 32000
+    outputDataPrecision:
+      - _model_layers_8_mlp_Mul: INT16
+    scale: 0.0684007034
+  _model_layers_8_mlp_act_fn_Mul:
+    offset: -127
+    scale: 0.260089517
+  _model_layers_8_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_8_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.123681433
+    weightPrecision:
+      - _model_layers_8_mlp_down_proj_MatMul_ara_inrp: INT4
+  _model_layers_8_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -106
+    scale: 0.283364117
+    weightPrecision:
+      - _model_layers_8_mlp_gate_proj_MatMul_ara_inrp: INT3
+  _model_layers_8_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 78
+    scale: 0.324695796
+    weightPrecision:
+      - _model_layers_8_mlp_up_proj_MatMul_ara_inrp: INT3
+  _model_layers_8_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 5
+    scale: 0.0176486708
+  _model_layers_8_prm_5_PermuteNnp:
+    offset: 4864
+    scale: 0.00168344995
+  _model_layers_8_prm_6_PermuteNnp:
+    offset: 5
+    scale: 0.0176486708
+  _model_layers_8_residue_perm_1:
+    offset: 24064
+    scale: 0.00474986015
+  _model_layers_8_residue_perm_2:
+    offset: 32
+    scale: 0.012279477
+  _model_layers_8_residue_perm_3:
+    offset: 5888
+    scale: 0.125364885
+  _model_layers_8_residue_rshp_1:
+    offset: 24064
+    scale: 0.00474986015
+  _model_layers_8_residue_rshp_2:
+    offset: 32
+    scale: 0.012279477
+  _model_layers_8_residue_rshp_2__model_layers_8_residue_rshp_2_0_split:
+    offset: 32
+    scale: 0.012279477
+  _model_layers_8_residue_rshp_3:
+    offset: 5888
+    scale: 0.125364885
+  _model_layers_8_residue_rshp_3__model_layers_8_residue_rshp_3_0_split:
+    offset: 5888
+    scale: 0.125364885
+  _model_layers_8_rshp_5_Reshape:
+    offset: 4864
+    scale: 0.00168344995
+  _model_layers_8_rshp_6_Reshape:
+    offset: 5
+    scale: 0.0176486708
+  _model_layers_8_rshp_6_Reshape__model_layers_8_rshp_6_Reshape_0_split:
+    offset: 5
+    scale: 0.0176486708
+  _model_layers_8_self_attn_1_Reshape_1:
+    offset: 13
+    scale: 0.0785306618
+  _model_layers_8_self_attn_2_Reshape_1:
+    offset: 4
+    scale: 0.0312741324
+  _model_layers_8_self_attn_2a_Transpose_3_concat:
+    offset: 13
+    scale: 0.0785306618
+  _model_layers_8_self_attn_Add:
+    offset: -25
+    scale: 0.257333428
+  _model_layers_8_self_attn_Add_1:
+    offset: 13
+    scale: 0.0785306618
+  _model_layers_8_self_attn_Add_1__model_layers_8_self_attn_Add_1_0_split:
+    offset: 13
+    scale: 0.0785306618
+  _model_layers_8_self_attn_MatMul:
+    offset: -48
+    scale: 0.0836143941
+  _model_layers_8_self_attn_MatMul_1:
+    offset: 12
+    scale: 0.0203420781
+  _model_layers_8_self_attn_Reshape_1:
+    offset: -25
+    scale: 0.257332295
+  _model_layers_8_self_attn_Reshape_2:
+    offset: 4
+    scale: 0.0312741324
+  _model_layers_8_self_attn_Reshape_2_concat:
+    offset: 4
+    scale: 0.0312741324
+  _model_layers_8_self_attn_Reshape_3:
+    offset: 13
+    scale: 0.0785996392
+  _model_layers_8_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_8_self_attn_Transpose_2:
+    offset: 4
+    scale: 0.0312741324
+  _model_layers_8_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: 13
+    scale: 0.0785996392
+    weightPrecision:
+      - _model_layers_8_self_attn_k_proj_MatMul: INT3
+  _model_layers_8_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -27904
+    outputDataPrecision:
+      - _model_layers_8_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 0.00429146271
+    weightPrecision:
+      - _model_layers_8_self_attn_o_proj_MatMul_ara_inrp: INT3
+  _model_layers_8_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: 12
+    scale: 0.0203420781
+  _model_layers_8_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: -25
+    scale: 0.257332295
+    weightPrecision:
+      - _model_layers_8_self_attn_q_proj_MatMul: INT3
+  _model_layers_8_self_attn_v_proj_Add_original__model_layers_8_self_attn_v_proj_Add_original_0_split:
+    offset: 4
+    scale: 0.0312741324
+  _model_layers_8_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: 4
+    scale: 0.0312741324
+    weightPrecision:
+      - _model_layers_8_self_attn_v_proj_MatMul: INT3
+  _model_layers_8_v_cache:
+    offset: 4
+    scale: 0.0312741324
+  _model_layers_9_Add:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_9_Add: INT16
+    scale: 0.125367031
+  _model_layers_9_Add_1:
+    offset: 5888
+    outputDataPrecision:
+      - _model_layers_9_Add_1: INT16
+    scale: 0.125520065
+  _model_layers_9_Add__model_layers_9_Add_0_split:
+    offset: 5888
+    scale: 0.125367031
+  _model_layers_9_input_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 12
+    scale: 0.0114524867
+  _model_layers_9_k_cache:
+    offset: 5
+    scale: 0.0970616415
+  _model_layers_9_mlp_Mul:
+    offset: -13056
+    outputDataPrecision:
+      - _model_layers_9_mlp_Mul: INT16
+    scale: 0.000414514303
+  _model_layers_9_mlp_act_fn_Mul:
+    offset: -116
+    scale: 0.0240612999
+  _model_layers_9_mlp_down_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 512
+    outputDataPrecision:
+      - _model_layers_9_mlp_down_proj_MatMul_ara_inrp: INT16
+    scale: 0.000616251724
+    weightPrecision:
+      - _model_layers_9_mlp_down_proj_MatMul_ara_inrp: INT3
+  _model_layers_9_mlp_gate_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -2
+    scale: 0.045615878
+    weightPrecision:
+      - _model_layers_9_mlp_gate_proj_MatMul_ara_inrp: INT3
+  _model_layers_9_mlp_up_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: 12
+    scale: 0.0364111364
+    weightPrecision:
+      - _model_layers_9_mlp_up_proj_MatMul_ara_inrp: INT3
+  _model_layers_9_post_attention_layernorm_Mul_1_ara_LayerNorm_0:
+    offset: 14
+    scale: 0.0123056248
+  _model_layers_9_prm_5_PermuteNnp:
+    offset: 5888
+    scale: 0.125367031
+  _model_layers_9_prm_6_PermuteNnp:
+    offset: 14
+    scale: 0.0123056248
+  _model_layers_9_residue_perm_1:
+    offset: 5888
+    scale: 0.125364885
+  _model_layers_9_residue_perm_2:
+    offset: 12
+    scale: 0.0114524867
+  _model_layers_9_residue_perm_3:
+    offset: 5888
+    scale: 0.125520065
+  _model_layers_9_residue_rshp_1:
+    offset: 5888
+    scale: 0.125364885
+  _model_layers_9_residue_rshp_2:
+    offset: 12
+    scale: 0.0114524867
+  _model_layers_9_residue_rshp_2__model_layers_9_residue_rshp_2_0_split:
+    offset: 12
+    scale: 0.0114524867
+  _model_layers_9_residue_rshp_3:
+    offset: 5888
+    scale: 0.125520065
+  _model_layers_9_residue_rshp_3__model_layers_9_residue_rshp_3_0_split:
+    offset: 5888
+    scale: 0.125520065
+  _model_layers_9_rshp_5_Reshape:
+    offset: 5888
+    scale: 0.125367031
+  _model_layers_9_rshp_6_Reshape:
+    offset: 14
+    scale: 0.0123056248
+  _model_layers_9_rshp_6_Reshape__model_layers_9_rshp_6_Reshape_0_split:
+    offset: 14
+    scale: 0.0123056248
+  _model_layers_9_self_attn_1_Reshape_1:
+    offset: 5
+    scale: 0.0970616415
+  _model_layers_9_self_attn_2_Reshape_1:
+    offset: 10
+    scale: 0.0063254144
+  _model_layers_9_self_attn_2a_Transpose_3_concat:
+    offset: 5
+    scale: 0.0970616415
+  _model_layers_9_self_attn_Add:
+    offset: -13
+    scale: 0.11624831
+  _model_layers_9_self_attn_Add_1:
+    offset: 5
+    scale: 0.0970616415
+  _model_layers_9_self_attn_Add_1__model_layers_9_self_attn_Add_1_0_split:
+    offset: 5
+    scale: 0.0970616415
+  _model_layers_9_self_attn_MatMul:
+    offset: -3
+    scale: 0.103385508
+  _model_layers_9_self_attn_MatMul_1:
+    offset: -3
+    scale: 0.00316282967
+  _model_layers_9_self_attn_Reshape_1:
+    offset: -13
+    scale: 0.116247617
+  _model_layers_9_self_attn_Reshape_2:
+    offset: 10
+    scale: 0.0063254144
+  _model_layers_9_self_attn_Reshape_2_concat:
+    offset: 10
+    scale: 0.0063254144
+  _model_layers_9_self_attn_Reshape_3:
+    offset: 5
+    scale: 0.0970398858
+  _model_layers_9_self_attn_Softmax:
+    offset: 0
+    scale: 1.52587891e-05
+  _model_layers_9_self_attn_Transpose_2:
+    offset: 10
+    scale: 0.0063254144
+  _model_layers_9_self_attn_k_proj_MatMul:
+    groupSize: 64
+    offset: 5
+    scale: 0.0970398858
+    weightPrecision:
+      - _model_layers_9_self_attn_k_proj_MatMul: INT3
+  _model_layers_9_self_attn_o_proj_MatMul_ara_inrp:
+    groupSize: 64
+    offset: -4864
+    outputDataPrecision:
+      - _model_layers_9_self_attn_o_proj_MatMul_ara_inrp: INT16
+    scale: 0.000102845748
+    weightPrecision:
+      - _model_layers_9_self_attn_o_proj_MatMul_ara_inrp: INT3
+  _model_layers_9_self_attn_o_proj_MatMul_ara_reshape_0:
+    offset: -3
+    scale: 0.00316282967
+  _model_layers_9_self_attn_q_proj_MatMul:
+    groupSize: 64
+    offset: -13
+    scale: 0.116247617
+    weightPrecision:
+      - _model_layers_9_self_attn_q_proj_MatMul: INT3
+  _model_layers_9_self_attn_v_proj_Add_original__model_layers_9_self_attn_v_proj_Add_original_0_split:
+    offset: 10
+    scale: 0.0063254144
+  _model_layers_9_self_attn_v_proj_MatMul:
+    groupSize: 64
+    offset: 10
+    scale: 0.0063254144
+    weightPrecision:
+      - _model_layers_9_self_attn_v_proj_MatMul: INT3
+  _model_layers_9_v_cache:
+    offset: 10
+    scale: 0.0063254144
+  _model_norm_Mul_1:
+    offset: -13568
+    outputDataPrecision:
+      - _model_norm_Mul_1: INT16
+    scale: 0.00610978622
+  input_ids_embedded:
+    offset: -256
+    outputDataPrecision:
+      - input_ids_embedded: INT16
+    scale: 9.63398088e-06
+  input_ids_embedded_input_ids_embedded_0_split:
+    offset: -256
+    scale: 9.63398088e-06
+  past_keys_0:
+    offset: 5
+    scale: 0.0504710376
+  past_keys_1:
+    offset: -8
+    scale: 0.0613795556
+  past_keys_10:
+    offset: -15
+    scale: 0.0848083273
+  past_keys_11:
+    offset: 17
+    scale: 0.0989489406
+  past_keys_12:
+    offset: -5
+    scale: 0.0992815495
+  past_keys_13:
+    offset: 4
+    scale: 0.110479079
+  past_keys_14:
+    offset: 4
+    scale: 0.108055413
+  past_keys_15:
+    offset: -8
+    scale: 0.0864420235
+  past_keys_16:
+    offset: -11
+    scale: 0.111570723
+  past_keys_17:
+    offset: 8
+    scale: 0.11188338
+  past_keys_18:
+    offset: -4
+    scale: 0.117650591
+  past_keys_19:
+    offset: 30
+    scale: 0.135968849
+  past_keys_2:
+    offset: 7
+    scale: 0.0618508831
+  past_keys_20:
+    offset: 4
+    scale: 0.0934196338
+  past_keys_21:
+    offset: -1
+    scale: 0.103011571
+  past_keys_22:
+    offset: -2
+    scale: 0.102799103
+  past_keys_23:
+    offset: 2
+    scale: 0.121804655
+  past_keys_24:
+    offset: 6
+    scale: 0.113087632
+  past_keys_25:
+    offset: 4
+    scale: 0.105265357
+  past_keys_26:
+    offset: -12
+    scale: 0.114062473
+  past_keys_27:
+    offset: -7
+    scale: 0.116029836
+  past_keys_28:
+    offset: 2
+    scale: 0.110038668
+  past_keys_29:
+    offset: 1
+    scale: 0.138763428
+  past_keys_3:
+    offset: 2
+    scale: 0.0547675192
+  past_keys_30:
+    offset: -1
+    scale: 0.117628492
+  past_keys_31:
+    offset: -14
+    scale: 0.114669554
+  past_keys_4:
+    offset: -15
+    scale: 0.0669446215
+  past_keys_5:
+    offset: 7
+    scale: 0.0689524934
+  past_keys_6:
+    offset: 4
+    scale: 0.0737133399
+  past_keys_7:
+    offset: 0
+    scale: 0.0694509447
+  past_keys_8:
+    offset: 13
+    scale: 0.0785306618
+  past_keys_9:
+    offset: 5
+    scale: 0.0970616415
+  past_values_0:
+    offset: -21
+    scale: 0.0135473665
+  past_values_1:
+    offset: -46
+    scale: 0.00733155664
+  past_values_10:
+    offset: -9
+    scale: 0.00666988501
+  past_values_11:
+    offset: 11
+    scale: 0.00682809297
+  past_values_12:
+    offset: -13
+    scale: 0.00732595893
+  past_values_13:
+    offset: -19
+    scale: 0.00571489008
+  past_values_14:
+    offset: 8
+    scale: 0.00600418681
+  past_values_15:
+    offset: -7
+    scale: 0.006013643
+  past_values_16:
+    offset: -19
+    scale: 0.00867611635
+  past_values_17:
+    offset: 1
+    scale: 0.00653372193
+  past_values_18:
+    offset: 2
+    scale: 0.00647496385
+  past_values_19:
+    offset: 15
+    scale: 0.0115893772
+  past_values_2:
+    offset: -7
+    scale: 0.00671059126
+  past_values_20:
+    offset: -5
+    scale: 0.00747788139
+  past_values_21:
+    offset: -9
+    scale: 0.0067922622
+  past_values_22:
+    offset: -6
+    scale: 0.0118257953
+  past_values_23:
+    offset: 3
+    scale: 0.00837328192
+  past_values_24:
+    offset: 48
+    scale: 0.0145071661
+  past_values_25:
+    offset: -12
+    scale: 0.00948118698
+  past_values_26:
+    offset: -13
+    scale: 0.00972220954
+  past_values_27:
+    offset: 0
+    scale: 0.00714104204
+  past_values_28:
+    offset: -2
+    scale: 0.00663073454
+  past_values_29:
+    offset: -12
+    scale: 0.00785628706
+  past_values_3:
+    offset: 35
+    scale: 0.00764558185
+  past_values_30:
+    offset: 15
+    scale: 0.00802464131
+  past_values_31:
+    offset: 9
+    scale: 0.05020459
+  past_values_4:
+    offset: -12
+    scale: 0.0125879608
+  past_values_5:
+    offset: 15
+    scale: 0.011516287
+  past_values_6:
+    offset: 16
+    scale: 0.00702208374
+  past_values_7:
+    offset: -27
+    scale: 0.00799828488
+  past_values_8:
+    offset: 4
+    scale: 0.0312741324
+  past_values_9:
+    offset: 10
+    scale: 0.0063254144
+  position_ids_embedded:
+    offset: -1
+    scale: 0.0078422986
+  position_ids_embedded_position_ids_embedded_0_split:
+    offset: -1
+    scale: 0.0078422986
+  valid_till:
+    offset: 0
+    scale: 1
+  valid_till_valid_till_0_split:
+    offset: 0
+    scale: 1

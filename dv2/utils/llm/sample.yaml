@@ -1,0 +1,153 @@
+---
+#this section contains all the network related params
+network:
+
+  #source framework, supported frameworks are tensorflow, pytorch and onnx
+  srcfw: "onnx"
+
+  #path to network definition file of the model and if the path specified is relative, then it's relative to this file
+  inet: "models/resnet50/modelfiles/caffe_classification_resnet50v1_github1_imagenet_softmax_data_nchw_1x3x224x224.prototxt"
+
+  #path to weights file of the model and if the path specified is relative, then it's relative to this file
+  iwt: "models/resnet50/modelfiles/caffe_classification_resnet50v1_github1_imagenet_argmax_data_nchw_1x3x224x224.caffemodel"
+
+  #shape of input layer in the order of channels, height and width separated by commas
+  #incase of four dimensional input, the order of specification is channels, depth, height and width
+  #multiple input shapes can be provided by separating them with colon (:). E.g. 3,224,224:3,512,512
+  dim: "3,224,224"
+
+  #path to text file contains tags/classes for each image, this file is expected to contain groundtruth for which against which results from quantizer will be compared
+  tags: null
+
+  #text file containing label/name for each tag/class from the tags file above
+  label: null
+
+  #pipeline config file to be used for Tensorflow based SSD models, if the path is relative, then it's relative to this file
+  pcfg: null
+
+  #path to image directories used for quantization and verification, if the paths are relative then they are relative to this file
+  images:
+    #directory containing images based on which best suitable quantization parameters will be computed
+    quantize: models/resnet50/imagedir
+
+    #directory containing images on which all the verification or data checks are done
+    verify: models/resnet50/imagedir
+  
+#this section contains params that are specific to converter
+dvconvert:
+
+  #label names are specific to MXNet models and have to be provided if the original model have label nodes. Multiple label name have to be separated by colon, E.g. label1:label2. If label name contains colon, replace it with hash(#)
+  lname: null
+
+  #label shapes are specific to MXNet models and have to be provided if lname is provided and the order has to be same as label names. Each shape indicates the shape of the corresponding label name and multiple label shapes have to be separated by colon, E.g. 1,240,320:1,76800
+  lshape: null
+
+  #this param is specific to MXNet models and has to be set to True if the model is saved with numpy shape semantics
+  np: False
+
+  #input node names of the model and multiple node names have to be separated by a colon E.g. input1:input2. If node name contains colon, replace it with hash(#)
+  inode: null
+
+  iname: "sample"
+
+  #output node names of the model and multiple output nodes have to be separated by a colon E.g. output1:output2:output3. If node name contains colon, replace it with hash(#)
+  onode: null
+
+  #if this param is set to True, converter retains Softmax layer in case of segmentation networks where Softmax is input to ArgMax, else Softmax layer is removed
+  rsmax: False
+
+  #expected data format for the model. [default: CHW]. Choices: ["CHW", "HWC", "CDHW","TNC", "NTC"]
+  data_format: "CHW"
+
+  #if this param is set to True, flow will continue even though there are MSE comparision failures in converter
+  ignore_mse: False
+
+  #state names for LSTM based models, separated by colon Eg. data0:data1. If state name contains colon, replace it with hash(#)
+  state_name: null
+
+  #state shape for LSTM based models, separated by colon Eg. 4,1,64:4,1,32
+  state_shape: null
+
+  #applies network simplification if possible
+  tg: null
+
+  #set this boolean flag to True if network has dynamic shape ROIs like maskrcnn/densepose
+  dynamic: False
+
+  #set this boolean flag to True if network has dynamic batch inputs like ROI boxes
+  dynamic_input: False
+
+  #Data format of every input node. [default: null].
+  dformat: null
+
+  # Path to the encodings JSON file . This will be converted into the scale_offset_adjust YAML.
+  encodings_json_file: null
+
+#this section contains params that are specific to compiler
+dvnc:
+
+  #if this option is set to True, compiler will generate metadata, which will used by simulator to dump per layer output
+  layeroutput: False
+
+  #option to specify quantization mode. Allowed values are 0, 1, 2, 3, 9 default is 0. each mode has a different way of computing quantization params
+  qmode: 0
+
+  #if this option is set to True, compiler will run only quantization and skips rest of the steps
+  qonly: False
+
+  #if this option is set to True, bias correction method is applied in quantizer to improve accuracy
+  bc: False
+
+  #text file containing Qn format for layers which overwrites the Qn format computed by quantizer, if the path is relative then it's relative to this file
+  adjust: null
+
+  #forces quantization parameters to stay within hardware supported limits, may result is accuracy loss
+  clampqlimits: False
+
+  #Apply TFEnhanced method for scale and offset
+  use_tf_enhanced_encoding: False
+
+#this section contains various threshold numbers that will be applied when data comparision checks between different stages
+thresholds: #if null is specified for any threshold then the threshold check will be skipped
+
+  #thresholds to apply when comparing source and dvnet fp32 layer outputs
+  source_dvnet_fp32_comparision:
+
+    #mse value between the layer outputs should be less than this threshold
+    mse: 0.0001
+
+    #snr value between the layer outputs should be greater than this threshold
+    snr: 1000
+
+    #maximum value of absolute difference between the layer outputs should be less than this threshold
+    abs_diff: 0.00001
+
+  #thresholds to apply when comparing dvnet unfused and fused layer outputs
+  dvnet_unfused_fused_fp32_comparision:
+
+    #mse value between the layer outputs should be less than this threshold
+    mse: 0.0001
+
+    #snr value between the layer outputs should be greater than this threshold
+    snr: 1000
+
+    #maximum value of absolute difference between the layer outputs should be less than this threshold
+    abs_diff: 0.00001
+
+  #thresholds to apply when comparing dvnet fp32 and fixedpoint layer outputs
+  dvnet_float_fixed_comparision:
+
+    #mse value between the layer outputs should be less than this threshold
+    mse: null
+
+    #snr value between the layer outputs should be greater than this threshold
+    snr: null
+
+    #maximum value of absolute difference between the layer outputs should be less than this threshold
+    abs_diff: null
+
+#output directory to which all tool outputs (converter, compiler, simualator, data comparisions) will be emitted, if the path is relative then it's relative to this file
+out: "output"
+
+#name of the model which can be used for unique identification when deployed on Ara device
+model_name: "resnet50_224x224"

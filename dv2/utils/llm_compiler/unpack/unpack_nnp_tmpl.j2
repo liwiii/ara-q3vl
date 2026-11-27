@@ -1,0 +1,66 @@
+layer {
+  name: "{{layer_name}}"
+  type: "Ara2UnpackNNP"
+  top: "{{layer_name}}"
+  base_type: "UnpackNNP"
+  estimator_group: "UnpackNNP"
+  unpack_nnp_param {
+    inp_prc: {{w_prec}}
+    out_prc: 8
+    {%- if is_lut %}
+    lut_precision: 8
+    {%- endif %}
+    group_size: 64
+    group_axis: 1
+    shape {
+      dim: {{wnum}}
+      dim: {{wchannels}}
+      dim: 1
+      dim: 1
+    }
+    num_input: {{wchannels}}
+    num_output: {{wnum}}
+    bias_term: {{is_bias}}
+    channel_chunk: {{z}}
+    depth_chunk: {{d}}
+
+    wt_pad: 0
+    layout {
+      dim: 0
+      dim: 1
+      dim: 2
+      dim: 3
+      dim: 4
+    }
+
+    chunk {
+      dim: 999999
+      dim: 8
+      dim: 1
+      dim: 1
+      dim: 1
+
+    }
+
+    trans_dims {
+      dim: 64
+      dim: 1
+      dim: 1
+      dim: 64
+      dim: 8
+      dim: 1
+    }
+
+    stride {
+      dim: 1
+      dim: 1
+      dim: 1
+    }
+
+    k: 1
+    l: 1
+    filter_plane_dim: 1
+    w_precession: 1
+              
+  }
+}

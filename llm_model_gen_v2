@@ -1,0 +1,1334 @@
+#!/usr/bin/env python3
+'''
+Copyright 2025-2026 NXP
+License: LA_OPT_NXP_Software_License
+See the LICENSE for more details.
+NXP Confidential and Proprietary. This software is owned or controlled by NXP and may only be used strictly in accordance with the applicable license terms. By expressly accepting such terms or by downloading, installing, activating and/or otherwise using the software, you are agreeing that you have read, and that you agree to comply with and are bound by, such license terms. If you do not agree to be bound by the applicable license terms, then you may not retain, install, activate or otherwise use the software.
+'''
+
+# Copyright (c) 2018-23, Kinara, Inc. All rights reserved.
+
+import shlex
+import argparse, os, yaml, sys, logging, ast, re, docker, traceback, yaml, glob, multiprocessing, datetime, subprocess, concurrent.futures, json, time, shutil
+from pathlib import Path
+from contextlib import contextmanager
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+from collections import defaultdict
+
+# from s7/scripts/id_s7_supermeta.json
+MCP_KERNEL_ID_PRESENT = 1
+MCP_KERNEL_ID_FOR_LLM = 2
+MCP_KERNEL_ID_FOR_VLM = 3
+# 4 is for whisper.
+MCP_KERNEL_ID_FOR_MULTIMODAL_VLM = 5
+MCP_KERNEL_ID_FOR_SHARDED_LLM = 7
+MCP_KERNEL_ID_FOR_SHARDED_VLM = 9
+DEFAULT_ROPE_TYPE = "IMAGE"
+mcp_kernel_picker = defaultdict(lambda: defaultdict(lambda: defaultdict(dict)))
+# [is_vlm][is_sharded][rope_type]
+mcp_kernel_picker[True][True]["IMAGE"] = {"mcp_kernel_path": "/dv2/s7/lib/sharded_llm_llava.bin", "mcp_kernel_id": MCP_KERNEL_ID_FOR_SHARDED_VLM}
+mcp_kernel_picker[True][True]["VIDEO"] = {"mcp_kernel_path": "/dv2/s7/lib/sharded_llm_llava.bin", "mcp_kernel_id": MCP_KERNEL_ID_FOR_SHARDED_VLM}
+# mcp_kernel_picker[True][True]["MULTI_ROPE"] = NOT_SUPPORTED
+mcp_kernel_picker[True][False]["IMAGE"] = {"mcp_kernel_path": "/dv2/s7/lib/llava_prompt_cache.bin", "mcp_kernel_id": MCP_KERNEL_ID_FOR_VLM}
+mcp_kernel_picker[True][False]["VIDEO"] = {"mcp_kernel_path": "/dv2/s7/lib/llava_prompt_cache.bin", "mcp_kernel_id": MCP_KERNEL_ID_FOR_VLM}
+mcp_kernel_picker[True][False]["MULTI_ROPE"] = {"mcp_kernel_path": "/dv2/s7/lib/llava_multi_rope.bin", "mcp_kernel_id": MCP_KERNEL_ID_FOR_MULTIMODAL_VLM}
+mcp_kernel_picker[False][True]["IMAGE"] = {"mcp_kernel_path": "/dv2/s7/lib/sharded_llm.bin", "mcp_kernel_id": MCP_KERNEL_ID_FOR_SHARDED_LLM}
+# mcp_kernel_picker[False][True]["VIDEO"] = NOT_SUPPORTED
+# mcp_kernel_picker[False]][True]["MULTI_ROPE"] = NOT_SUPPORTED
+mcp_kernel_picker[False][False]["IMAGE"] = {"mcp_kernel_path": "/dv2/s7/lib/llm_prompt_cache.bin", "mcp_kernel_id": MCP_KERNEL_ID_FOR_LLM}
+# mcp_kernel_picker[False][False]["VIDEO"] = NOT_SUPPORTED
+# mcp_kernel_picker[False][False]["MULTI_ROPE"] = NOT_SUPPORTED
+
+class dvrun():
+
+  def __init__(self, config = {}, args = {}):
+    self.run_dir = ""
+    self.rel_tag = "__REL__"
+    self.docker_base_cmd = "docker run --rm"
+    self.docker_dvnc_cmd = "docker run -w /dv2/bin/ --rm"
+    self.docker_dvconvert_cmd = "docker run -w /dv2/src/nnconvert --rm"
+    self.docker_validate_cmd = "docker run -w /dv/src/flows --rm"
+    self.dvnc_dir = '/dv2/bin'
+    self.llm_mode_gen_dir = '/dv2/bin'
+    self.conf_dir = '/dv2/conf'
+    self.mcp_dir = '/dv2/s7'
+    self.dvconvert_dir = '/dv2/src/nnconvert'
+    self.llm_dir = "/dv2/utils/llm_compiler"
+    self.llm_architecture_dir = ""  # this will be set in set_paths function, path where scripts and files are present based on architecture type
+    self.validate_dir = '/dv/src/flows'
+    self.docker_img = "aracompiler:0.2"
+    self.dvnc_cmd = "./dvnc"
+    self.quantizer_cmd = "./analyzer"
+    self.scheduler_cmd = "./estimator"
+    self.generator_cmd = "./emitter"
+    self.llm_model_gen_cmd = "./llm_model_gen"
+    self.sharded_llm_model_gen_cmd = "./sharded_llm_model_gen"
+    self.dvconvert_cmd = "python dvconvert.py"
+    self.validate_cmd = "python validate.py"
+    self.split_cmd  = "python /dv2/utils/llm_compiler/convert_llm.py"
+    self.dryrun_dir = ".dryrun"
+    self.dryrun_dir1 = ".dryrun1"
+    self.dryrun_dir2 = ".dryrun2"
+    self.converted_name = "converted"
+    self.dryrun_name = "dryrun"
+    self.quantizer_so_yaml = "so.yaml"
+    self.quantizer_output_dir = "quantizer"
+    self.scheduler_output_dir = "estimator"
+    self.converter_output_dir = "converter"
+    self.llm_model_download_dir = "llm_model"
+    self.llm_model_download_simplifed_dir = "simplified"
+    self.rope_output_dir = "rope_out"
+    self.rope_folder_name = "rounding_rope_int8_clamped"
+    self.assets_dir = "assets"
+    self.params_dir = "params"
+    self.stats_dir = "stats"
+    self.config_yaml = "cfg0_bringup.yaml"
+    self.meta_json = "super_meta.json"
+    self.vpu_meta_json = "vpu_supermeta.json"
+    self.power_config = "power_cfg1.json"
+    self.kernel_lib = "kernel.lib"
+    self.vpu_conf = "vpu"
+    self.convergence_proto = "convergence.bin"
+    self.vpu_codegen_output_dir = "vpu_codegen_out"
+    self.write_or_append = "w"
+    self.is_converted_to_onnx = False
+    self.skip_model_conversion = args.skip_model_conversion
+    self.config_dir = os.path.abspath(__file__)
+    self.config = self.parse_config(config)
+    if ('out' not in self.config.keys()):
+      self.config['out'] = "./output"
+    os.makedirs(self.config['out'], exist_ok=True)
+
+    if ('vision_out' in self.config.keys()):
+      os.makedirs(self.config['vision_out'], exist_ok=True)
+
+    # run_suffix = self.config.get('run_suffix','output')
+    self.llm_output_dir = "llm" #os.path.join("llm","__rand."+ run_suffix)
+    self.llm_splits_dir = "llm"
+    self.vision_default_dir = "vision"
+    self.args = args
+    formatter = logging.Formatter('[%(levelname)s] %(message)s')
+    handler = logging.StreamHandler(stream=sys.stdout)
+    handler.setFormatter(formatter)
+    handler.setLevel(logging.INFO)
+
+  def validate_config(self, mode):
+    config = self.config
+    if (mode == 1 or mode == 5):
+      required_fields = ['model_dir', 'quantization', 'out']
+      for field in required_fields:
+          if field not in config or not config[field]:
+              raise ValueError(f"Missing required field: {field}")
+
+      # Quantization type checks
+      quantization_types = ['gguf', 'gptq', 'float']
+      if config['quantization'] not in quantization_types:
+          raise ValueError(f"Unsupported quantization type: {config['quantization']}")
+
+      # gguf_file requirement
+      if config['quantization'] == 'gguf':
+          if 'gguf_file' not in config or not config['gguf_file']:
+              raise ValueError("gguf_file must be set when quantization is 'gguf'")
+          if not os.path.isfile(config['gguf_file']):
+              raise ValueError(f"gguf_file does not exist: {config['gguf_file']}")
+      else:
+          if 'gguf_file' in config and config['gguf_file']:
+              raise ValueError("gguf_file should not be set unless quantization is 'gguf'")
+
+      # Directory checks
+      if not os.path.isdir(config['model_dir']):
+          raise ValueError(f"model_dir does not exist: {config['model_dir']}")
+      if not os.path.isdir(config['out']):
+          raise ValueError(f"output dir does not exist: {config['out']}")
+    else:
+      required_str_dirs = [
+        'model_repo', 'onnx_model_repo', 'original_model_repo', 'out'
+      ]
+      required_list_ints = [
+        'prmpt_prc_sizes', 'tkn_gen_sizes'
+      ]
+
+      # 1. Check required string directory paths
+      for key in required_str_dirs:
+          if key not in config or not isinstance(config[key], str) or not config[key]:
+              raise ValueError(f"Missing or invalid value for '{key}' (must be non-empty string)")
+          if not os.path.isdir(config[key]):
+              raise ValueError(f"Directory path does not exist: {config[key]}")
+
+      # 2. Check integer fields
+      if 'prmpt_context_size' not in config or not isinstance(config['prmpt_context_size'], int):
+          raise ValueError("Missing or non-integer 'prmpt_context_size'")
+          # 3. Check boolean field
+      if 'use_8bit_prompt' not in config or not isinstance(config['use_8bit_prompt'], bool):
+        raise ValueError("Missing or non-bool 'use_8bit_prompt'")
+
+    # 4. Check list-of-int fields
+      for key in required_list_ints:
+        if key not in config or not isinstance(config[key], list) or not all(isinstance(i, int) for i in config[key]):
+            raise ValueError(f"'{key}' must be a list of integers")
+
+    # 5. Check attention_scale_layers and qxk_out_scale_32_layers (must be lists)
+      for key in ['attention_scale_layers', 'qxk_out_scale_32_layers']:
+        if key not in config or not isinstance(config[key], list):
+            raise ValueError(f"Missing or non-list '{key}'")
+
+    # 6. Check weight_config structure
+      if 'weight_config' not in config or not isinstance(config['weight_config'], dict):
+        raise ValueError("weight_config must be present and a dictionary")
+      for proj_type, quant_dict in config['weight_config'].items():
+        if not isinstance(quant_dict, dict):
+            raise ValueError(f"weight_config['{proj_type}'] must be a dictionary")
+        for quant, layers in quant_dict.items():
+            if not isinstance(layers, list) or not all(isinstance(l, int) for l in layers):
+                raise ValueError(f"weight_config['{proj_type}']['{quant}'] must be a list of integers")
+
+    print("Config valid.")
+
+
+    # All checks passed
+
+  def get_python_path(self):
+    prefix = ':/' + self.run_dir + '/'
+    python_path = prefix.join(sys.path)
+    container_path = ['/usr/local/lib/python37.zip', '/usr/local/lib/python3.7', '/usr/local/lib/python3.7/lib-dynload', '/usr/local/lib/python3.7/site-packages', '/dv2/python', '/dv2/python/caffe/proto']
+    container_path = '/:'.join(container_path)
+    return 'PYTHONPATH={}:{}'.format(container_path, python_path)
+
+  def qwen3_split_paths(self):
+    cfg = self.config
+    with (Path(cfg['model_repo']) / 'config.json').open() as f:
+      depth = json.load(f)['text_config']['num_hidden_layers']
+    llm = Path(cfg['out']) / self.llm_output_dir
+    for stage, sizes, prefix in ((0, cfg['prmpt_prc_sizes'], 'prmpt_prc'),
+                                 (1, cfg['tkn_gen_sizes'], 'tkn_gen')):
+      for size in sorted(sizes):
+        # The SDK always names the prompt directory prmpt_prc_128. The DVM
+        # manifest carries the actual prompt batch size from the configuration.
+        directory = llm / (f'{prefix}_{size}' if stage else 'prmpt_prc_128')
+        for idx in range(depth):
+          yield stage, size, idx, directory / f'split_{idx}'
+        if stage == 1:
+          yield stage, size, depth, llm / 'lmhead' / f'split_{depth}'
+
+  def write_dvm_paths_to_file(self):
+    if self.is_qwen3_vl(self.config['model_repo']):
+      lines = []
+      for stage, size, idx, path in self.qwen3_split_paths():
+        assets = path.resolve() / 'assets'
+        if not (assets / 'model.dvm').is_file():
+          raise FileNotFoundError(f'Missing compiled split: {assets}/model.dvm')
+        lines.append(f'{stage},{size},{idx},{assets}/\n')
+      dest = Path(self.config['out']) / self.llm_output_dir / 'all_dvms.txt'
+      dest.write_text(''.join(lines))
+      return lines
+    if (self.config.get("num_mcs_shards", 1) > 1):
+      return self.write_sharded_dvm_paths_to_file()
+    # This only scans dvms in self.llm_output_dir. Skips other modalities.
+    res = []
+    res_dict = {}
+    for i in os.listdir(os.path.join(self.config["out"],self.llm_output_dir)):
+      if not os.path.isdir(os.path.join(self.config["out"],self.llm_output_dir)+'/'+i) or 'lmhead' in i:
+        continue
+      k = '0'
+      if not i.startswith('prmpt_prc'):
+        k = '1'
+      tkn_sz = i.split('_')[-1]
+      for j in os.listdir(os.path.join(self.config["out"],self.llm_output_dir)+'/'+i):
+        if not os.path.isdir(os.path.join(self.config["out"],self.llm_output_dir)+'/'+i+'/'+j):
+          continue
+        if not j.startswith('split'):
+          continue
+        idx = j.split('_')[-1]
+        if int(k) not in res_dict.keys():
+          res_dict[int(k)] = {}
+        if int(tkn_sz) not in res_dict[int(k)].keys():
+          res_dict[int(k)][int(tkn_sz)] = []
+        res_dict[int(k)][int(tkn_sz)].append(','.join([k,tkn_sz,idx,os.path.abspath(self.config["out"]+'/'+self.llm_output_dir+'/'+i+'/'+j+'/assets/\n')]))
+      
+        # res.append(k+','+tkn_sz+','+idx+','+self.config["out"]+'/'+self.llm_output_dir+'/'+i+'/'+j+'/assets/\n')
+    for i in os.listdir(os.path.join(self.config["out"],self.llm_output_dir)):
+      if 'lmhead' not in i:
+        continue
+      for j in os.listdir(os.path.join(self.config["out"],self.llm_output_dir)+'/'+i):
+        idx = j.split('_')[-1]
+        for key in res_dict[1].keys():
+          res_dict[1][key].append(','.join(['1',str(key),str(idx),os.path.abspath(self.config["out"]+'/'+self.llm_output_dir+'/'+i+'/'+j+'/assets/\n')]))
+          res_dict[1][key].sort(key= lambda x : int(x.split(',')[2]))
+    for key in sorted(res_dict.keys()):
+      for level in sorted(res_dict[key].keys()):
+        res.extend(res_dict[key][level])
+    with open(os.path.join(self.config["out"],self.llm_output_dir,'all_dvms.txt'), 'w') as f:
+      f.writelines(res)
+    logger.info("splits assets paths written to : {}".format(os.path.join(self.config["out"],self.llm_output_dir)+'/all_dvms.txt'))
+    return res
+
+  def write_sharded_dvm_paths_to_file(self, run_prefix='', unpack_path=None, unpack_run_prefix=None):
+    """
+    Write DVM paths to file for sharded models.
+    
+    This function extracts and sorts DVM paths for sharded models, similar to 
+    the logic in get_all_sharded_dvm_paths.py but integrated into the LLM model 
+    generation workflow.
+    
+    Args:
+        run_prefix (str): Run prefix for path generation
+        unpack_path (str): Path for unpacking
+        unpack_run_prefix (str): Run prefix for unpacking paths
+        
+    Returns:
+        list: List of DVM paths written to file
+    """
+    path = os.path.join(self.config["out"], self.llm_output_dir)
+    res = []
+    paths = [p for p in os.listdir(path) if 'tkn_gen' in p or 'prmpt_prc' in p or 'lmhead' in p]
+    token_gen_sizes = list(set([i.split('_')[-1] for i in paths if i.startswith('tkn_gen')]))
+    
+    # Sort the paths for consistent processing
+    paths = sorted(paths)
+    
+    def path_sort_key(path_str):
+        # Format is now {shard_idx},{k},{tkn_szx},{idx}
+        # We sort based on these four numbers in order: shard_idx, k, tkn_szx, idx
+        parts = path_str.split(",")[:4]
+        return [int(parts[0]), int(parts[1]), int(parts[2]), int(parts[3])]
+    
+    for i in paths:
+      if not os.path.isdir(os.path.join(path, i)):
+        continue
+      k = '0'
+      if not i.startswith('prmpt_prc'):
+        k = '1'
+      if not i.startswith('prmpt_prc') and not i.startswith('tkn_gen') and not i.startswith('lmhead'):
+        continue
+      tkn_sz = i.split('_')[-1]
+      for j in os.listdir(os.path.join(path, i)):
+        if not os.path.isdir(os.path.join(path, i, j)):
+          continue
+        # Handle both regular splits and sharded splits
+        if not j.startswith('split'):
+          continue
+        # Extract index and shard_idx from directory names like split_0_shard_1
+        parts = j.split('_')
+        if len(parts) >= 3 and parts[-2] == 'shard':
+          # This is a sharded directory: split_{layer_idx}_shard_{shard_idx}
+          idx = parts[-3]  # Layer index
+          shard_idx = parts[-1]  # Shard index
+        else:
+          # This is a non-sharded directory: split_{idx}
+          idx = j.split('_')[-1]
+          shard_idx = '0'  # Default shard index for non-sharded cases
+        if i.startswith('lmhead'):
+          for tk in token_gen_sizes:
+            res.append(shard_idx+','+'1'+','+tk+','+idx+','+os.path.join(path, i, j, 'assets/')+'\n')
+        else:
+          res.append(shard_idx+','+k+','+tkn_sz+','+idx+','+os.path.join(path, i, j, 'assets/')+'\n')
+    
+    if unpack_path:
+      unpack_paths = [p for p in os.listdir(unpack_path) if 'split' in p]
+      for idx in range(len(unpack_paths)):
+        res.append('0,2,128,'+str(idx)+','+os.path.join(unpack_path,'split_'+str(idx)+'assets/')+'\n')
+    
+    # Sort paths according to the key function
+    res = sorted(res, key=path_sort_key)
+    
+    # Write to file
+    run_prefix_str = run_prefix + '.' if run_prefix else ''
+    file_path = os.path.join(path, 'all_dvms.' + run_prefix_str + 'txt')
+    with open(file_path, 'w') as f:
+      f.writelines(res)
+    logger.info("sharded splits assets paths written to : {}".format(file_path))
+    return res
+
+
+
+  def get_dvconvert_vol_docker(self, dryrun=None):
+    vols = []
+    if self.config['network']['srcfw'] == 'pytorch':
+      for _user_path in sys.path:
+        if os.path.exists(_user_path):
+          vols.append("{1}:{0}{1}".format(self.run_dir, os.path.abspath(_user_path)))
+    if self.config['network']['inet'] is not None and self.config['network']['srcfw'] != 'pytorch':
+      vols.append("{1}:{0}{1}".format(self.run_dir, os.path.abspath(self.config['network']['inet'])))
+      vols.append("{1}:{0}{1}".format(self.run_dir, os.path.dirname(os.path.abspath(self.config['network']['inet']))))
+    if 'pcfg' in self.config['network'] and self.config['network']['pcfg'] is None:
+      vols.append("{1}:{0}{1}".format(self.run_dir, os.path.abspath(self.config['network']['iwt'])))
+    else:
+      vols.append("{1}:{0}{1}".format(self.run_dir, os.path.dirname(os.path.abspath(self.config['network']['iwt']))))
+    if dryrun:
+      vols.append("{1}/{2}/{3}:{0}{1}/{2}/{3}".format(self.run_dir, os.path.abspath(self.config['out']), self.dryrun_dir1, self.converter_output_dir))
+      vols.append("{1}/{2}/{3}:{0}{1}/{2}/{3}".format(self.run_dir, os.path.abspath(self.config['out']), self.dryrun_dir2, self.converter_output_dir))
+    else:
+      vols.append("{1}/{2}/{3}:{0}{1}/{2}/{3}".format(self.run_dir, os.path.abspath(self.config['out']), self.dryrun_dir1, self.converter_output_dir))
+      vols.append("{1}/{2}/{3}:{0}{1}/{2}/{3}".format(self.run_dir, os.path.abspath(self.config['out']), self.dryrun_dir2, self.converter_output_dir))
+      vols.append("{1}/{2}:{0}{1}/{2}".format(self.run_dir, os.path.abspath(self.config['out']), self.converter_output_dir))
+    # vols.append("{1}:{0}{1}".format(self.run_dir, os.path.abspath(self.mount_config)))
+    if 'pcfg' in self.config['network'] and self.config['network']['pcfg'] is not None:
+      vols.append("{1}:{0}{1}".format(self.run_dir, os.path.abspath(self.config['network']['pcfg'])))
+    # vols.append("{1}:{0}{1}".format(self.run_dir, os.path.abspath(self.config['network']['images']['verify'])))
+    vols = list(dict.fromkeys(vols))
+    return vols
+
+  def get_quantizer_vol_docker(self, dryrun=None):
+    vols = []
+    if dryrun:
+      vols.append("{1}/{2}:{0}{1}/{2}".format(self.run_dir, os.path.abspath(self.config['out']), self.dryrun_dir1))
+      vols.append("{1}/{2}:{0}{1}/{2}".format(self.run_dir, os.path.abspath(self.config['out']), self.dryrun_dir2))
+    else:
+      vols.append("{1}/{2}/{3}/{4}.prototxt:{0}{1}/{2}/{3}/{4}.prototxt".format(self.run_dir, os.path.abspath(self.config['out']), self.converter_output_dir, self.params_dir, self.converted_name))
+      vols.append("{1}/{2}/{3}/{4}.caffemodel:{0}{1}/{2}/{3}/{4}.caffemodel".format(self.run_dir, os.path.abspath(self.config['out']), self.converter_output_dir, self.params_dir, self.converted_name))
+      vols.append("{1}/{2}:{0}{1}/{2}".format(self.run_dir, os.path.abspath(self.config['out']), self.quantizer_output_dir))
+      vols.append("{1}:{0}{1}".format(self.run_dir, os.path.abspath(self.config['network']['images']['quantize'])))
+      vols.append("{1}:{0}{1}".format(self.run_dir, os.path.abspath(self.config['network']['images']['verify'])))
+      if 'tags' in self.config['network'] and self.config['network']['tags'] is not None:
+        vols.append("{1}:{0}{1}".format(self.run_dir, os.path.abspath(self.config['network']['tags'])))
+      if 'label' in self.config['network'] and self.config['network']['label'] is not None:
+        vols.append("{1}:{0}{1}".format(self.run_dir, os.path.abspath(self.config['network']['label'])))
+      if 'scale_offset_adjust_file' in self.config['dvnc'] and self.config['dvnc']['scale_offset_adjust_file'] is not None:
+        vols.append("{1}:{0}{1}".format(self.run_dir, os.path.abspath(self.config['dvnc']['scale_offset_adjust_file'])))
+      if 'adjust' in self.config['dvnc'] and self.config['dvnc']['adjust'] is not None:
+        vols.append("{1}:{0}{1}".format(self.run_dir, os.path.abspath(self.config['dvnc']['adjust'])))
+    vols = list(dict.fromkeys(vols))
+    return vols
+
+  def get_scheduler_vol_docker(self, dryrun=None):
+    vols = []
+    if dryrun:
+      vols.append("{1}/{2}:{0}{1}/{2}".format(self.run_dir, os.path.abspath(self.config['out']), self.dryrun_dir1))
+      vols.append("{1}/{2}:{0}{1}/{2}".format(self.run_dir, os.path.abspath(self.config['out']), self.dryrun_dir2))
+    else:
+      vols.append("{1}/{2}:{0}{1}/{2}".format(self.run_dir, os.path.abspath(self.config['out']), self.dryrun_dir2))
+      vols.append("{1}/{2}:{0}{1}/{2}".format(self.run_dir, os.path.abspath(self.config['out']), self.quantizer_output_dir))
+      vols.append("{1}/{2}:{0}{1}/{2}".format(self.run_dir, os.path.abspath(self.config['out']), self.scheduler_output_dir))
+    vols = list(dict.fromkeys(vols))
+    return vols
+
+  def get_generator_vol_docker(self):
+    vols = []
+    vols.append("{1}:{0}{1}".format(self.run_dir, os.path.abspath(self.config['out'])))
+    vols = list(dict.fromkeys(vols))
+    return vols
+
+  def get_dvnc_vol_docker(self, dryrun=False):
+    vols = []
+    if dryrun:
+      vols.append("{1}/{2}/{3}/{4}.prototxt:{0}{1}/{2}/{3}/{4}.prototxt".format(self.run_dir, os.path.abspath(self.config['out']), self.dryrun_dir, self.params_dir, self.dryrun_name))
+      vols.append("{1}/{2}/{3}/{4}.caffemodel:{0}{1}/{2}/{3}/{4}.caffemodel".format(self.run_dir, os.path.abspath(self.config['out']), self.dryrun_dir, self.params_dir, self.dryrun_name))
+    else:
+      vols.append("{1}/{2}/{3}/{4}.prototxt:{0}{1}/{2}/{3}/{4}.prototxt".format(self.run_dir, os.path.abspath(self.config['out']), self.converter_output_dir, self.params_dir, self.converted_name))
+      vols.append("{1}/{2}/{3}/{4}.caffemodel:{0}{1}/{2}/{3}/{4}.caffemodel".format(self.run_dir, os.path.abspath(self.config['out']), self.converter_output_dir, self.params_dir, self.converted_name))
+    vols.append("{1}:{0}{1}".format(self.run_dir, os.path.abspath(self.config['out'])))
+    vols.append("{1}:{0}{1}".format(self.run_dir, os.path.abspath(self.config['network']['images']['quantize'])))
+    vols.append("{1}:{0}{1}".format(self.run_dir, os.path.abspath(self.config['network']['images']['verify'])))
+    if 'tags' in self.config['network'] and self.config['network']['tags'] is not None:
+      vols.append("{1}:{0}{1}".format(self.run_dir, os.path.abspath(self.config['network']['tags'])))
+    if 'label' in self.config['network'] and self.config['network']['label'] is not None:
+      vols.append("{1}:{0}{1}".format(self.run_dir, os.path.abspath(self.config['network']['label'])))
+    if 'adjust' in self.config['dvnc'] and self.config['dvnc']['adjust'] is not None:
+      vols.append("{1}:{0}{1}".format(self.run_dir, os.path.abspath(self.config['dvnc']['adjust'])))
+    vols = list(dict.fromkeys(vols))
+    return vols
+
+  def get_directory_vol_docker(self, directory):
+    vols = []
+    vols.append("{1}:{0}{1}".format(self.run_dir, directory))
+    return vols
+
+  
+  def get_split_vol_docker(self):
+    # yaml file, config.json file, onnx model
+    vols = []
+    vols.append("{1}:{0}{1}".format(self.run_dir, os.path.abspath(os.path.join(self.config["model_repo"], "config.json"))))
+    vols.append("{1}:{0}{1}".format(self.run_dir, os.path.abspath(os.path.join(self.config["onnx_model_repo"], "model.onnx"))))
+    vols.append("{1}:{0}{1}".format(self.run_dir, os.path.dirname(os.path.join(self.config["onnx_model_repo"], "model.onnx"))))
+    vols.append("{1}:{0}{1}".format(self.run_dir,os.path.abspath(self.args.config)))
+    vols.append("{1}:{0}{1}".format(self.run_dir,os.path.abspath(os.getcwd())))
+    vols.append("{1}/{2}:{0}{1}/{2}".format(self.run_dir, os.path.abspath(self.config['out']),self.llm_splits_dir))
+
+    if self.config.get('vision_out', None):
+      vols.append("{1}:{0}{1}".format(self.run_dir, os.path.abspath(self.config['out'])))
+      # Avoiding adding additional subdir /vision (like self.llm_splits_dir), we want to keep it simple.
+      # Whatever is in self.config['vision_out'], we just use that. split_cmd takes care of directory
+      # levels.
+
+    vols = list(dict.fromkeys(vols))
+    return vols
+  
+
+
+  def get_llm_model_gen_vol_docker(self):
+    vols = []
+    vols.append("{1}:{0}{1}".format(self.run_dir, os.path.join(os.path.abspath(self.config['out']), self.llm_output_dir)))
+    vols.append("{1}/{2}/{3}/{4}:{0}{1}/{2}/{3}/{4}".format(self.run_dir, os.path.abspath(self.config["out"]), self.llm_output_dir ,"assets","model_gen.yaml"))
+    vols.append("{1}/{2}/{3}/{4}:{0}{1}/{2}/{3}/{4}".format(self.run_dir, os.path.abspath(self.config["out"]), self.llm_output_dir ,"assets","rope_table.bin"))
+    vols.append("{1}/{2}/{3}/{4}:{0}{1}/{2}/{3}/{4}".format(self.run_dir, os.path.abspath(self.config["out"]), self.llm_output_dir ,"assets","embedding_table.bin"))
+    vols.append("{1}/{2}/{3}/{4}:{0}{1}/{2}/{3}/{4}".format(self.run_dir, os.path.abspath(self.config["out"]), self.llm_output_dir ,"assets","embedding_table_scale.bin"))
+    vols = list(dict.fromkeys(vols))
+    return vols
+  
+  def get_rel_tag(self):
+      tag = self.docker_img.split(":")[-1]
+      return tag.rsplit("-", 1)[0]
+
+  def exec_process(self, command, volumes, working_dir, env=None, log_file_name = "dvrun.log"):
+    cmds = ""
+    vols = ""
+    for c in command:
+      cmds = cmds + " " + c
+    for v in volumes:
+      vols += " -v " + v
+    try:
+      client = docker.from_env()
+      environment = ["PYTHONUNBUFFERED=1"]
+      if env:
+        environment.append(env)
+      logger.info("command to execute: " + cmds)
+      with open(os.path.join(self.config["out"],log_file_name), self.write_or_append) as log_file:
+        log_file.write("command to execute: " + cmds + '\n')
+      logger.info("running : " + cmds + " log: " + os.path.join(self.config["out"],log_file_name) + '\n')
+      # client.images.pull(self.docker_img)
+      container = client.containers.run(image=self.docker_img, volumes=volumes, working_dir=working_dir, command=cmds, detach=True, environment=environment)
+      for line in container.logs(stdout=True, stderr=True, stream=True):
+        decoded_line = line.decode('utf-8').strip()
+        with open(os.path.join(self.config["out"],log_file_name), "a") as log_file:
+          log_file.write(decoded_line + '\n')
+      exit_status = container.wait()['StatusCode']
+      try:
+        if exit_status != 0:
+          container.reload()
+          if container.attrs['State'].get('OOMKilled'):
+            raise MemoryError(f"Docker ran out of memory running {command[0]}. See {log_file_name}")
+          raise RuntimeError(f"Container exited with code {exit_status}. See {log_file_name}")
+      finally:
+        container.remove()
+      return exit_status
+    except docker.errors.ContainerError as exc:
+      logger.error("failed to run container")
+      raise exc
+    except docker.errors.ImageNotFound as exc:
+      logger.error("docker image not found")
+      raise exc
+    except docker.errors.APIError as exc:
+      logger.error("error when running docker API")
+      raise exc
+
+  def change_out_dir_perm(self, directory):
+    DCMD = []
+    vols = self.get_directory_vol_docker(os.path.abspath(directory))
+    DCMD.append("chown -R {0}:{1} {2}/{3}".format(str(os.geteuid()), str(os.getegid()), self.run_dir, os.path.abspath(directory)))
+    self.exec_process(DCMD, vols, None, log_file_name="chown.log")
+
+  # def validate_config(self):
+  #   DCMD = []
+  #   vols = []
+  #   vols.append("{1}:{0}{1}".format(self.run_dir, os.path.abspath(self.mount_config)))
+  #   DCMD.append(self.validate_cmd)
+  #   DCMD.append("--input {0}{1}".format(self.run_dir, os.path.abspath(self.mount_config)))
+  #   self.exec_process(DCMD, vols, self.validate_dir)
+
+  def update_config(self, json_dict, config):
+    for k, v in json_dict.items():
+      if isinstance(v, dict):
+        if k in config:
+          self.update_config(v, config[k])
+        else:
+          logger.error('unrecognized key in json string - ' + k)
+      else:
+        if k in config:
+          config[k] = v
+        else:
+          logger.error('unrecognized key in json string - ' + k)
+
+  # def override_config(self):
+  #   if self.args.override:
+  #     logger.info('overriding config with params passed from command line')
+  #     try:
+  #       data = ast.literal_eval(self.args.override)
+  #     except Exception as e:
+  #       raise Exception("error parsing override json string - " + self.args.override)
+  #     logger.info('options passed from command line:')
+  #     print(data)
+  #     self.update_config(data, self.config)
+
+  def parse_config(self, config):
+    logger.info('parsing YAML config file')
+    if not os.path.exists(config):
+      raise Exception('error config file not accessible - ' + config)
+    try:
+      local_config = yaml.safe_load(open(config, 'r'))
+    except Exception as e:
+      raise Exception('error loading config file - ' + str(e))
+    self.config_dir = os.path.dirname(os.path.abspath(config))
+    logger.info('validating YAML config file')
+    if 'preprocess' in local_config and local_config['preprocess']:
+      logger.warning('** preprocess option is deprecated, only preprocessed fp32 inputs have to be passed to dvrun **')
+    #self.validate_config()
+    return local_config
+
+  def get_path(self, path, ignore_error=False):
+    if not os.path.isabs(path):
+      path = os.path.join(self.config_dir, path)
+      if not os.path.exists(path) and not ignore_error:
+        raise Exception('error: file not accessible - ' + path)
+    elif not os.path.exists(path) and not ignore_error:
+      raise Exception('error: file not accessible - ' + path)
+    return os.path.abspath(path)
+
+  def set_paths(self):
+    if "architecture" in self.config['network']:
+      self.llm_architecture_dir = os.path.join(self.llm_dir, self.config['network']['architecture'])
+    if self.config['network']['srcfw'] != 'pytorch':
+      if not self.config['network']['inet'].endswith(".onnx") and os.path.isdir(self.config['network']['inet']):
+        if self.is_converted_to_onnx or self.skip_model_conversion:
+          self.config['network']['inet'] = os.path.join(os.path.abspath(self.config['out']),self.llm_output_dir,self.llm_model_download_dir,self.llm_model_download_simplifed_dir,"model.onnx")
+        else:
+          self.config['network']['inet'] = self.get_path(self.config['network']['inet'])
+      else:
+        self.config['network']['inet'] = self.get_path(self.config['network']['inet'])
+    if 'pcfg' in self.config['network'] and not self.config['network']['pcfg']:
+      if not self.config['network']['iwt'].endswith(".onnx") and os.path.isdir(self.config['network']['iwt']):
+        if self.is_converted_to_onnx or self.skip_model_conversion:
+          self.config['network']['iwt'] = os.path.  join(os.path.abspath(self.config['out']),self.llm_output_dir,self.llm_model_download_dir,self.llm_model_download_simplifed_dir,"model.onnx")
+        else:
+          self.config['network']['iwt'] = self.get_path(self.config['network']['iwt'])
+      else:
+        self.config['network']['iwt'] = self.get_path(self.config['network']['iwt'])
+    else:
+      self.config['network']['pcfg'] = self.get_path(self.config['network']['pcfg'])
+    if 'tags' in self.config['network'] and self.config['network']['tags']:
+      self.config['network']['tags'] = self.get_path(self.config['network']['tags'])
+    if 'label' in self.config['network'] and self.config['network']['label']:
+      self.config['network']['label'] = self.get_path(self.config['network']['label'])
+    if 'adjust' in self.config['dvnc'] and self.config['dvnc']['adjust']:
+      self.config['dvnc']['adjust'] = self.get_path(self.config['dvnc']['adjust'])
+    self.config['network']['images']['quantize'] = self.get_path(self.config['network']['images']['quantize'])
+    self.config['network']['images']['verify'] = self.get_path(self.config['network']['images']['verify'])
+    # if "llm" in self.config.keys():
+    #   if 'prompt_scale_offset_adjust_file' in self.config['llm'] and self.config['llm']['prompt_scale_offset_adjust_file']:
+    #     self.config['llm']['prompt_scale_offset_adjust_file'] = self.get_path(self.config['llm']['prompt_scale_offset_adjust_file'])
+    #   if 'token_scale_offset_adjust_file' in self.config['llm'] and self.config['llm']["token_scale_offset_adjust_file"]:
+    #     self.config['llm']["token_scale_offset_adjust_file"] = self.get_path(self.config['llm']["token_scale_offset_adjust_file"])
+    #   if 'token_scale_offset_adjust_file_1024' in self.config['llm'] and self.config['llm']["token_scale_offset_adjust_file_1024"]:
+    #     self.config['llm']["token_scale_offset_adjust_file_1024"] = self.get_path(self.config['llm']["token_scale_offset_adjust_file_1024"])
+    # self.config['out'] = self.get_path(self.config['out'], True)
+
+  def print_config(self):
+    logger.info('release - ' + self.get_rel_tag())
+    logger.info('config file:')
+    logger.info(yaml.dump(self.config))
+    self.create_out_dir(self.config['out'])
+    with open(os.path.join(self.config['out'], 'run.yaml'), 'w') as cfgout:
+      yaml.dump(self.config, cfgout, default_flow_style=False)
+    with open(os.path.join(self.config['out'], 'version'), 'w') as verout:
+      verout.write(self.get_rel_tag())
+
+  def create_out_dir(self, directory):
+    if not os.path.exists(directory):
+      os.makedirs(directory)
+
+
+
+  def exec_quantizer(self, dryrun=None):
+    DCMD = []
+    if dryrun:
+      vols = self.get_quantizer_vol_docker(dryrun)
+      DCMD.append(self.quantizer_cmd)
+      DCMD.append("-p {0}{1}/{2}/{3}/{4}/{5}.prototxt".format(self.run_dir, os.path.abspath(self.config['out']), self.dryrun_dir + str(dryrun), self.converter_output_dir, self.params_dir, self.dryrun_name))
+      DCMD.append("-o {0}{1}/{2}/{3}".format(self.run_dir, os.path.abspath(self.config['out']), self.dryrun_dir + str(dryrun), self.quantizer_output_dir))
+      DCMD.append("-x")
+      DCMD.append("-g")
+      if self.config['dvnc']['qmode']:
+        DCMD.append("-M " + str(self.config['dvnc']['qmode']))
+    else:
+      vols = self.get_quantizer_vol_docker()
+      DCMD.append(self.quantizer_cmd)
+      DCMD.append("-p {0}{1}/{2}/{3}/{4}.prototxt".format(self.run_dir, os.path.abspath(self.config['out']), self.converter_output_dir, self.params_dir, self.converted_name))
+      DCMD.append("-m {0}{1}/{2}/{3}/{4}.caffemodel".format(self.run_dir, os.path.abspath(self.config['out']), self.converter_output_dir, self.params_dir, self.converted_name))
+      DCMD.append("-t {0}{1}".format(self.run_dir, os.path.abspath(self.config['network']['images']['quantize'])))
+      DCMD.append("-v {0}{1}".format(self.run_dir, os.path.abspath(self.config['network']['images']['verify'])))
+      DCMD.append("-o {0}{1}/{2}".format(self.run_dir, os.path.abspath(self.config['out']), self.quantizer_output_dir))
+      if 'tags' in self.config['network'] and self.config['network']['tags'] is not None:
+        DCMD.append("-z {0}{1}".format(self.run_dir, os.path.abspath(self.config['network']['tags'])))
+      if 'scale_offset_adjust_file' in self.config['dvnc'] and self.config['dvnc']['scale_offset_adjust_file'] is not None:
+        DCMD.append("-G {0}{1}".format(self.run_dir, os.path.abspath(self.config['dvnc']['scale_offset_adjust_file'])))
+      if 'label' in self.config['network'] and self.config['network']['label'] is not None:
+        DCMD.append("-L {0}{1}".format(self.run_dir, os.path.abspath(self.config['network']['label'])))
+      if 'input_type' in self.config['dvnc'] and self.config['dvnc']['input_type'] is not None:
+        DCMD.append("-Z " + self.config['dvnc']['input_type'])
+      if 'adjust' in self.config['dvnc'] and self.config['dvnc']['adjust'] is not None:
+        DCMD.append("-A {0}{1}".format(self.run_dir, os.path.abspath(self.config['dvnc']['adjust'])))
+      if self.config['dvnc']['qmode']:
+        DCMD.append("-M " + str(self.config['dvnc']['qmode']))
+      if 'license_key' in self.config and self.config['license_key'] is not None:
+        DCMD.append("-K " + self.config['license_key'])
+
+      DCMD.append("-w")
+      DCMD.append("-u -f -g")
+
+      if self.config['dvnc']['bc']:
+        DCMD.append("-B")
+      if 'clampqlimits' in self.config['dvnc'] and self.config['dvnc']['clampqlimits']:
+        DCMD.append("-i")
+    if self.config['dvnc']['qmode'] == 9:
+      DCMD.append("-J {0}/{1}".format(self.conf_dir, "ara2_constraints.json"))
+    else:
+      DCMD.append("-J {0}/{1}".format(self.conf_dir, "ara1_constraints.json"))
+    self.exec_process(DCMD, vols, self.dvnc_dir)
+
+  def exec_scheduler(self, dryrun=None):
+    DCMD = []
+    vols = self.get_scheduler_vol_docker(dryrun)
+    DCMD.append(self.scheduler_cmd)
+    DCMD.append("-c {0}/{1}".format(self.conf_dir, self.config_yaml))
+    DCMD.append("-k {0}/{1}".format(self.conf_dir, self.meta_json))
+    DCMD.append("-p {0}/{1}".format(self.conf_dir, self.power_config))
+    DCMD.append("-j -K -O 5 -m 16 -d -y -R 3 -T -s -q -P")
+    if dryrun:
+      DCMD.append("-x -G")
+      DCMD.append("-i {0}{1}/{2}/{3}/{4}/{5}".format(self.run_dir, os.path.abspath(self.config['out']), self.dryrun_dir + str(dryrun), self.quantizer_output_dir, self.params_dir, self.convergence_proto))
+      DCMD.append("-o {0}{1}/{2}/{3}".format(self.run_dir, os.path.abspath(self.config['out']), self.dryrun_dir + str(dryrun), self.scheduler_output_dir))
+    else:
+      DCMD.append("-i {0}{1}/{2}/{3}/{4}".format(self.run_dir, os.path.abspath(self.config['out']), self.quantizer_output_dir, self.params_dir, self.convergence_proto))
+      DCMD.append("-E {0}{1}/{2}/{3}/dv_optimization_error.log".format(self.run_dir, os.path.abspath(self.config['out']), self.dryrun_dir2, self.scheduler_output_dir))
+      DCMD.append("-o {0}{1}/{2}".format(self.run_dir, os.path.abspath(self.config['out']), self.scheduler_output_dir))
+      if self.config['dvnc']['layeroutput']:
+        DCMD.append("-M")
+    self.exec_process(DCMD, vols, self.dvnc_dir)
+
+  def exec_generator(self):
+    DCMD = []
+    vols = self.get_generator_vol_docker()
+    DCMD.append(self.generator_cmd)
+    DCMD.append("-a {0}{1}/{2}".format(self.run_dir, os.path.abspath(self.config['out']), self.quantizer_output_dir))
+    DCMD.append("-e {0}{1}/{2}".format(self.run_dir, os.path.abspath(self.config['out']), self.scheduler_output_dir))
+    DCMD.append("-c {0}/{1}".format(self.conf_dir, self.config_yaml))
+    #DCMD.append("-f {0}/{1}".format(self.conf_dir, self.config_yaml))
+    DCMD.append("-b {0}/{1}".format(self.conf_dir, self.kernel_lib))
+    DCMD.append("-k {0}/{1}".format(self.conf_dir, self.meta_json))
+    DCMD.append("-v {0}/{1}".format(self.conf_dir, self.vpu_conf))
+    DCMD.append("-w {0}/{1}/{2}".format(self.conf_dir, self.vpu_conf, self.vpu_meta_json))
+    DCMD.append("-s {0}".format("cnn.bin"))
+    DCMD.append("-S {0}/{1}".format(self.mcp_dir,"lib"))
+    DCMD.append("-M {0}/{1}/{2}".format(self.mcp_dir,"conf", "s7_supermeta.json"))
+    DCMD.append("-o {0}{1}/{2}".format(self.run_dir, os.path.abspath(self.config['out']), self.assets_dir))
+    DCMD.append("-i {0}{1}/{2}".format(
+        self.run_dir,
+        os.path.abspath(self.config['out']),
+        self.quantizer_output_dir,
+    ))
+    DCMD.append("-g {0}{1}/{2}".format(
+        self.run_dir,
+        os.path.abspath(self.config['out']),
+        self.vpu_codegen_output_dir,
+    ))
+    self.exec_process(DCMD, vols, self.dvnc_dir)
+
+  def exec_dvmc(self, dryrun=None):
+    DCMD = []
+    vols = self.get_dvconvert_vol_docker(dryrun)
+    env = None
+    if self.config['network']['srcfw'] == 'pytorch':
+      env = self.get_python_path()
+    DCMD.append(self.dvconvert_cmd)
+    # if self.args.mode == 'debug':
+    #   DCMD.append("-dump_debug 1")
+    # else:
+    DCMD.append("-dump_debug 0")
+    DCMD.append("-src_framework " + self.config['network']['srcfw'])
+    DCMD.append("-dst_framework caffe")
+    DCMD.append("-input_shape " + self.config['network']['dim'].replace(":", " "))
+    DCMD.append("-input_weight {0}{1}".format(self.run_dir, os.path.abspath(self.config['network']['iwt'])))
+    # if self.args.mode == 'debug':
+    #   if self.args.debug_level == 'low':
+    #     DCMD.append("-debug 1")
+    #   elif self.args.debug_level == 'medium':
+    #     DCMD.append("-debug 2")
+    #   else:
+    #     DCMD.append("-debug 3")
+    if dryrun:
+      DCMD.append("-output_dir {0}{1}/{2}/{3}".format(self.run_dir, os.path.abspath(self.config['out']), self.dryrun_dir + str(dryrun), self.converter_output_dir))
+      DCMD.append("-summary_csv {0}{1}/{2}/{3}/summary.csv".format(self.run_dir, os.path.abspath(self.config['out']), self.dryrun_dir + str(dryrun), self.converter_output_dir))
+      DCMD.append("-output_model_name {0}".format(self.dryrun_name))
+      # DCMD.append("-debug {0}{1}/{2}/{3}/no_chunks.json".format(self.run_dir, os.path.abspath(self.config['out']), self.dryrun_dir1, self.scheduler_output_dir))
+      DCMD.append("-hints {0}{1}/{2}/{3}/no_chunks.json".format(self.run_dir, os.path.abspath(self.config['out']), self.dryrun_dir1, self.scheduler_output_dir))
+      DCMD.append("-dry_run " + str(dryrun))
+      DCMD.append("-dynamic False")
+      DCMD.append("-dynamic_input False")
+    else:
+      DCMD.append("-output_dir {0}{1}/{2}".format(self.run_dir, os.path.abspath(self.config['out']), self.converter_output_dir))
+      DCMD.append("-summary_csv {0}{1}/{2}/{3}".format(self.run_dir, os.path.abspath(self.config['out']), self.converter_output_dir, "summary.csv"))
+      DCMD.append("-output_model_name {0}".format(self.converted_name))
+      # DCMD.append("-debug {0}{1}/{2/{4}/no_chunks.json {0}{1}/{3}/{4}/no_chunks.json".format(self.run_dir, os.path.abspath(self.config['out']), self.dryrun_dir1, self.dryrun_dir2, self.scheduler_output_dir))
+      DCMD.append("-hints {0}{1}/{2}/{4}/no_chunks.json".format(self.run_dir, os.path.abspath(self.config['out']), self.dryrun_dir1, self.dryrun_dir2, self.scheduler_output_dir))
+      if 'dynamic' in self.config['dvconvert'] and self.config['dvconvert']['dynamic']:
+        DCMD.append("-dynamic True")
+      if 'dynamic_input' in self.config['dvconvert'] and self.config['dvconvert']['dynamic_input']:
+        DCMD.append("-dynamic_input True")
+
+    if 'lname' in self.config['dvconvert'] and self.config['dvconvert']['lname'] is not None:
+      DCMD.append("-label_name " + self.config['dvconvert']['lname'].replace(":", " ").replace("#", ":"))
+    if self.config['network']['inet'] is not None and self.config['network']['srcfw'] != "pytorch":
+      DCMD.append("-input_network {0}{1}".format(self.run_dir, os.path.abspath(self.config['network']['inet'])))
+    elif self.config['network']['inet'] is not None and self.config['network']['srcfw'] == "pytorch":
+      DCMD.append("-input_network " + self.config['network']['inet'])
+    if 'lshape' in self.config['dvconvert'] and self.config['dvconvert']['lshape'] is not None:
+      DCMD.append("-label_shape " + self.config['dvconvert']['lshape'].replace(":", " "))
+    if 'inode' in self.config['dvconvert'] and self.config['dvconvert']['inode'] is not None:
+      DCMD.append("-input_node_name " + self.config['dvconvert']['inode'].replace(":", " ").replace("#", ":"))
+    if 'iname' in self.config['dvconvert'] and self.config['dvconvert']['iname'] is not None:
+      DCMD.append("-iname " + self.config['dvconvert']['iname'].replace(":", " ").replace("#", ":"))
+    if 'onode' in self.config['dvconvert'] and self.config['dvconvert']['onode'] is not None:
+      DCMD.append("-output_node_name " + self.config['dvconvert']['onode'].replace(":", " ").replace("#", ":"))
+    if 'data_format' in self.config['dvconvert'] and self.config['dvconvert']['data_format'] is not None:
+      DCMD.append("-data_format " + self.config['dvconvert']['data_format'].replace(":", " "))
+    if 'dformat' in self.config['dvconvert'] and self.config['dvconvert']['dformat'] is not None:
+      DCMD.append("-dformat " + self.config['dvconvert']['dformat'].replace(":", " "))
+    if 'pcfg' in self.config['network'] and self.config['network']['pcfg'] is not None:
+      DCMD.append("-config {0}{1}".format(self.run_dir, os.path.abspath(self.config['network']['pcfg'])))
+    # DCMD.append("-images {0}{1}".format(self.run_dir, os.path.abspath(self.config['network']['images']['verify'])))
+    if 'np' in self.config['dvconvert'] and self.config['dvconvert']['np']:
+      DCMD.append("-set_np_shape True")
+    if 'rsmax' in self.config['dvconvert'] and self.config['dvconvert']['rsmax']:
+      DCMD.append("-fork_sftmx_argmx 1")
+    if 'ignore_mse' in self.config['dvconvert'] and self.config['dvconvert']['ignore_mse']:
+      DCMD.append("-ignore_mse 1")
+    if 'state_name' in self.config['dvconvert'] and self.config['dvconvert']['state_name']:
+      DCMD.append("-state_name " + self.config['dvconvert']['state_name'].replace(":", " ").replace("#", ":"))
+    if 'state_shape' in self.config['dvconvert'] and self.config['dvconvert']['state_shape']:
+      DCMD.append("-state_shape " + self.config['dvconvert']['state_shape'].replace(":", " "))
+    if 'tg' in self.config['dvconvert'] and self.config['dvconvert']['tg']:
+      DCMD.append("-transform_graph True")
+    if 'raw_images' in self.config['dvconvert'] and self.config['dvconvert']['raw_images']:
+      DCMD.append("-raw_images " + self.config['dvconvert']['raw_images'])
+    if 'onnx_backend' in self.config['dvconvert'] and self.config['dvconvert']['onnx_backend']:
+      DCMD.append("-onnx_backend " + self.config['dvconvert']['onnx_backend'])
+    if 'model_name' in self.config and self.config['model_name']:
+      DCMD.append("-name " + self.config['model_name'])
+    if not dryrun or dryrun == 2:
+      DCMD.append("-fuse_act False")
+    if 'dtype' in self.config['dvconvert'] and self.config['dvconvert']['dtype']:
+      DCMD.append("-dtype " + self.config['dvconvert']['dtype'])
+    if self.config['dvnc']['qmode'] == 9 or self.config['dvnc']['qmode'] == 13:
+      DCMD.append("-platform_target Ara2")
+
+    self.exec_process(DCMD, vols, self.dvconvert_dir, env=env)
+
+  
+  def is_qwen3_vl(self, model_dir):
+    config = Path(model_dir) / 'config.json'
+    if not config.is_file():
+      return False
+    return json.loads(config.read_text()).get('model_type') == 'qwen3_vl'
+
+  def qwen3_tool_volume(self):
+    tool = '/dv2/utils/qwen3_vl_4b'
+    source = Path(__file__).resolve().parent / 'ara_docker' / tool.lstrip('/')
+    return f'{source}:{tool}:ro'
+
+  def export_qwen3_language(self):
+    cfg = self.config
+    if cfg['quantization'] != 'float' or cfg.get('num_mcs_shards', 1) != 1:
+      raise ValueError("The Qwen3-VL-4B v2 exporter requires the original float checkpoint and one Ara endpoint")
+    model = str(Path(cfg['model_dir']).resolve())
+    out = str(Path(cfg['out']).resolve())
+    joint = cfg.get('multimodal_standard_compilation', False)
+    if not isinstance(joint, bool):
+      raise ValueError('multimodal_standard_compilation must be a YAML boolean')
+    args = ['bash', 'export.sh', model, out, cfg.get('rope', {}).get('vl_rope_type', DEFAULT_ROPE_TYPE),
+            str(cfg.get('specd_size', 1))]
+    if joint:
+      args.append('--joint')
+    self.exec_process([shlex.join(args)], [f'{model}:{model}:ro', f'{out}:{out}', self.qwen3_tool_volume()],
+                      '/dv2/utils/qwen3_vl_4b/language', log_file_name='language_export.log')
+    self.change_out_dir_perm(out)
+
+  def split_qwen3_language(self):
+    cfg = self.config
+    if cfg.get('num_mcs_shards', 1) != 1:
+      raise ValueError('Qwen3-VL-4B language splits require one Ara endpoint')
+    config = str(Path(self.args.config).resolve())
+    model = str(Path(cfg['model_repo']).resolve())
+    onnx_dir = str(Path(cfg['onnx_model_repo']).resolve())
+    out = str(Path(cfg['out']).resolve())
+    volumes = {model: 'ro', onnx_dir: 'ro', config: 'ro', out: 'rw'}
+    self.exec_process([shlex.join(['python', 'split.py', config])],
+                      [f'{path}:{path}:{access}' for path, access in volumes.items()] + [self.qwen3_tool_volume()],
+                      '/dv2/utils/qwen3_vl_4b/language',
+                      env='PYTHONPATH=/dv2/python:/dv2/python/caffe/proto:/dv2/utils/llm_compiler:/dv2/utils',
+                      log_file_name='language_split.log')
+    self.change_out_dir_perm(out)
+    if cfg.get('vision_out'):
+      vision_split = Path(cfg['vision_out']) / 'default/default_split'
+      vision_split.mkdir(parents=True, exist_ok=True)
+      self.prepare_qwen3_vision(model, vision_split)
+
+  def exec_convert_to_onnx(self):
+    try:
+      model_dir = self.config['model_dir']
+      if self.is_qwen3_vl(model_dir):
+        return self.export_qwen3_language()
+      output_dir = self.config['out']
+      quantization = self.config['quantization']
+      specd_size = self.config.get('specd_size', 1)
+      num_mcs_shards = self.config.get('num_mcs_shards', 1)
+      multimodal_standard_compilation = self.config.get("multimodal_standard_compilation", False)
+      gguf_file = self.config.get("gguf_file",model_dir)
+      dequantized_model_dir = os.path.join(model_dir,"dequantized")
+      if self.config.get('rope', {}).get('vl_rope_type', None) is None:
+        logger.warning("If its vlm model, please set the rope_type. Ignore if its non vlm model. Using IMAGE as default")
+      vl_rope_type = self.config.get('rope', {'vl_rope_type': DEFAULT_ROPE_TYPE})['vl_rope_type']
+      if (vl_rope_type == 'MULTI_ROPE') and (num_mcs_shards > 1):
+        raise Exception("MULTI_ROPE not yet supported on multichip sharded models, select IMAGE") 
+      print(f"In exec_convert_to_onnx: vl_rope_type = {vl_rope_type}")
+      print(f"In exec_convert_to_onnx: multimodal_standard_compilation = {multimodal_standard_compilation}")
+
+      SCMD = []
+      # SCMD.append("bash -lc")
+      SCMD.append("/dv2/utils/llm_compiler/convert_to_onnx_llm/create_env_and_run.sh")
+      SCMD.append("-m {0}{1}".format(self.run_dir, model_dir))
+      SCMD.append("-o {0}{1}".format(self.run_dir, output_dir))
+      SCMD.append("-t {0}".format(quantization))
+      SCMD.append("-s {0}".format(specd_size))
+      SCMD.append("-n {0}".format(num_mcs_shards))
+      SCMD.append("-v {0}".format(multimodal_standard_compilation))
+      SCMD.append("-f {0}{1}".format(self.run_dir, dequantized_model_dir))
+      SCMD.append("-g {0}{1}".format(self.run_dir,gguf_file))
+      if vl_rope_type:
+        SCMD.append("-r {0}{1}".format(self.run_dir, vl_rope_type))
+      vols = []
+      vols.append("{1}:{0}{1}".format(self.run_dir, model_dir))
+      vols.append("{1}:{0}{1}".format(self.run_dir, output_dir))
+      vols.append("{1}:{0}{1}".format(self.run_dir, dequantized_model_dir))
+      vols.append("{1}:{0}{1}".format(self.run_dir, gguf_file))
+      vols = list(dict.fromkeys(vols))
+      self.exec_process(SCMD,vols,"/dv2/utils/llm_compiler/convert_to_onnx_llm/")
+      self.change_out_dir_perm(os.path.abspath(output_dir))
+    except Exception as e:     
+      raise Exception("convert to onnx failed with error: "+str(e))
+
+
+  def exec_pre_split(self):
+    if self.is_qwen3_vl(self.config['model_repo']):
+      return self.split_qwen3_language()
+    try:
+      SCMD = []
+      vols = self.get_split_vol_docker()
+      SCMD.append(self.split_cmd)
+      SCMD.append("--yaml_file {0}{1}".format(self.run_dir, os.path.abspath(self.args.config)))
+      SCMD.append("--output_dir {0}{1}/{2}".format(self.run_dir, os.path.abspath(self.config["out"]),self.llm_splits_dir))
+      SCMD.append("--build /")
+      SCMD.append("--num_shards {0}".format(self.config.get('num_mcs_shards', 1)))
+      SCMD.append("--sdk")
+      self.exec_process(SCMD, vols, os.path.abspath(self.config["out"]))
+      self.change_out_dir_perm(os.path.abspath(self.config['out']))
+      if self.config.get("vision_out", None):
+        self.change_out_dir_perm(os.path.abspath(self.config['vision_out']))
+      logger.info("execution of pre split is successfully")
+    except Exception as e:
+      raise Exception(f"execution of pre split failed with error: "+ str(e))
+
+  def exec_llm_model_gen(self):
+    try:
+      LLMGENCMD = []
+      vols = self.get_llm_model_gen_vol_docker()
+      if (self.config.get("num_mcs_shards", 1) > 1):
+        LLMGENCMD.append(self.sharded_llm_model_gen_cmd)
+      else:
+        LLMGENCMD.append(self.llm_model_gen_cmd)
+      LLMGENCMD.append("-o {0}{1}".format(self.run_dir, os.path.abspath(os.path.join(self.config['out'], self.llm_output_dir, 'model.dvm'))))
+      LLMGENCMD.append("-f {0}{1}".format(self.run_dir, os.path.abspath(os.path.join(self.config['out'], self.llm_output_dir,'all_dvms.txt'))))
+      LLMGENCMD.append("-c {0}{1}/{2}/{3}/{4}".format(self.run_dir, os.path.abspath(self.config["out"]), self.llm_output_dir ,"assets","model_gen.yaml"))
+      LLMGENCMD.append("-r {0}{1}/{2}/{3}/{4}".format(self.run_dir, os.path.abspath(self.config["out"]), self.llm_output_dir ,"assets","rope_table.bin"))
+      LLMGENCMD.append("-e {0}{1}/{2}/{3}/{4}".format(self.run_dir, os.path.abspath(self.config["out"]), self.llm_output_dir ,"assets","embedding_table.bin"))
+      LLMGENCMD.append("-E {0}{1}/{2}/{3}/{4}".format(self.run_dir, os.path.abspath(self.config["out"]), self.llm_output_dir ,"assets","embedding_table_scale.bin"))
+      LLMGENCMD.append("-p {0}".format(str(MCP_KERNEL_ID_PRESENT)))
+
+      is_vlm = self.config.get('is_vlm', False)
+      is_sharded = self.config.get("num_mcs_shards",1) > 1
+      rope_type = self.config.get('rope', {'vl_rope_type': DEFAULT_ROPE_TYPE})['vl_rope_type']
+      # breakpoint()
+      kernel_info = mcp_kernel_picker[is_vlm][is_sharded][rope_type]
+      if not kernel_info:
+        # logger.info("Raising my error")
+        raise KeyError(f"Unsupported key is_vlm: {is_vlm}, is_sharded: {is_sharded}, rope_type: {rope_type} for picking kernel")
+      logger.info("Picking kernel " + "is_vlm: " + str(is_vlm) + " is_sharded: " + str(is_sharded) + " rope_type: " + rope_type)
+      logger.info("Picked Kernel " + kernel_info["mcp_kernel_path"] + ", " + str(kernel_info["mcp_kernel_id"]))
+      LLMGENCMD.append("-m {0}{1}".format(self.run_dir,kernel_info["mcp_kernel_path"]))
+      LLMGENCMD.append("-i {0}".format(str(kernel_info["mcp_kernel_id"])))
+
+      if self.config.get('unique_params', None):
+        LLMGENCMD.append("-U {0}".format(self.config.get('unique_params')))
+
+      self.exec_process(LLMGENCMD, vols, self.llm_mode_gen_dir, log_file_name='llm_model_gen.log')
+      logger.info("execution of llm_mode_gen successfully")
+      self.change_out_dir_perm(os.path.abspath(self.config['out']))
+    except Exception as e:
+      raise Exception("execution of llm_model_gen failed with error: "+str(e))
+
+  def prepare_qwen3_vision(self, model_dir=None, output_dir=None):
+    if self.config.get('quantization', 'float') != 'float':
+      raise ValueError("Mode 5 requires an original floating-point Qwen3-VL-4B checkpoint")
+    model = Path(model_dir or self.config['model_dir']).resolve()
+    out = Path(output_dir or self.config['out']).resolve()
+    tool = '/dv2/utils/qwen3_vl_4b'
+    workdir = tool + '/vision_encoder'
+    volumes = [f'{model}:/checkpoint:ro', f'{out}:{out}', self.qwen3_tool_volume()]
+    env = 'PYTHONPATH=/dv2/python:/dv2/python/caffe/proto:/dv2/utils/llm_compiler:/dv2/utils'
+    cmd = shlex.join(['bash', 'create_env_and_run.sh', '-m', '/checkpoint', '-o', str(out)])
+    self.exec_process([cmd], volumes, workdir, env=env, log_file_name='vision_prepare.log')
+    self.change_out_dir_perm(str(out))
+
+  def convert(self):
+    self.exec_dvmc()
+
+  def compile(self):
+    self.exec_quantizer()
+    if not self.config['dvnc']['qonly']:
+      self.exec_scheduler()
+      self.exec_generator()
+
+
+  def run(self,model_name):
+    self._run(model_name)
+
+  def _run(self, model_name):
+    try:
+      self.set_paths()
+      self.print_config()
+      logger.info("starting network conversion")
+      self.convert()
+      logger.info("network conversion complete")
+      logger.info("starting network compilation")
+      self.write_or_append = "a"
+      self.compile()
+      logger.info("network compilation complete")
+      self.change_out_dir_perm(os.path.abspath(self.config['out']))
+      logger.info("dvrun executed successfully for {0}".format(model_name))
+    except Exception as e:
+      logger.error(str(e))
+      self.write_or_append = "a"
+      if 'out' in self.config:
+        self.change_out_dir_perm(os.path.abspath(self.config['out']))
+      logger.info("dvrun execution failed")
+      raise Exception("model: {0} log_file: {1}".format(model_name, os.path.join(self.config["out"],"dvrun.log")))
+
+@contextmanager
+def temporary_log_file(logger, path, *, level=None, mode="a", exclusive=True, propagate=False):
+    old_handlers = logger.handlers[:]
+    old_level = logger.level
+    old_propagate = logger.propagate
+
+    fh = logging.FileHandler(path, mode=mode, encoding="utf-8")
+    fh.setFormatter(logging.Formatter(
+        "%(asctime)s [%(processName)s %(threadName)s] %(levelname)s %(name)s: %(message)s"
+    ))
+    if level is not None:
+        logger.setLevel(level)
+        fh.setLevel(level)
+
+    try:
+        if exclusive:
+            for h in old_handlers:
+                logger.removeHandler(h)
+        logger.addHandler(fh)
+        logger.propagate = propagate
+        yield
+    finally:
+        logger.removeHandler(fh)
+        fh.flush(); fh.close()
+        # restore
+        for h in old_handlers:
+            if h not in logger.handlers:
+                logger.addHandler(h)
+        logger.setLevel(old_level)
+        logger.propagate = old_propagate
+
+class llmrun():
+  def __init__(self):
+    self.args = {}
+    self.split_paths = []
+    self.jobs = []
+    self.error_list = []
+    self.failed_log_list = []
+    self.triage_path = ""
+
+  def set_split_directory_paths(self):
+    if self.dv.is_qwen3_vl(self.dv.config['model_repo']):
+      paths = list(dict.fromkeys(path for _, _, _, path in self.dv.qwen3_split_paths()))
+      if self.dv.config.get('vision_out'):
+        paths.append(Path(self.dv.config['vision_out']) / 'default/default_split')
+      for path in paths:
+        if not (path / 'dvrun_config.yaml').is_file():
+          raise FileNotFoundError(f'Missing split configuration in {path}')
+      self.split_paths = [str(path) for path in paths]
+      return
+    for yaml_path in glob.glob(os.path.join(self.dv.config["out"],self.dv.llm_output_dir) +"/prmpt*/*/"+"dvrun_config.yaml"):
+      self.split_paths.append(os.path.dirname(yaml_path))
+    
+
+    # uncomment below line if wanted to exclude  prmt/split_32 model
+    # self.split_paths = self.split_paths[:-1]
+
+    for yaml_path in glob.glob(os.path.join(self.dv.config["out"],self.dv.llm_output_dir) +"/tkn*/*/"+"dvrun_config.yaml"):
+      self.split_paths.append(os.path.dirname(yaml_path))
+
+    for yaml_path in glob.glob(os.path.join(self.dv.config["out"],self.dv.llm_output_dir) +"/lmhead*/*/"+"dvrun_config.yaml"):
+      self.split_paths.append(os.path.dirname(yaml_path))
+
+    if self.dv.config.get('vision_out', None):
+      for yaml_path in glob.glob(self.dv.config["vision_out"] +"/*/default*/"+"dvrun_config.yaml"):
+        self.split_paths.append(os.path.dirname(yaml_path))
+
+    if len(self.split_paths) ==0:
+      logger.error("no splitted directories found to run")
+      sys.exit(1)
+
+  def safe_function_call(self, function_list):
+    try:
+      function, args = function_list
+      return function(args)
+    except Exception as e:
+      return "ERROR: " + str(e)
+
+  def print_progress(self, done, success, error, total, start_time):
+      # Metrics
+      pending = total - done
+      percent = (done / total) * 100 if total else 0
+      elapsed = time.time() - start_time
+      speed = done / elapsed if elapsed > 0 else 0
+      eta = (total - done) / speed if speed > 0 else 0
+
+      def fmt_time(seconds):
+          if seconds < 60:
+              return f"{seconds:4.1f}s"
+          elif seconds < 3600:
+              m, s = divmod(int(seconds), 60)
+              return f"{m:02d}m{s:02d}s"
+          else:
+              h, rem = divmod(int(seconds), 3600)
+              m, s = divmod(rem, 60)
+              return f"{h:02d}h{m:02d}m{s:02d}s"
+
+      elapsed_str = fmt_time(elapsed)
+      eta_str = fmt_time(eta)
+
+      # Terminal width for dynamic bar
+      term_width = shutil.get_terminal_size((100, 20)).columns
+      bar_len = max(10, min(40, term_width // 3))  # scale to terminal
+
+      # Bar drawing
+      filled_len = int(bar_len * done // total) if total else 0
+      bar = "█" * filled_len + "-" * (bar_len - filled_len)
+
+      # Output line
+      msg = (
+          f"\r[{bar}] {done}/{total} "
+          f"(success: {success} | error: {error} | pending: {pending}) "
+          f"{percent:5.1f}% | {speed:.2f} job/s | Elapsed {elapsed_str} | ETA {eta_str}"
+      )
+
+      sys.stdout.write(msg)
+      sys.stdout.flush()
+
+  def func_pool_map(self, jobs, max_workers=1):
+      try:
+          results, errors, successes = [], 0, 0
+          total = len(jobs)
+          start = time.time()
+          self.print_progress(0, 0, 0, total, start)
+          sys.stdout.write("\n")
+          with multiprocessing.Pool(processes=max_workers) as pool:
+              pending_jobs = [pool.apply_async(self.safe_function_call, args=(job,)) for job in jobs]
+              for i, r in enumerate(pending_jobs, start=1):
+                  res = r.get()
+                  results.append(res)
+                  if str(res).startswith("ERROR:"):
+                      errors += 1
+                      logger.error(res)
+                      self.failed_log_list.append(res.split("log_file:")[-1].strip())
+                      self.error_list.append(str(res))
+                  else:
+                      successes += 1
+                  self.print_progress(i, successes, errors, total, start)
+              pool.close()
+              pool.join()
+          sys.stdout.write("\n")
+          return results
+      except Exception as e:
+          raise Exception("func_pool_map failed with error: " + str(e))
+
+  def timediff(self,end_time, begin_time):
+    """return wall clock time difference
+    Args:
+      end_time (datetime) : end time
+      begin_time (datetime) : begin time
+    Returns: a dict
+      wc_tsec   : wall clock time in seconds
+      wc_hrs    : wall clock hours
+      wc_mins   : wall clock minutes
+      wc_secs   : wall clock seconds
+    """
+    r = {}
+    et = end_time - begin_time
+    tsec = et.total_seconds()
+    r['wc_tsec'] = et.total_seconds()
+    r['wc_hrs'] = int(tsec // 3600)
+    r['wc_mins'] = int((tsec % 3600) // 60)
+    r['wc_secs'] = int((tsec % 3600) % 60)
+    return r
+
+
+  def get_log_tail(self, lfn, marker=True):
+    r = {}
+    strl = []
+    if marker == True:
+      strl.append(">>========")
+    strl.append("=====log tail=====")
+    if os.path.isfile(lfn):
+      strl.append("log file: " + lfn)
+      r['rv'] = subprocess.run("tail -18 " + lfn, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True, text=True)
+      if (r['rv'].returncode != 0):
+        raise Exception("FAILED : + ", "log file: " + lfn , " exitcode : ", r[''].returncode, " message: ", r['rv'].stdout)
+      strl.append(r['rv'].stdout)
+    else:
+      strl.append("no log file: " + lfn)
+    if marker == True:
+      strl.append("=========================<<")
+    strl.append("\n")
+    return strl
+
+  def get_unique_splits(self):
+    self.unique_splits = []
+    weight_keys_path = os.path.join(os.path.join(self.dv.config["out"],self.dv.llm_output_dir,"assets","weight_config.json"))
+    with open(weight_keys_path, "r", encoding="utf-8") as f:
+      weight_keys = json.load(f)
+    for key in weight_keys.keys():
+      if len(weight_keys[key]) > 0:
+        unique_idx = weight_keys[key][0]
+        for path in self.split_paths:
+          if path.endswith(f"/split_{unique_idx}"):
+            self.unique_splits.append(path)
+
+
+
+  def exec_splits_in_parallel(self):
+    try:
+      if self.args.num_of_cores == 0:
+        self.args.num_of_cores = multiprocessing.cpu_count()
+      self.get_unique_splits()
+      for i in self.split_paths:
+        dvobj = dvrun(os.path.join(i, "dvrun_config.yaml"), self.args)
+        model_name =  "/".join(i.split("/")[-2:]).replace("/","_")
+        if i in self.unique_splits:
+          self.jobs.append([dvobj.run, model_name])
+        else:
+          self.jobs.append([dvobj.run, model_name])
+      logger.info("total splits running {}".format(len(self.jobs)))
+      self.func_pool_map(self.jobs, max_workers = self.args.num_of_cores)
+      logger.info("total: {} passed: {} failed: {}".format(len(self.jobs), len(self.jobs)-len(self.error_list), len(self.error_list)))
+      logger.error("failed list : \n{}".format(self.error_list))
+      if len(self.error_list) > 0:
+        self.triage_path = os.path.join(self.dv.config["out"], "split_failures.log")
+        with open(self.triage_path, "w") as file:
+          for lfn in self.failed_log_list:
+            file.write("\n".join(self.get_log_tail(lfn)))
+            file.write("\n")
+        logger.info("triage: {}".format(self.triage_path))
+        raise Exception("split runs failed")
+    except Exception as e:
+      raise Exception("exec_splits_in_parallel failed with error: "+str(e))
+
+
+
+  def run(self):
+    try:
+      self.dv = dvrun(self.args.config, self.args) #This is a bug.
+      # dvrun() object must be created with generated dvrun_config.yaml not with llm_model_(gen_)config.yaml
+      logger.info(f"Running in mode: {self.args.mode}")
+      mode = int(self.args.mode)
+      if mode == 1:
+        self.dv.validate_config(mode)
+        self.dv.exec_convert_to_onnx()
+        logger.info("Convert to onnx succesful")
+      elif mode == 2 or mode == 3 or mode == 4:
+        #Create output and run llm_converter
+        self.dv.validate_config(mode) 
+        if mode == 2 or mode == 3:
+          self.dv.exec_pre_split()
+          if mode == 3:
+            logger.info("Generated Splits and exiting")
+            return
+        self.set_split_directory_paths()
+        # to run prompt and token directories parallely
+        if mode == 2 or mode == 4:
+          logger.info("running splits parallely")
+          splits_log = os.path.join(self.dv.config["out"],"splits_run.log")
+          logger.info("parallel splits run log: %s",splits_log)
+          with temporary_log_file(logger, splits_log, level=logging.INFO, exclusive=True):
+              self.exec_splits_in_parallel()
+          logger.info("finished running splits")
+
+        # create all_dvms.txt file
+        self.dv.write_dvm_paths_to_file()
+
+        # to stitch all split's model.dvm's into one model.dvm
+        self.dv.exec_llm_model_gen()
+        
+        self.dv.change_out_dir_perm(os.path.abspath(self.dv.config['out']))
+        logger.info("final LLM model.dvm path {}".format(os.path.join(self.dv.config['out'], self.dv.llm_output_dir, 'model.dvm')))
+
+        # No dvm splits/stitching yet, so pick dvm from default_split.
+        if (self.dv.config.get("vision_out", None)):
+          logger.info("final vision model.dvm path {}".format(os.path.join(self.dv.config['vision_out'], 'default/default_split/assets/model.dvm')))
+          
+        logger.info("llmrun executed successful")
+
+      elif mode == 5:
+          self.dv.validate_config(mode)
+          self.dv.prepare_qwen3_vision()
+          model_name_tagging_run = self.dv.config['model_dir'].replace("/", "_")
+          # self.dv is not usable to invoke dvrun because it was created with --config
+          # received from commandline for THIS tool. So we create a fresh dvrun object.
+          dvobj = dvrun(os.path.join(self.dv.config['out'], 'dvrun_config.yaml'), self.args)
+          dvobj.run(model_name_tagging_run)
+
+      elif mode == 6:
+        self.set_split_directory_paths()
+        self.dv.write_dvm_paths_to_file()
+        dvm_file = os.path.join(self.dv.run_dir, os.path.abspath(os.path.join(self.dv.config['out'], self.dv.llm_output_dir, 'model.dvm')))
+        dvm_info_file = os.path.join(self.dv.run_dir, os.path.abspath(os.path.join(self.dv.config['out'], self.dv.llm_output_dir, 'model.dvm.txt')))
+        try:
+          logger.info(f"trying to delete dvm_file: {dvm_file} and {dvm_info_file}")
+          os.remove(dvm_file)
+          logger.info(f"Succesfully deleted dvm_file: {dvm_file}")
+          os.remove(dvm_info_file)
+          logger.info(f"Succesfully deleted dvm_info_file: {dvm_info_file}")
+        except FileNotFoundError as e:
+          logger.info(f"The file does not exist and could not be deleted. Proceeding: {e}")
+        except PermissionError as e:
+          logger.error(f"Don't have permission to delete the files. Please delete. {e}")
+          raise RuntimeError(srt(e))
+        self.dv.exec_llm_model_gen()
+        self.dv.change_out_dir_perm(os.path.abspath(self.dv.config['out']))
+        logger.info("final LLM model.dvm path after rewrite {}".format(os.path.join(self.dv.config['out'], self.dv.llm_output_dir, 'model.dvm')))
+
+
+      else:
+        logger.error("Invalid mode ")
+    except Exception:
+      logger.exception("llmrun execution failed")
+      raise SystemExit(1)
+
+  def parse_args(self):
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--mode', required=True, help='1 : convert to onnx, 2 : generate and compile model, 3: generate model, 4: compile model, 5: generate and compile vision model, 6: stitch llm model.dvm')
+    parser.add_argument('--config', required=True, help='path to configuration file')
+    parser.add_argument('--num_of_cores', required=False, default = 0, type=int, help='num_cores to use for running splits parallely, default: uses all cores available on host')
+    parser.add_argument('--skip-model-conversion', default=False, action='store_true', help='skip model conversion from pytorch if already done previously')
+    self.args = parser.parse_args()
+    logger.info("parsed command line arguments")
+
+if __name__ == '__main__':
+  runner = llmrun()
+  runner.parse_args()
+  runner.run()

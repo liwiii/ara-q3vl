@@ -1,0 +1,1 @@
+export PYTHONPATH=/auto/regrt/sw/chotu/jenkins/home/workspace/3.0-unified-sdk/18/arasw/bld/dv2/python/caffe/proto:${PYTHONPATH} && python3 /auto/regrt/sw/chotu/jenkins/home/workspace/3.0-unified-sdk/18/arasw/bld/dv2/src/nnconvert/dvconvert.py $*

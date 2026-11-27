@@ -1,0 +1,17 @@
+layer {
+  name: "{{layer_name}}"
+  type: "Ara2DVTensor"
+  top: "{{layer_name}}"
+  base_type: "DVTensor"
+  estimator_group: "DVTensor"
+  dvtensor_param {
+    tensortype: WEIGHT
+    shape {
+      dim: {{wt_sz}}
+      dim: 1
+      dim: 1
+      dim: 1
+    }
+    pass_through: true
+  }
+}

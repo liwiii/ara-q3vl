@@ -1,0 +1,241 @@
+Limit:
+  standardize_patching:
+    - 20
+  layer_specific_passes:
+    - 100
+  common_passes:
+    - 45
+  name_patching:
+    - 3
+  pattern_matchers:
+    - 3
+  target_patching:
+    - 10
+Ignore:
+  Ara1:
+    - None
+  Ara2:
+    - Ara1
+    - HtoWforSoftmax
+  TFlite:
+    - Ara2
+    - Ara1
+Patching:
+  PatternMatchers:
+    # - unet_patterns, RemoveRedundantPermuteAttention
+    - remove_redundant_layers, yolov8_reshape_concat_split
+    - remove_redundant_layers, yolov8_concat_slice_reshape
+  FinalPatchings:
+    - batchdot, GeGLuSplit_1
+    - batchdot, GeGLuSplit_2
+    - batchdot, GeGLuSplit_3
+    - batchdot, MultiHeadAttentionSplit
+    - h_to_w, HtoWforBatchNorm
+    # - batchdot, MultiHeadAttentionSplit_LLM
+    - convolution, SliceConvolution1
+    - convolution, SliceConvolution2
+    - batchdot, UnetPattern2_2
+    - eltwise, Eltwise_bc3bc0_to_bc0bc3
+    - activation, ActivationPatching
+    - layer_fusion, ReorderLayersForFusion
+    - reshape, FuseReshape
+    - remove_noop_layers, RemoveNoopReshape
+    - permute, FusePermute
+    # - permute, FusePermuteNnp
+    - permute, PermuteNnp
+    - aten, ATenPatching
+    - cast, DVCastPatching
+    - dvtensor, DVTensorShiftPatching
+    - dvtensor, DVTensorCastPatching
+    - shift, DVShiftSplit
+    - shift, InsertDVShift
+    - shift, DVShiftPatching
+    - cast, RemoveRedundantCastII
+    - cast, RemoveRedundantCast
+    - cast, RemoveRedundantCastGather
+    - cast, RemoveRedundantShiftGather
+    - shift, RemoveRedundantDVShift
+    - reshape, FuseReshape
+    - shift, RemoveDVShiftReshape
+    - shift, RemoveDvshiftReshapePerm
+    - concat, ConcatPatching
+    - lut, SwishLut
+    - convolution, SliceConvolution1
+    - convolution, SliceConvolution2
+    - convolution, GroupConvPatching
+    - convolution, DepthwiseConvPatching
+    - reshape, DynamicReshape
+    - reshape, MoveReshapeBatchDim
+    - batchdot, ClipVitBdotPerm
+    - convolution, ConvolutionKernel32to1
+  LayerSpecificPatchings:
+    Input:
+      - input, InputPatching
+      - input, InputOutputOrderPatching
+      - tf2onnx, InputPermuteFusion
+    Swish:
+      - swish, MergeSwish
+      - swish, SwishMatcher
+    Sigmoid:
+      - sigmoid, SigmoidConv1
+    Reduction:
+      - h_to_w, HtoWforReduction
+    Softmax:
+      # - attentionsoftmax, AttentionSoftmaxMatcher
+      - h_to_w, HtoWforSoftmax
+      # - softmax, Axis2to1
+      - softmax, SoftmaxPermuteAxis2to1_1
+      - softmax, SoftmaxPermuteAxis2to1_2
+      - softmax, PermuteSoftmaxPermute
+    BatchNorm:
+      - squash_consecutive_layers, SquashConsecutiveBatchNorms
+      - ibn_pattern_matcher, IBNPatternMatching
+      - convolution, MoveReshapefromConvBNorm
+      - convolution, MoveReshapePermfromConvBnorm
+    LayernNorm:
+      - h_to_w, HtoWforLayernNorm
+      - layernorm, PermuteLayernorm
+      - layernorm, LayerNormAxis3to1
+      # - layernorm, LayerNormAddReshape
+    L1Norm:
+      - h_to_w, HtoWforL1Norm
+    Normalize:
+      - h_to_w, HtoWforScaleNorm
+    GroupNorm:
+      - h_to_w, HtoWforGroupNorm
+    Convolution:
+      - convolution, ConvolutionPatching
+      - dvtensor, DVTensorPatching
+      - reshape, FuseReshape
+      - convolution, SliceConvolutionCrop
+      - convolution, FuseConvolution
+      - convolution, MoveReshapefromConvBNorm
+      - convolution, MoveReshapePermfromConvBnorm
+      - convolution, SplitConvAfterConcat
+      # - convolution, ConvToBdotUnpack
+    Inrp:
+      - swish, MergeSwish
+      - batchedfc, BatchedFCPatching
+      - inrp, InnerProductPatching
+      - dvtensor, DVTensorPatching
+    Padding:
+      - pad_fusion, FusePadIntoSuccessor
+    Deconvolution:
+      - deconvolution, DeconvPatching
+    Pooling:
+      - pooling, PoolingPatching
+      - pooling, ReductionPatching
+    Concat:
+      - concat, BatchPermutationPatching
+      - concat, ConcatAxis0To1Patching
+      - concat, ConcatPatching
+    BatchDot:
+      # - Ara1batchdot, Ara1BatchDotPatching
+      - Ara2batchdot, Ara2BatchDotPatching
+      - Ara2batchdot, BatchDotMultiplierPatching
+      - batchdot, BDotPermPattern1
+      - batchdot, BDotPermPattern2
+      - batchdot, BDotPermPattern3
+      - batchdot, BDotPermPattern4
+      - Ara2batchdot, Ara2BatchDotPatching
+    ArgMax:
+      - argmax, ForkArgmaxSoftmax
+    Flatten:
+      - flatten, FlattenPatching
+    Reshape:
+      # - reshape, ReshapePatching
+      - convolution, MoveReshapefromConvBNorm
+      - convolution, MoveReshapePermfromConvBnorm
+      - squash_consecutive_layers, SquashConsecutiveReshapes
+      - remove_noop_layers, RemoveNoopReshape
+      - remove_redundant_layers, RemoveReshapePermutes
+      - remove_redundant_layers, PermuteReshapePermute
+      - reshape, FuseReshape
+      - rearrange_layers, Bnorm_Reshape_Scale
+    DetectionOutput:
+      - detection_out, DetectionOutPatching
+    Mxnet_Take:
+      - dma, BatchPatching
+    Eltwise:
+      - eltwise, EltwisePatching
+      - eltwise, BroadcastEltwisePatching
+      - eltwise, EltwiseBroadcastPatching
+      - eltwise, EltwiseConstantPatching
+      - eltwise, Eltwise_bc2bc0_to_bc0bc2
+    Upsample_Scale:
+      - upsample, UpsampleScale
+    LinearUpsample:
+      - linearUpsample, LinearUpsample
+    BroadcastMul:
+      - broadcastmul, BroadcastMulPatching
+    Broadcast:
+      - broadcast, BroadcastPatching
+    Identity:
+      - identity, IdentityPatching
+    DynamicInput:
+      - dynamic_input, DynamicInputPatching
+    BatchLoop:
+      - batchloop, BatchLoopPatching
+    CropPatching:
+      - crop, CropPatching
+    Pad:
+      - pad_fusion, FusePadIntoSuccessor
+      - remove_noop_layers, RemoveNoopPad
+      - squash_consecutive_layers, SquashConsecutivePads
+    AvgPool:
+      - remove_noop_layers, RemoveNoopAvgPool
+    Pool:
+      - remove_noop_layers, RemoveNoopPool
+    Crop:
+      - remove_noop_layers, RemoveNoopCrop
+      - squash_consecutive_layers, SquashConsecutiveCrops
+    Permute:
+      - permute, PermuteForSpacialDist
+      - permute, FusePermute
+      - squash_consecutive_layers, SquashConsecutiveCrops
+      - dvtensor, DVTensorPermutePatching
+      - remove_redundant_layers, RemoveReshapePermutes
+      - remove_redundant_layers, PermuteReshapePermute
+      - remove_redundant_layers, RemoveRedundantPermutes
+      - permute, RemoveRedundantPermute1
+      - permute, PermuteForHW
+      - permute, PermuteLarge
+      - permute, PermuteToReshape
+      - batchdot, BDotPermPattern1
+      - batchdot, BDotPermPattern2
+      - batchdot, BDotPermPattern3
+      - batchdot, BDotPermPattern4
+      - Ara2batchdot, Ara2BatchDotPatching
+      - softmax, SoftmaxPermuteAxis2to1_1
+      - softmax, SoftmaxPermuteAxis2to1_2
+    PermuteNnp:
+      - permute, PermuteToReshape
+      # - permute, SimplifyReshapePermuteSequence
+    other:
+      - remove_redundant_layers, RemoveRedundantLayers
+      - remove_noop_layers, RemoveNoopSoftmax
+    RedundantAdd:
+      - eltwise, ZeroAdd
+    Aten:
+      - aten, powToMul
+  NamePatchings:
+    - reduce, NamePatching
+  TargetPatchings:
+    # - dvtensor, DynamicDvtensorPatching
+    - tf2onnx, OutputPermuteRemoval
+    - tf2onnx, HandleLastPermuteReshape
+    - target, TargetType
+    - group, GroupPatching
+    - shape, ShapePatching
+  Standardize:
+    - standardize_blobs, UniquifyBlobNames
+    - standardize_padding, StandardizePad
+    - standardize_padding, StandardizeStrides
+    - standardize_padding, StandardizeKernelSize
+Fuse_act:
+    dryrun_0:
+      - False
+    dryrun_1:
+      - True
+    dryrun_2:
+      - False
